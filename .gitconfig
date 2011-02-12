@@ -1,0 +1,22 @@
+[core]
+	editor = vim
+	excludesfile = /home/cfddream/.gitignore
+[user]
+	name = cfddream
+	email = cfddream@gmail.com
+[color]
+	ui = auto
+[format]
+	pretty = oneline
+[diff]
+	tool = gvimdiff
+[difftool]
+	prompt = gvimdiff
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	st = status
+	last = log -1 HEAD
+	mg = merge
+	df = difftool

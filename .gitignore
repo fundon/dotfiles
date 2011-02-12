@@ -1,0 +1,10 @@
+tags
+.netrwhist
+undofiles
+.viminfo
+*.swp
+*.pyc
+
+# svn
+*.svn
+*.git
