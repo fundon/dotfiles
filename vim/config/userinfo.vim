@@ -1,9 +1,9 @@
 " --------------------------------------------------------------------------->>
 " User Infos: " {{{
-let g:MYVIM_user={
-    \'author': 'cfddream',
-    \'email' : 'cfddream[at]gmail.com',
-    \'site'  : 'www.kissdry.com'
+let g:MYVIM_User={
+    \'Author': 'cfddream',
+    \'Email' : 'cfddream[at]gmail.com',
+    \'Site'  : 'www.kissdry.com'
     \}
 " }}}
 " <<---------------------------------------------------------------------------

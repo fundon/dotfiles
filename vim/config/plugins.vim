@@ -45,5 +45,14 @@ let tlist_javascript_settings = 'javascript;f:Function;c:Class;o:Object;m:Method
 " ACK:
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+" Tabularize:
+if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>Align()<CR>a
+
 " }}}
 " <<----------------------------------------------------------------------------

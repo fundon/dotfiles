@@ -1,7 +1,7 @@
 submodules:
 
-git submodule add http://github.com/scrooloose/nerdtree.git vim/bundle/nerdtree
-git submodule add http://github.com/scrooloose/nerdcommenter.git vim/bundle/nerdcommenter
+git submodule add git://github.com/scrooloose/nerdtree.git vim/bundle/nerdtree
+git submodule add git://github.com/scrooloose/nerdcommenter.git vim/bundle/nerdcommenter
 git submodule add git://github.com/othree/html5.vim.git vim/bundle/html5
 git submodule add git://github.com/thinca/vim-prettyprint.git vim/bundle/prettyprint
 git submodule add git://github.com/tpope/vim-surround.git vim/bundle/surround
@@ -11,3 +11,8 @@ git submodule add git://github.com/mileszs/ack.vim.git vim/bundle/ack
 git submodule add git://github.com/vim-scripts/taglist.vim.git vim/bundle/taglist
 git submodule add git://github.com/vim-scripts/jade.vim.git vim/bundle/jade
 git submodule add git://github.com/nelstrom/vim-blackboard.git vim/bundle/blackboard
+git submodule add git://github.com/dahu/tabby.git vim/bundle/tabby
+git submodule add git://github.com/godlygeek/tabular.git vim/bundle/tabula
+
+git submodule init
+git submodule update

@@ -34,3 +34,9 @@
 [submodule "vim/bundle/mac-classic"]
 	path = vim/bundle/mac-classic
 	url = git://github.com/nelstrom/vim-mac-classic-theme.git
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/tabby"]
+	path = vim/bundle/tabby
+	url = git://github.com/dahu/tabby.git

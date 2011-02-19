@@ -112,19 +112,56 @@ endfunction
 
 "Auomatically add file head. NERO_commenter.vim needed.
 function! AutoHead()
-    let fl = line(".")
-    if getline(fl) !~ "^$"
-        let fl += 1
-    endif
-    let ll = fl+3
-    call setline(fl, '')
-    "call append(fl,"Last Change: ")
-    call append(fl,"Description: ")
-    call append(fl+1,"")
-    call append(fl+2, GetVimStyle())
-    execute fl . ','. ll.'call NERDComment(0,"toggle")'
-endfunc
+    call SetHead()
+endfunction
 "nmap ,h :call AutoHead()<cr>
+
+function! SetHead()
+    if !has_key(g:MYVIM_langs, &filetype)
+        echo 'nothing'
+        return
+    endif
+
+    call SetLangsInfos()
+    call SetUserInfos()
+    call SetLangsTop()
+
+    let l = line('.')
+    let s = l - len(keys(g:MYVIM_User)) - len(g:MYVIM_Normal_Infos)
+
+    execute ':' . s . ',' . l . 'Tabularize /:\zs'
+    execute ':' . s . ',' . l . 'call NERDComment(0, "toggle")'
+    execute ':' . (l-1) . 's/date/' . strftime('%Y-%m-%d %H:%M%S')
+    call append(l, '')
+    call cursor(l+1, 0)
+endfunction
+
+function! SetFoot()
+    let l = line('$')
+    call append(l, '')
+    call append(l+1, GetVimStyle())
+    execute ':' . line('$') . 'call NERDComment(0, "toggle")'
+    call cursor(l, 0)
+endfunction
+
+function! SetUserInfos()
+    let ui = g:MYVIM_User
+    for [k,v] in items(ui)
+        call append(0, k . ':'. v)
+    endfor
+endfunction
+
+function! SetLangsTop()
+    let lv = get(g:MYVIM_langs, &filetype)
+    call append(0, add(lv, ''))
+endfunction
+
+function! SetLangsInfos()
+    let lv = g:MYVIM_Normal_Infos
+    for [k,v] in items(lv)
+        call append(0, k . ':' . v)
+    endfor
+endfunction
 
 " Get Vim Style
 function! GetVimStyle()
@@ -138,6 +175,18 @@ function! GetVimStyle()
         \&fileformat
         \)
     return t:vim
+endfunction
+
+" Tabularize
+function! Align()
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
 endfunction
 
 " }}}
