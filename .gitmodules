@@ -28,3 +28,9 @@
 [submodule "vim/bundle/jade"]
 	path = vim/bundle/jade
 	url = git://github.com/vim-scripts/jade.vim.git
+[submodule "vim/bundle/blackboard"]
+	path = vim/bundle/blackboard
+	url = git://github.com/nelstrom/vim-blackboard.git
+[submodule "vim/bundle/mac-classic"]
+	path = vim/bundle/mac-classic
+	url = git://github.com/nelstrom/vim-mac-classic-theme.git

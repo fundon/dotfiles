@@ -11,6 +11,8 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.php setfiletype php
     autocmd! BufNewFile,BufRead *.tpl.html setfiletype php
 
+    autocmd! BufNewFile,BufRead *.rss,*.atom setfiletype xml
+
     autocmd! BufNewFile,BufRead *.as setfiletype javascript
     autocmd! BufNewFile,BufRead *.json setfiletype json
 

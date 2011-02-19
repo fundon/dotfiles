@@ -10,3 +10,4 @@ git submodule add git://github.com/guns/xoria256.vim.git vim/bundle/xoria256
 git submodule add git://github.com/mileszs/ack.vim.git vim/bundle/ack
 git submodule add git://github.com/vim-scripts/taglist.vim.git vim/bundle/taglist
 git submodule add git://github.com/vim-scripts/jade.vim.git vim/bundle/jade
+git submodule add git://github.com/nelstrom/vim-blackboard.git vim/bundle/blackboard

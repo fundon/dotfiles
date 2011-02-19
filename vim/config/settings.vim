@@ -57,7 +57,7 @@ endif
 " --------------------------------------------------------------------------->>
 " Global Settings: " {{{
 set background=dark
-colorscheme jellyx
+colorscheme railscasts
 
 set nocompatible
 set lazyredraw

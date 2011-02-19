@@ -26,6 +26,7 @@ if has('autocmd')
     " HTML CSS:
         let html_use_css = 1
         autocmd FileType css setlocal et ts=2 sw=2 sts=2
+        autocmd FileType html setlocal et ts=2 sw=2 sts=2
         autocmd FileType css inoremap !! !important
         autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -79,7 +80,7 @@ if has('autocmd')
     "
 
     " Yaml:
-    autocmd FileType yaml setlocal ts=2 sw=2 sts=2
+    autocmd FileType yaml setlocal et ts=2 sw=2 sts=2
 
     augroup END
 endif
