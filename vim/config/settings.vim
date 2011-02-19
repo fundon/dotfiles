@@ -15,18 +15,18 @@ if has('gui_running')
     set guitablabel=%{GuiTabLabel()}
     set toolbar=icons
     set toolbariconsize=tiny
+    " No menus and no toolbar
+    set guioptions-=b
+    set guioptions-=T
+    set guioptions-=m
     " Toggle Menu and Toolbar
     map <silent> <F11> :if &guioptions =~# 'T' <Bar>
         \set guioptions-=T <Bar>
-        \set guioptions-=m <bar>
+        \set guioptions-=m <Bar>
         \else <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
         \endif<CR>
-    " No menus and no toolbar
-    set guioptions-=m
-    set guioptions-=T
-    set guioptions-=b
 
     if has('gui_gtk2')
         set guifont=Monaco\ 10
@@ -56,6 +56,9 @@ endif
 
 " --------------------------------------------------------------------------->>
 " Global Settings: " {{{
+set background=dark
+colorscheme jellyx
+
 set nocompatible
 set lazyredraw
 set viewoptions=folds,options,cursor,unix,slash
@@ -122,7 +125,7 @@ set wrap
 set whichwrap+=b,s,<,>,[,],h,l
 set iskeyword+=_,$,@,%,#,-
 set commentstring=#%s
-set formatprg=fmt
+set formatprg=tcroqn2
 set sps=best,10
 set shiftround
 
@@ -179,8 +182,8 @@ set nowritebackup
 " undo settings
 if v:version >= 703
     if has('persistent_undo')
-        set undodir=$MYVIM./undofiles
         set undofile
+        set undodir=$MYVIM/.undofiles
     endif
 endif
 

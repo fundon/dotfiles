@@ -1,4 +1,4 @@
-" --------------------------------------------------------------------------->>
+" ---------------------------------------------------------------------------->>
 " Plugins: " {{{
 
 " NERDTree:
@@ -18,6 +18,8 @@ nmap <C-?> :call NERDComment(0, "toggle")<CR>
 vmap <C-?> <ESC>:call NERDComment(1, "toggle")<CR>
 
 " Taglist:
+" " CTags
+"map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 noremap <F9> :TlistToggle<CR>
 noremap <F8> :!/usr/bin/ctags-exuberant -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let g:ctags_statusline = 1
@@ -40,5 +42,8 @@ let tlist_css_settings = 'css;c:Classes;o:Objects(ID);t:Tags(Elements)'
 let tlist_php_settings = 'php;c:Class;i:Interfaces;d:Constant;f:Function'
 let tlist_javascript_settings = 'javascript;f:Function;c:Class;o:Object;m:Method;s:String;a:Array;n:Constant'
 
+" ACK:
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
 " }}}
-" <<---------------------------------------------------------------------------
+" <<----------------------------------------------------------------------------

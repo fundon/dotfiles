@@ -10,9 +10,9 @@ runtime! config/autocmd.vim
 runtime! config/userinfo.vim
 runtime! config/utils.vim
 runtime! config/settings.vim
+runtime! config/colors.vim
 runtime! config/plugins.vim
 runtime! config/mappings.vim
-"runtime! config/color.vim
 "runtime! config/filetype.vim
 "runtime! config/autocmd_ft.vim
 " <<---------------------------------------------------------------------------

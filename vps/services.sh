@@ -3,13 +3,14 @@
 apt-get install -y aptitude
 aptitude install -y bash-completion
 aptitude install -y python-software-properties
-aptitude install -y python-setuptools
 
 aptitude install -y openssh-server
 aptitude install -y openssl
 aptitude install -y iptables
+aptitude install -y fail2ban
 aptitude install -y pwgen
 aptitude install -y htop
+aptitude install -y man-db manpages-dev
 aptitude install -y ntp ntpdate
 aptitude install -y vim-nox nano
 
@@ -62,6 +63,11 @@ aptitude install -y libgdbm-dev
 
 aptitude install -y subversion subversion-tools
 aptitude install -y git-core
+
+apt-get clean
+apt-get autoclean
+apt-get autoremove
+#rm -rf /var/log/*
 
 # nginx
 curl -O http://nginx.org/download/nginx-0.8.54.tar.gz

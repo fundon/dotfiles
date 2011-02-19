@@ -17,38 +17,38 @@ if has('autocmd')
 
     augroup vimrc
     autocmd!
-    " SH: " {{{
+    " SH:
         autocmd BufNewFile *.sh
             \ 0put=\"#!/bin/bash\<nl>\"
             \|call AutoHead()
-    " }}}
+    "
 
-    " HTML CSS: " {{{
+    " HTML CSS:
         let html_use_css = 1
         autocmd FileType css setlocal et ts=2 sw=2 sts=2
         autocmd FileType css inoremap !! !important
         autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    " }}}
+    "
 
-    " XML: " {{{
+    " XML:
         let xml_use_xhtml = 1
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    " }}}
+    "
 
-    " JavaScript: " {{{
+    " JavaScript:
         let javascript_enable_domhtmlcss=1
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    " }}}
+    "
 
-    " PHP: " {{{
+    " PHP:
         let php_sql_query=1
         let php_htmlInString=1
         let php_folding=1
         autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-    " }}}
+    "
 
-    " Python: " {{{
+    " Python:
         " auto indent after "def foo():<CR>"
         let python_highlight_all=1
         let python_highlight_exceptions=0
@@ -60,23 +60,26 @@ if has('autocmd')
             \ 0put=\"#!/usr/bin/env python\<nl>
             \# -*- coding: UTF-8 -*-\<nl>\"
             \|call AutoHead()
-    " }}}
+    "
 
-    " Ruby: " {{{
+    " Ruby:
         autocmd FileType ruby setlocal et sw=2 ts=2 sts=2
         autocmd BufNewFile *.rb
             \ 0put=\"#!/usr/bin/env ruby\<nl>
             \# coding: utf-8\<nl>\"
             \|call AutoHead()
-    " }}}
+    "
 
-    " Vim Txt Vimwiki: " {{{
+    " Vim Txt Vimwiki:
         autocmd FileType {vim,txt,vimwiki} setlocal et ts=4 sw=4 sts=4
-    " }}}
+    "
 
-    " C: " {{{
+    " C:
         autocmd FileType c set omnifunc=ccomplete#Complete
-    " }}}
+    "
+
+    " Yaml:
+    autocmd FileType yaml setlocal ts=2 sw=2 sts=2
 
     augroup END
 endif
