@@ -30,6 +30,7 @@ aptitude install -y psmisc
 aptitude install -y python-dev
 aptitude install -y python-setuptools
 
+aptitude install -y libevent-dev
 aptitude install -y libx11-dev
 aptitude install -y libxt-dev
 aptitude install -y libxext-dev
@@ -45,7 +46,6 @@ aptitude install -y libwmf-dev
 aptitude install -y libncurses5-dev libncursesw5-dev
 aptitude install -y libreadline6-dev
 aptitude install -y libglib2.0-dev
-aptitude install -y libevent-dev
 aptitude install -y libpcre3-dev
 aptitude install -y libssl-dev
 aptitude install -y libcurl4-gnutls-dev libcurl4-openssl-dev
@@ -61,21 +61,56 @@ aptitude install -y libmagic-dev
 aptitude install -y libpq-dev
 aptitude install -y libgdbm-dev
 
+aptitude install -y libmysqlclient16
+
 aptitude install -y subversion subversion-tools
 aptitude install -y git-core
+aptitude install -y tmux
 
 apt-get clean
 apt-get autoclean
 apt-get autoremove
 #rm -rf /var/log/*
 
+# Download Dir $HOME/Downloads/lnmp
+Download_Dir=$HOME/Download/lnmp
+# Install DIR  $HOME/develop/LNMP
+Install_Dir=$HOME/develop/LNMP
+
+# pcre
+cd ${Download_Dir}
+wget -c ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.12.tar.bz2
+tar jxvf pcre-8.12.tar.bz2
+#cd pcre-*
+#./configure --prefix=${Install_Dir}/pcre
+#make && make install
+
+# openssl
+cd ${Download_Dir}
+curl -O ftp://ftp.openssl.org/snapshot/openssl-1.0.1-stable-SNAP-20110305.tar.gz
+mv openssl-1.0.1-stable-SNAP-20110305.tar.gz openssl-1.0.1.tar.gz
+tar zxvf openssl-1.0.1.tar.gz
+#cd openssl-*
+#./config --prefix=${Install_Dir} --openssldir=${Install_Dir}/openssl
+#make && make install
+
+# zlib
+cd ${Download_Dir}
+wget -c http://zlib.net/zlib-1.2.5.tar.bz2
+tar jxvf zlib-1.2.5.tar.bz2
+#cd zlib-*
+#./configure --prefix=${Install_Dir}/zlib
+#make && make install
+
 # nginx
-curl -O http://nginx.org/download/nginx-0.8.54.tar.gz
+cd ${Download_Dir}
+curl -O http://nginx.org/download/nginx-0.9.5.tar.gz
 tar zxvf nginx-*
 cd nginx-*
-./configure --prefix=/opt/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_realip_module
+#./configure --prefix=${Install_Dir}/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_realip_module --with-pcre=${Download_Dir}/pcre-8.12 --with-openssl=${Download_Dir}/openssl-1.0.1 --with-zlib=${Download_Dir}/zlib-1.2.5
+./configure --prefix=${Install_Dir}/nginx --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_realip_module --with-pcre=${Download_Dir}/pcre-8.12 --with-openssl=${Download_Dir}/openssl-1.0.1 --with-zlib=${Download_Dir}/zlib-1.2.5
 make && make install
-/opt/nginx/sbin/nginx -v
+${Install_Dir}/nginx/sbin/nginx -v
 adduser --system --no-create-home --disabled-login --disabled-password --group nginx
 curl https://library.linode.com/web-servers/nginx/installation/reference/init-deb.sh -o nginx-init-deb.sh
 cp nginx-init-deb.sh /etc/init.d/nginx
@@ -83,6 +118,18 @@ chmod +x /etc/init.d/nginx
 /usr/sbin/update-rc.d -f nginx defaults
 ulimit -SHn 65535
 /etc/init.d/nginx start
+
+# percona DB
+wget -c http://www.percona.com/redir/downloads/Percona-Server-5.1/Percona-Server-5.1.54-12.5/Linux/binary/Percona-Server-5.1.54-rel12.5-188-Linux-i686.tar.gz
+tar zxvf Percona-Server-5.1.54-rel12.5-188-Linux-i686.tar.gz
+mv Percona-Server-5.1.54-rel12.5-188-Linux-i686 ${Install_Dir}/percona
+
+# freetype
+ wget -c http://download.savannah.gnu.org/releases/freetype/freetype-2.4.4.tar.bz2
+tar jxvf freetype-2.4.4.tar.bz2
+cd freetype-2.4.4/
+./configure --prefix=$HOME/develop/LNMP/freetype
+make && make install
 
 # nodejs
 curl -O http://nodejs.org/dist/node-v0.2.6.tar.gz
@@ -108,3 +155,18 @@ NPMRC
 curl http://npmjs.org/install.sh | sh
 npm -v
 npm ls
+
+# redis & webdis
+# webdis must install libevent-dev
+redis=$(`pwd`)
+git clone git://github.com/antirez/redis.git
+cd redis
+make PREFIX=/media/Develop/local/redis install
+cd /media/Develop/local/redis && mkdir etc
+cp $redis/redis.conf etc/
+# start redis
+# ./bin/redis-server ./etc/redis.conf
+# ./bin/redis-client
+cd $redis
+git clone git://github.com/nicolasff/webdis.git
+cd webdis

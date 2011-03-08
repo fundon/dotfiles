@@ -7,9 +7,9 @@ if has('autocmd')
     autocmd BufEnter * :syntax sync fromstart
 
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType c,cpp,java,php,python,ruby,javascript,ruby,sh
-        \perl,css,twig,xml,yml,vim
-        \ autocmd BufWritePre <buffer> :call RemoveSpacesM()
+    "autocmd FileType c,cpp,java,php,python,ruby,javascript,ruby,sh
+    "    \perl,css,twig,xml,yml,vim
+    "    \ autocmd BufWritePre <buffer> :call RemoveSpacesM()
     autocmd BufEnter * :lcd %:p:h
     autocmd BufReadPost * :call SetCursorPosition()
 

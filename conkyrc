@@ -1,0 +1,82 @@
+#!/usr/bin/conky -d -c
+# Swap Usage:$color $swapperc%${color lightgrey}
+
+# the ${template x x x} command uses /sys/bus/platform/devices
+# for this to work you need both lm-sensors and hddtemp get both from main repos
+
+# set to yes if you want Conky to be forked in the background
+background no
+
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+out_to_console no
+use_xft yes
+xftfont monospace:size=10
+update_interval 2
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+maximum_width 260
+
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 10
+
+# border margins
+#border_margin 4
+
+# border width
+border_width 1
+
+# Default colors and also border colors
+default_color white
+default_shade_color white
+default_outline_color white
+
+# Text alignment, other possible values are commented
+#alignment top_left
+#minimum_size 10 10
+alignment middle_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+gap_x 12
+gap_y 37
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer left
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+TEXT
+${color #55aaff}OS$color - $sysname $kernel on $machine
+${color #55aaff}Hostname$color - $nodename
+${color #55aaff}Eth1$color - ${addr eth1}
+${color #55aaff}Wlan0$color - ${addr wlan0}
+${color #6495ed}Uptime:$color $uptime ${color lightgrey}
+${color #55aaff}Processes:$color $running_processes running
+${color #6495ed}CPU: ${color lightgrey}Phenom II X6 1055T $color${freq_g}GHz${color lightgrey}
+${color black}${cpugraph 35,200 5000a0 6495ed}${color white}  ${cpugauge 35}${color lightgrey}
+${color #6495ed}Core0:$color ${cpu cpu0}% ${alignr}${cpubar cpu0 6,120}
+${color #6495ed}Core1:$color ${cpu cpu1}% ${alignr}${cpubar cpu1 6,120}
+${color grey}$color$stippled_hr${color lightgrey}
+${color #6495ed}RAM Use:  $color$mem ($memperc%)${color lightgrey} ${membar}
+${color #6495ed}/:${color}${fs_used /} (${fs_used_perc /}%) ${fs_bar /}
+${color #6495ed}/home:     ${color}${fs_used /home} (${fs_used_perc /home}%) ${fs_bar /home}
+$color$stippled_hr${color lightgrey}

@@ -163,6 +163,15 @@ function! SetLangsInfos()
     endfor
 endfunction
 
+"function! UpdateTime()
+    "let l:c = col(".")
+    "let l:l = line(".")
+    "if search("LastChange:") != 0
+        "1,10s-\\s*LastChange:\.*-\="LastChange: ".strftime("%a %Y\-%m\-%d %R")-
+    "endif
+    "call cursor(l:l, l:c)
+"endfunction
+
 " Get Vim Style
 function! GetVimStyle()
     let t:vim = printf("set fdm=%s ts=%d sw=%d sts=%d ft=%s fenc=%s ff=%s",

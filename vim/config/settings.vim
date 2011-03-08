@@ -33,7 +33,6 @@ if has('gui_running')
         "set guifontwide=YaHei\ Mono\ 10
         set guifontwide=WenQuanYi\ Micro\ Hei\ 12
         set linespace=2
-        "set columns=84
         "set lines=30
         "sudo apt-get install wmctrl
         autocmd GUIEnter * call MaximizeWindow()
@@ -57,8 +56,9 @@ endif
 " --------------------------------------------------------------------------->>
 " Global Settings: " {{{
 set background=dark
-colorscheme railscasts
+colorscheme mustang
 
+set shell=/bin/bash
 set nocompatible
 set lazyredraw
 set viewoptions=folds,options,cursor,unix,slash
@@ -163,6 +163,7 @@ set report=0
 
 " status line
 set ruler
+set rulerformat=%l/%L(%p%%),%c
 set showcmd
 set showmode
 set laststatus=2
@@ -172,7 +173,7 @@ set laststatus=2
 "set statusline+=%#warningmsg#
 "set statusline+=%{syntasticstatuslineflag()}
 "set statusline+=%*
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y/%{&fileencoding})\ (line\ %l\/%L,\ col\ %c)
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y/%{&fileencoding})\ (line\ %l\/%L,\ col\,%c)
 
 " bakup files
 set nobackup

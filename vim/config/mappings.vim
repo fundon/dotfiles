@@ -40,6 +40,11 @@ cmap w!! w !sudo tee % >/dev/null
 " Toggle Number:
 noremap <F3> :call ToggleNumber()<CR>
 
+" Remove trailing whitespaces and ^M chars
+noremap <F6> :call RemoveSpacesM()<CR>
+
+set pastetoggle=<F7>
+
 " Tabs Or Buffers:
 noremap <C-t> :tabnew<CR>
 noremap to :tabnew<CR>
