@@ -65,8 +65,8 @@ set viewoptions=folds,options,cursor,unix,slash
 set modelines=0
 
 set helplang=cn,en
-set langmenu=zh_CN.UTF-8
-language message zh_CN.UTF-8
+"set langmenu=zh_CN.UTF-8
+"language message zh_CN.UTF-8
 
 syntax enable
 syntax on

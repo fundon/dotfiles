@@ -5,6 +5,12 @@ if [ $(id -u) != 0 ]; then
 	exit 1
 fi
 
+cat /proc/cpuinfo
+
+aptitude install -y htop
+
+aptitude install -y libssl-dev zlib1g-dev
+
 slf='/etc/apt/sources.list'
 slf_backup="${slf}.$(date +%Y_%m_%d).backup"
 

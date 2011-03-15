@@ -131,6 +131,20 @@ cd freetype-2.4.4/
 ./configure --prefix=$HOME/develop/LNMP/freetype
 make && make install
 
+# jepg
+wget -c http://www.ijg.org/files/jpegsrc.v8c.tar.gz
+tar zxvf jpegsrc.v8c.tar.gz
+cd jpegsrc.v8c
+./configure --prefix=$HOME/develop/LNMP/jpeg
+make && make install
+
+# png
+wget -c ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.5.1.tar.bz2
+tar jxvf libpng-1.5.1.tar.bz2
+cd libpng-1.5.1
+./configure --prefix=$HOME/develop/LNMP/png
+make && make install
+
 # nodejs
 curl -O http://nodejs.org/dist/node-v0.2.6.tar.gz
 tar zxvf node-v0.2.6.tar.gz

@@ -1,123 +1,23 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+KERNEL=`uname -s`
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+LANG=en_US.utf-8
+LC_ALL=en_US.utf-8
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
+#PS1="┌── ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w\[\033[00m\]\$ \n└──>> "
+PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[1A\e[$((COLUMNS-2))G\e[31m\e[1;41m${a:(-3)}\e[u\]\[\e[0m\e[7m\e[2m\]"; fi`\[\e[1;32m\]\u@\h:\[\e[0m\e[1;34m\]\W\[\e[1;34m\]\$ \[\e[0m\]'
+
 HISTCONTROL=ignoredups:ignorespace
-
-# append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# input
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# 2010-05-11
-export LANG="zh_CN.UTF-8"
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]: \[\033[01;36m\]\w\[\033[00m\]\$ '
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w\[\033[00m\]\$ '
-PS1="┌── ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w\[\033[00m\]\$ \n└──>> "
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-#使 python 在 command 下可以使用 completion 功能
-export PYTHONSTARTUP=~/.pythonrc
-#添加android tools
-export PATH=${PATH}:/home/cfddream/develop/androiddev/android-sdk-linux_x86/tools
-
-# 添加ssh主机自动登陆
-alias ssh-ubserver='ssh -i ~/.ssh/id_dsa.pub -p 2222 cfd@localhost'
-
-# man 彩色
 # colorful man page
 export PAGER="`which less` -s"
 export BROWSER="$PAGER"
@@ -129,11 +29,20 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# xterm 256
-export TERM=xterm-256color
-#tput colors
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
-# Print working directory after a cd.
+MountDisks() {
+	sudo mount /dev/sda3 /home/cfddream/develop
+	sudo mount /dev/sda4 /home/cfddream/others
+}
+
+UMountDisks() {
+	sudo umount /home/cfddream/develop
+	sudo umount /home/cfddream/others
+}
+
 cd() {
     if [[ $@ == '-' ]]; then
         builtin cd "$@" > /dev/null  # We'll handle pwd.
@@ -143,4 +52,30 @@ cd() {
     echo -e "   \033[1;30m"`pwd`"\033[0m"
 }
 
-export PATH=$HOME/local/bin:$PATH
+man() { 
+	/usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less) 
+}
+
+genpasswd() {
+	local l=$1
+    [ "$l" == "" ] && l=16
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
+
+whatcommand() {
+	whatis $1
+	which $1
+	whereis $1
+}
+
+random() {
+	echo $RANDOM
+}
+
+if [ -d "$HOME/bin" ] ; then
+    export PATH=$HOME/bin:$PATH
+fi
+export PATH=$HOME/develop/LNMP/node/bin:$PATH
+
+# Python Completion
+export PYTHONSTARTUP=~/.pythonrc
