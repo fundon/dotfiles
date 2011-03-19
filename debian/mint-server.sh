@@ -84,7 +84,7 @@ cd ${Download_Dir}
 
 # apache httpd-2.2.17
 tar jxvf httpd-2.2.17.tar.bz2 && cd httpd-2.2.17
-./configure --prefix=$HOME/develop/LNMP/httpd --with-pcre --with-ssl --enable-rewrite --enable-ssl
+./configure --prefix=${Install_Dir}/httpd --with-pcre --with-ssl --enable-rewrite --enable-ssl
 make && make install
 
 cd ${Download_Dir}
@@ -93,5 +93,42 @@ cd ${Download_Dir}
 wget -c http://nodejs.org/dist/node-v0.4.2.tar.gz
 tar zxvf node-v0.4.2.tar.gz && cd node-v0.4.2
 export JOBS=2
-./configure --prefix=$HOME/develop/LNMP/node
+./configure --prefix=${Install_Dir}/node
+make && make install
+
+cd ${Download_Dir}
+
+# v8
+# search V8_EXTRA_FLAGS  on Sconstruct file, commented 'Werror' => #'Werror'
+svn checkout http://v8.googlecode.com/svn/trunk/ v8
+cd v8
+scons mode=release
+
+cd ${Download_Dir}
+
+# mongodb
+git clone git://github.com/mongodb/mongo.git
+cd mongo
+#git tag -l
+#git checkout r1.8.0
+scons all --usev8 --prefix=${Install_Dir}/mongo install
+
+cd ${Download_Dir}
+
+# ejs
+# edit vim build/bin/buildConfig.sh
+wget -c http://ejscript.org/software/ejs-src-1.1.0-1.tar.gz
+tar zxvf ejs-src-1.1.0-1 && cd ejs-src-1.1.0-1
+./configure --prefix=$HOME/develop/LNMP/ejs --enable-all --with-openss=/usr/lib --with-sqlite
+make && make install
+ln -sf ${Install_Dir}/ejs/_lib/ejs/1.1.0/* ${Install_Dir}/ejs
+ln -sf ${Install_Dir}/ejs/_lib/ejs/jems ${Install_Dir}/ejs/
+
+cd ${Download_Dir}
+
+# siege
+#>>./siege -c 20 -r 2 --file=../etc/urls.list
+wget -c ftp://sid.joedog.org/pub/siege/siege-latest.tar.gz
+tar zxvf siege-latest.tar.gz && cd siege-2.70
+./configure --prefix=${Install_Dir}/siege --enable-shared --with-ssl
 make && make install

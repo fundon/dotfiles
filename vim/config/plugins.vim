@@ -52,7 +52,7 @@ if exists(":Tabularize")
     nmap <Leader>a: :Tabularize /:\zs<CR>
     vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>Align()<CR>a
+"inoremap <silent> <Bar>   <Bar><Esc>:call <SID>Align()<CR>a
 
 " }}}
 " <<----------------------------------------------------------------------------

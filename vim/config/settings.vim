@@ -56,7 +56,8 @@ endif
 " --------------------------------------------------------------------------->>
 " Global Settings: " {{{
 set background=dark
-colorscheme mustang
+"colorscheme mustang
+colorscheme default
 
 set shell=/bin/bash
 set nocompatible

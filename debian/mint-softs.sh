@@ -71,10 +71,16 @@ aptitude install -y libmagic-dev
 aptitude install -y libpq-dev
 aptitude install -y libgdbm-dev
 
+# mongodb
+aptitude install -y libboost-dev
+aptitude install -y libboost-thread-dev libboost-filesystem-dev
+aptitude install -y libboost-date-time-dev libboost-program-options-dev
+
 aptitude install -y libmysqlclient-dev
 
 aptitude install -y subversion subversion-tools
 aptitude install -y git-core
+aptitude install -y mercurial
 aptitude install -y tmux
 
 apt-get clean
