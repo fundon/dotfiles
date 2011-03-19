@@ -6,7 +6,7 @@ if [ $(id -u) != 0 ]; then
 fi
 
 # Download Dir $HOME/Downloads/lnmp
-Download_Dir=$HOME/Download/lnmp
+Download_Dir=$HOME/Downloads/lnmp
 # Install DIR  $HOME/develop/LNMP
 Install_Dir=$HOME/develop/LNMP
 
