@@ -82,6 +82,7 @@ aptitude install -y subversion subversion-tools
 aptitude install -y git-core
 aptitude install -y mercurial
 aptitude install -y tmux
+aptitude install -y exuberant-ctags
 
 apt-get clean
 apt-get autoclean

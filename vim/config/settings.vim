@@ -88,6 +88,7 @@ if g:iswin
     source $vimruntime/menu.vim
 endif
 
+set textwidth=79
 set colorcolumn=81
 set cursorline
 set number
@@ -126,7 +127,7 @@ set wrap
 set whichwrap+=b,s,<,>,[,],h,l
 set iskeyword+=_,$,@,%,#,-
 set commentstring=#%s
-set formatprg=tcroqn2
+set formatprg=qrn1
 set sps=best,10
 set shiftround
 

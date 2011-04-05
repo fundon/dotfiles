@@ -52,14 +52,14 @@ cd() {
     echo -e "   \033[1;30m"`pwd`"\033[0m"
 }
 
-man() { 
-	/usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less) 
+man() {
+	/usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less)
 }
 
 genpasswd() {
 	local l=$1
     [ "$l" == "" ] && l=16
-    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+    tr -dc A-Za-z0-9_- < /dev/urandom | head -c ${l} | xargs
 }
 
 whatcommand() {
@@ -72,10 +72,26 @@ random() {
 	echo $RANDOM
 }
 
+clean() {
+    sudo apt-get autoclean
+    sudo apt-get clean
+    sudo apt-get autoremove
+}
+
+export PATH=/sbin:$PATH
+
 if [ -d "$HOME/bin" ] ; then
     export PATH=$HOME/bin:$PATH
 fi
 export PATH=$HOME/develop/LNMP/node/bin:$PATH
+export PATH=$HOME/develop/LNMP/php/bin:$PATH
 
-# Python Completion
+# phpsh
+export PATH=$HOME/develop/LNMP/phpsh/bin:$PATH
+export PYTHONPATH=$HOME/develop/LNMP/phpsh/lib/python2.6/site-packages
+
+# python Completion
 export PYTHONSTARTUP=~/.pythonrc
+
+# ruby rvm
+[[ -s "/home/cfddream/.rvm/scripts/rvm" ]] && source "/home/cfddream/.rvm/scripts/rvm"

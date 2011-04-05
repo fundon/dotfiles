@@ -132,3 +132,16 @@ wget -c ftp://sid.joedog.org/pub/siege/siege-latest.tar.gz
 tar zxvf siege-latest.tar.gz && cd siege-2.70
 ./configure --prefix=${Install_Dir}/siege --enable-shared --with-ssl
 make && make install
+
+cd ${Download_Dir}
+
+# phpsh
+git clone git://github.com/facebook/phpsh.git
+cd phpsh
+python setup.py install --prefix=${Install_Dir}/phpsh
+# .bashrc
+#export PATH=${Install_Dir}/phpsh/bin:$PATH
+#export PYTHONPATH=${Install_Dir}/phpsh/lib/python2.6/site-packages
+
+# ruby rvm
+bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
