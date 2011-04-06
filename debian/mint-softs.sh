@@ -83,6 +83,7 @@ aptitude install -y git-core
 aptitude install -y mercurial
 aptitude install -y tmux
 aptitude install -y exuberant-ctags
+aptitude install -y sudo
 
 apt-get clean
 apt-get autoclean

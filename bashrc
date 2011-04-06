@@ -78,6 +78,10 @@ clean() {
     sudo apt-get autoremove
 }
 
+addToSudo() {
+    usermod -a -G sudo cfd
+}
+
 export PATH=/sbin:$PATH
 
 if [ -d "$HOME/bin" ] ; then
