@@ -31,6 +31,6 @@ for i in $years_indexs; do
             continue
         fi
         tmp_url=`printf ${url} $filename`
-        wget --spider $tmp_url && wget -O $file -c $tmp_url     
+        wget --spider $tmp_url && wget -O $file -c $tmp_url
     done
 done

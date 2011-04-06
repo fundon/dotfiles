@@ -18,6 +18,8 @@ augroup filetypedetect
 
     autocmd! BufNewFile,BufRead *.go setfiletype go
 
+    autocmd! BufNewFile,BufRead *.css syntax=css3
+
     " Apache
     autocmd! BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
     " Nginx
