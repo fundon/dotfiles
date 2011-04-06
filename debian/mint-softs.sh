@@ -9,6 +9,7 @@ apt-get update
 apt-get upgrade --show-upgraded
 
 apt-get install -y aptitude
+aptitude install -y sudo
 aptitude install -y bash-completion
 aptitude install -y python-software-properties
 
@@ -83,7 +84,6 @@ aptitude install -y git-core
 aptitude install -y mercurial
 aptitude install -y tmux
 aptitude install -y exuberant-ctags
-aptitude install -y sudo
 
 apt-get clean
 apt-get autoclean
