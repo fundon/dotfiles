@@ -5,7 +5,7 @@ if [ $(id -u) != 0 ]; then
 	exit 1
 fi
 
-# Download Dir $HOME/Downloads/lnmp
+# Download DIR $HOME/Downloads/lnmp
 Download_Dir=$HOME/Downloads/lnmp
 # Install DIR  $HOME/develop/LNMP
 Install_Dir=$HOME/develop/LNMP
@@ -142,6 +142,8 @@ python setup.py install --prefix=${Install_Dir}/phpsh
 # .bashrc
 #export PATH=${Install_Dir}/phpsh/bin:$PATH
 #export PYTHONPATH=${Install_Dir}/phpsh/lib/python2.6/site-packages
+
+cd ${Download_Dir}
 
 # ruby rvm
 bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )

@@ -1,4 +1,7 @@
 KERNEL=`uname -s`
+USER_ID=$UID
+USER_NAME=$USER
+USER_HOME="/home/$USER_NAME"
 
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
@@ -29,18 +32,27 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $USER_HOME/.bash_aliases ]; then
+    . $USER_HOME/.bash_aliases
 fi
 
 MountDisks() {
-	sudo mount /dev/sda3 /home/cfddream/develop
-	sudo mount /dev/sda4 /home/cfddream/others
+	sudo mount /dev/sda3 $USER_HOME/develop
+	sudo mount /dev/sda4 $USER_HOME/others
 }
 
 UMountDisks() {
-	sudo umount /home/cfddream/develop
-	sudo umount /home/cfddream/others
+	sudo umount $USER_HOME/develop
+	sudo umount $USER_HOME/others
+}
+
+M_VBOX() {
+    # mkdir $USER_HOME/$1
+    su -s "mount -t vboxsf $1 $USER_HOME/$1"
+}
+
+UM_VOBX() {
+    su -s "umount $USER_HOME/$1"
 }
 
 cd() {
@@ -82,20 +94,24 @@ addToSudo() {
     usermod -a -G sudo cfd
 }
 
+VBOX_SSH() {
+    ssh -p 2222 cfd@localhost
+}
+
 export PATH=/sbin:$PATH
 
-if [ -d "$HOME/bin" ] ; then
-    export PATH=$HOME/bin:$PATH
+if [ -d "$USER_HOME/bin" ] ; then
+    export PATH=$USER_HOME/bin:$PATH
 fi
-export PATH=$HOME/develop/LNMP/node/bin:$PATH
-export PATH=$HOME/develop/LNMP/php/bin:$PATH
+export PATH=$USER_HOME/develop/LNMP/node/bin:$PATH
+export PATH=$USER_HOME/develop/LNMP/php/bin:$PATH
 
 # phpsh
-export PATH=$HOME/develop/LNMP/phpsh/bin:$PATH
-export PYTHONPATH=$HOME/develop/LNMP/phpsh/lib/python2.6/site-packages
+export PATH=$USER_HOME/develop/LNMP/phpsh/bin:$PATH
+export PYTHONPATH=$USER_HOME/develop/LNMP/phpsh/lib/python2.6/site-packages
 
 # python Completion
-export PYTHONSTARTUP=~/.pythonrc
+export PYTHONSTARTUP=$USER_HOME/.pythonrc
 
 # ruby rvm
-[[ -s "/home/cfddream/.rvm/scripts/rvm" ]] && source "/home/cfddream/.rvm/scripts/rvm"
+[[ -s "$USER_HOME/.rvm/scripts/rvm" ]] && source "$USER_HOME/.rvm/scripts/rvm"
