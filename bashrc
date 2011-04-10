@@ -90,6 +90,10 @@ clean() {
     sudo apt-get autoremove
 }
 
+webshare() {
+    python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"
+}
+
 addToSudo() {
     usermod -a -G sudo cfd
 }

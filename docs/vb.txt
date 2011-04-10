@@ -1,0 +1,232 @@
+Host System 宿主系统
+Virtual System 虚拟系统
+
+1. NAT 网络地址转换 (Network Address Translation) -- 默认
+    eth0 网卡
+
+    Host IP: 192.168.1.102
+    Guest IP: 10.0.2.15
+    Gateway 网关: 10.0.2.2
+    DNS: 10.0.2.3
+
+    通信规则：
+        主机联网:
+            Guest --> Host
+            Guest --> Net
+            Host  --> Net
+            Host  --> Guest(端口映射)
+        主机没联网:
+            Guest --> Host
+            Guest X-> Net
+            Host  X-> Net
+            Host  --> Guest(端口映射)
+        Guest x-x Guest
+        Guest <-> Guest(借助主机端口映射转发可以实现通信)
+
+    缺点：
+        Host 就像一个路由器， Guest只能通过它才能访问网络, 对公网不可见
+        Guest 可以访问 Host,做了端口映射/转发，Host 可以访问 Guest, 对公网可见
+    优点：
+        不管主机是否连上网线，都可以通过端口转发进行通信。
+
+==Host>> ifconfig -a            # ipconfig
+Host 不能访问 Guest
+Host>> ping 10.0.2.15           #failure
+
+==Guest 可以访问 Host
+Guest>> ifconfig -a
+Guest>> ping 192.168.1.102      #success
+
+2. Bridged Adapter 桥接
+    ech1 网卡
+
+    Host IP: 192.168.1.102
+    Guest IP: 192.168.1.103
+    Gateway 网关: 192.168.1.255
+    DNS: 255.255.255.0
+
+    Guest IP: 由 DHCP 自动分配，与主机同一网段。虚拟机与主机可以相互通信。
+        也可以采用固定ip的方式，
+
+    缺点：主机没联网，与虚拟机就不能进行通信。
+    优点：同一网段，可以直接通信。
+
+    通信规则：
+        主机联网:
+            Guest <-> Host
+            Guest --> Net
+            Host  --> Net
+            Guest <-> Guest
+        主机没联网:
+            Guest x-x Host
+            Guest X-> Net
+            Host  X-> Net
+            Guest x-x Guest
+
+==Host>> ifconfig -a
+Host>> ping 192.168.1.103
+Guest>> ping 192.168.1.102
+
+3. Host-Only 主机
+    Host 有两张网卡, 一张机器默认，一张 virtualbox 提供，我们也可通过virtualbox
+        自己添加虚拟网卡
+
+    vboxnet0 网卡
+
+    Host IP: 192.168.56.1
+    Server IP: 192.168.56.100
+    Guest IP: 192.168.56.101
+    Gateway 网关: 192.168.56.255
+    DNS: 255.255.255.0
+
+    101 < Guest IP < 254
+
+    Guest 只能与 Host相互通信，无法连外网
+    虚拟系统的网卡连接到 VirtualBox 的 vboxnet0 网卡
+
+    缺点：虚拟机不能联网, 虚拟机与主机默认不能相互访问，不在一个网段，可以通过
+        Vbox 提供的 Host-only 网卡通信
+    优点：同一网段，可以直接通信。
+
+    通信规则：
+            //必须配置 host-only 网卡同一网段才行
+            Guest <-> Host
+            Guest x-> Net(可以通过同时启用其他模式)
+            Guest <-> Guest
+            Guest <-> Host-Only Network
+
+4. Internal 内部网络
+    虚拟机与外网完全断开
+
+    通信规则:
+        Guest <-> Guest(前提设置同一个网络名称)
+        Guest x-x Host
+        Guest x-> Net
+        Guest <-> Host-Only Network
+
+5. 可以同时开启 NAT 和 Bridged Adapter
+    NAT 绑定 网卡 eth0， DHCP 自动分配 ip
+    Bridged Adapter 绑定 网卡 eth1，固定/静态 ip
+
+    优点：不管是否联网都可以与主机进行通信
+    缺点：当然效率低点
+
+    NAT eth0
+        allow eth0
+        iface eth0 inet dhcp
+
+    Bridged Adapter eth1
+        auto eth1
+        iface eth1 inet static
+        address 192.168.1.103
+        netmask 255.255.255.0
+        gateway 192.168.1.1
+
+6. 同时开通 NAT 和 Host-Only
+
+    NAT eth0
+        auto eth0
+        iface eth0 inet static
+        address 10.0.2.15
+        netmask 255.255.255.0
+        gateway 10.0.2.2
+
+    Host-Only eth1
+        auto eth1
+        iface eth1 inet static
+        address 192.168.56.101
+        netmask 255.255.255.0
+
+//virtualbox 增强工具包
+// 虚拟机网卡配置文件
+    /etc/network/interfaces
+// debian minimal CD
+    http://www.debian.org/CD/netinst/ 最小化安装, cd 不超过 200MB
+
+//quick key
+right ctrl+c etc.
+
+// 共享文件
+http://virtualboximages.com/
+https://help.ubuntu.com/community/VirtualBox
+
+// ssh tools
+putty
+secureCRT
+
+// configure ssh, web server - apache2, pure-ftpd
+    如何搭建一个开发/测试环境
+
+// 虚拟机集群
+1.一主机，多虚拟机
+    Q:虚拟机搭个局域网, 其中一台虚拟机使用桥接与主机
+        通信，其他虚拟机通过这个虚拟起联外网
+
+    比如现在有2台虚拟机: guest1(debian) guest2(arch)
+    debian /etc/network/interfaces
+    arch   /etc/rc.conf
+
+    commands:
+        vboxmanage list dhcpservers
+        ifconfig -a
+        ifconfig eth0               //网卡
+        ifconfig eth0 down|up       //开启/关闭
+        route -n                    //路由
+        netstart -lnpt              //端口
+                                    //联网
+
+        //移动vm镜像/重载，无法联网的bug
+        sudo rm /etc/udev/rules.d/70-persistent-net.rules
+
+        debian:
+            /etc/init.d/networking stop|start|restart
+        arch:
+            /etc/rc.d/network stop|start|restart
+
+        // share file
+        sudo mkdir /mnt/shared
+        sudo mount -t vboxsf shared /mnt/shared
+
+    A. NAT
+
+        host --> guest1(端口映射/转发)
+        host --> guest2(端口映射/转发)
+
+        guest1 <-host-> guest2(借助上面两个端口映射进行通信)
+
+        guests 能联网
+
+    B. Bridged Adapter
+        有联网:
+            同一网段
+            guest1 <-> guest2
+            host   <-> guest1
+            host   <-> guest2
+
+        无联网
+            3态机器无法通信
+    C. Host-Only
+        guest1 <-> guest2
+        guest1 <-> host
+        guest2 <-> host
+
+        guests 不能联网
+
+    D. Internal 测试未成功
+
+    E. NAT + Host-Only
+        同时开启双网卡
+        eth0(NAT)                   dhcp
+        eth1(Host-Only)             dhcp/static ip
+
+        debian: /etc/network/interfaces
+            allow-hotplug eth0
+            iface eth0 inet dhcp
+
+            allow-hotplug eth1
+            iface eth1 inet dhcp
+
+        arch:   /etc/rc.conf
+            eth0="dhcp"
+            eth1="dhcp"
+            INTERFACES=(eth0 eth1)

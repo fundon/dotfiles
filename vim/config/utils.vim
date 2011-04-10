@@ -131,7 +131,7 @@ function! SetHead()
 
     execute ':' . s . ',' . l . 'Tabularize /:\zs'
     execute ':' . s . ',' . l . 'call NERDComment(0, "toggle")'
-    execute ':' . (l-1) . 's/date/' . strftime('%Y-%m-%d %H:%M%S')
+    execute ':' . (l-1) . 's/date/' . strftime('%Y-%m-%d %H:%M:%S')
     call append(l, '')
     call cursor(l+1, 0)
 endfunction
