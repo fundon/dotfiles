@@ -156,6 +156,12 @@ secureCRT
 
 // configure ssh, web server - apache2, pure-ftpd
     如何搭建一个开发/测试环境
+    debian:
+        sudo aptitude install -y apache2
+        sudo aptitude install -y php5
+        web: /var/www
+    arch:
+        https://wiki.archlinux.org/index.php/LAMP
 
 // 虚拟机集群
 1.一主机，多虚拟机
