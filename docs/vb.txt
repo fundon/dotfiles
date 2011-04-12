@@ -171,6 +171,8 @@ secureCRT
     比如现在有2台虚拟机: guest1(debian) guest2(arch)
     debian /etc/network/interfaces
     arch   /etc/rc.conf
+	多网卡设置：
+		先关掉 network，关掉所有网卡，再按网卡序列由大到小开启
 
     commands:
         vboxmanage list dhcpservers
