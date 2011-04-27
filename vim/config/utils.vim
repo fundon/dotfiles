@@ -198,5 +198,14 @@ function! Align()
   endif
 endfunction
 
+" Toggle solarized
+let g:togglebgg = 0
+function! ToggleBGG()
+    let g:togglebgg = g:togglebgg + 1
+    let cn = g:colors_name
+    let &background = ( g:togglebgg%2 ? 'dark' : 'light' )
+    exe 'colorscheme ' . cn
+endfunction
+
 " }}}
 " <<---------------------------------------------------------------------------

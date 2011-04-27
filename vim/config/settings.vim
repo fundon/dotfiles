@@ -55,9 +55,13 @@ endif
 
 " --------------------------------------------------------------------------->>
 " Global Settings: " {{{
+
+syntax on
+syntax enable
 set background=dark
-"colorscheme mustang
-colorscheme default
+colorscheme solarized
+let g:solarized_termcolors=256
+call ToggleBGG()
 
 set shell=/bin/bash
 set nocompatible
@@ -68,9 +72,6 @@ set modelines=0
 set helplang=cn,en
 "set langmenu=zh_CN.UTF-8
 "language message zh_CN.UTF-8
-
-syntax enable
-syntax on
 
 "set anti
 set nobomb

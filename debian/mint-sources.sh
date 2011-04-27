@@ -33,8 +33,8 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 
 #firefox
 firefox=`cat<<EOF
-\ndeb http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu natty main 
-\ndeb-src http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu natty main 
+\ndeb http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu natty main
+\ndeb-src http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu natty main
 EOF`
 
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 247510BE
@@ -44,7 +44,7 @@ echo -e ${chrome} >> ${slf}
 echo -e ${firefox} >> ${slf}
 
 #Transparent Terminal
-#Enable Gnome Composting 
+#Enable Gnome Composting
 #Control Center -> Desktop Settings -> Windows -> [ ] Use Gnome Composting
 
 # window buttons; front tool: gconf-editor, cli tool: gconftool

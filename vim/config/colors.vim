@@ -1,6 +1,6 @@
 " <<---------------------------------------------------------------------------
 " Cursor Column: {{{
-highlight colorcolumn ctermbg=lightgreen ctermfg=black guifg=black guibg=lightgreen
+"highlight colorcolumn ctermbg=lightgreen ctermfg=black guifg=black guibg=lightgreen
 "highlight cursorline  ctermbg=black      guibg=black
 " }}}
 

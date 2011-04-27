@@ -120,5 +120,8 @@ noremap <F2> :set list!<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
 vnoremap <Space> zf
 
+" Toggle solarized
+noremap <F7> :call ToggleBGG() <CR>
+
 " }}}
 " <<---------------------------------------------------------------------------

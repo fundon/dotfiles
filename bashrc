@@ -88,6 +88,8 @@ clean() {
     sudo apt-get autoclean
     sudo apt-get clean
     sudo apt-get autoremove
+    #rm /var/lib/apt/lists/*
+    #rm /var/lib/apt/lists/partial/*
 }
 
 webshare() {
@@ -100,6 +102,14 @@ addToSudo() {
 
 VBOX_SSH() {
     ssh -p 2222 cfd@localhost
+}
+
+netStat() {
+    netstat -lnpt
+}
+
+routeN() {
+    route -n
 }
 
 export PATH=/sbin:$PATH
