@@ -16,6 +16,11 @@ HISTFILESIZE=2000
 
 shopt -s checkwinsize
 
+# XTERM
+export TERM=xterm-256color
+
+eval `dircolors ~/.dircolors`
+
 # input
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus

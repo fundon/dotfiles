@@ -6,6 +6,10 @@ dotfiles=~/dotfiles
 ln -sf $dotfiles/bashrc ~/.bashrc
 ln -sf $dotfiles/bash_aliases ~/.bash_aliases
 
+# dircolors
+ln -sf $dotfiles/dircolors ~/.dircolors
+eval `dircolors ~/.dircolors`
+
 # conky
 ln -sf $dotfiles/conkyrc ~/.conkyrc
 

@@ -1,82 +1,90 @@
-#!/usr/bin/conky -d -c
-# Swap Usage:$color $swapperc%${color lightgrey}
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
 
-# the ${template x x x} command uses /sys/bus/platform/devices
-# for this to work you need both lm-sensors and hddtemp get both from main repos
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
 
-# set to yes if you want Conky to be forked in the background
-background no
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Ubuntu:size=9
+override_utf8_locale yes
+text_buffer_size 2048
 
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
 own_window yes
 own_window_type override
 own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-out_to_console no
-use_xft yes
-xftfont monospace:size=10
-update_interval 2
+#own_window_argb_visual yes
+#own_window_argb_value 100
 
-# Create own window instead of using desktop (required in nautilus)
-own_window yes
+alignment tr
+gap_x -2
+gap_y 180
+minimum_size 350 300
 
-# Use double buffering (reduces flicker, may not work for everyone)
-double_buffer yes
-maximum_width 260
 
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
 draw_shades no
 
-# Draw outlines?
-draw_outline no
+default_color efefef
+default_shade_color 1d1d1d
+color0 ffffff
+color1 ffffff
+color2 ffffff
 
-# Draw borders around text
-draw_borders no
 
-# Stippled borders?
-stippled_borders 10
-
-# border margins
-#border_margin 4
-
-# border width
-border_width 1
-
-# Default colors and also border colors
-default_color white
-default_shade_color white
-default_outline_color white
-
-# Text alignment, other possible values are commented
-#alignment top_left
-#minimum_size 10 10
-alignment middle_right
-#alignment bottom_left
-#alignment bottom_right
-
-# Gap between borders of screen and text
-gap_x 12
-gap_y 37
-# Add spaces to keep things from moving about?  This only affects certain objects.
-use_spacer left
-
-# Subtract file system buffers from used memory?
-no_buffers yes
-
-# set to yes if you want all text to be in uppercase
-uppercase no
+#lua_load ~/.conky/conkybg.lua
+#lua_draw_hook_pre conky_draw_bg
 
 TEXT
-${color #55aaff}OS$color - $sysname $kernel on $machine
-${color #55aaff}Hostname$color - $nodename
-${color #55aaff}Eth1$color - ${addr eth1}
-${color #55aaff}Wlan0$color - ${addr wlan0}
-${color #6495ed}Uptime:$color $uptime ${color lightgrey}
-${color #55aaff}Processes:$color $running_processes running
-${color #6495ed}CPU: ${color lightgrey}Phenom II X6 1055T $color${freq_g}GHz${color lightgrey}
-${color black}${cpugraph 35,200 5000a0 6495ed}${color white}  ${cpugauge 35}${color lightgrey}
-${color #6495ed}Core0:$color ${cpu cpu0}% ${alignr}${cpubar cpu0 6,120}
-${color #6495ed}Core1:$color ${cpu cpu1}% ${alignr}${cpubar cpu1 6,120}
-${color grey}$color$stippled_hr${color lightgrey}
-${color #6495ed}RAM Use:  $color$mem ($memperc%)${color lightgrey} ${membar}
-${color #6495ed}/:${color}${fs_used /} (${fs_used_perc /}%) ${fs_bar /}
-${color #6495ed}/home:     ${color}${fs_used /home} (${fs_used_perc /home}%) ${fs_bar /home}
-$color$stippled_hr${color lightgrey}
+${voffset 5}
+${goto 92}CPU1  Auslastung: ${font Ubuntu:style=Bold:size=9}${color1}${cpu cpu1}%${font}${color} ${alignr 15}Temperatur: ${color1}${font Ubuntu:style=Bold:size=9}${color1}${execi 30 sensors | grep 'Core0' | cut -c15-16}°C${color}${font}
+
+${goto 92}CPU2  Auslastung: ${font Ubuntu:style=Bold:size=9}${color1}${cpu cpu2}%${font}${color} ${alignr 15}Temperatur: ${font Ubuntu:style=Bold:size=9}${color1}${execi 30 sensors | grep 'Core1' | cut -c15-16}°C${color}${font}
+
+
+${goto 92}RAM:${color1} ${font Ubuntu:style=Bold:size=9}${memperc}%${font}${color}${font Ubuntu:style=Bold:size=9}${font}     Free: ${font Ubuntu:style=Bold:size=9}${color2}${memeasyfree}${color} ${font}${alignr 22}Used: ${font Ubuntu:style=Bold:size=9}${color2}${mem}${color}${font}
+
+${goto 92}HDD:${color1} ${font Ubuntu:style=Bold:size=9}${fs_used_perc /home}%${font}${color}     Free: ${color2}${font Ubuntu:style=Bold:size=9}${fs_free /home}${color}${font} ${alignr 22}Used: ${font Ubuntu:style=Bold:size=9}${color2}${fs_used /home}${color}${font}
+
+${if_up wlan0}
+${voffset -4}${goto 92}${voffset -6}Upload: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed wlan0}${color}${font} ${goto 230}Insgesamt: ${font Ubuntu:style=Bold:size=9}${color2}${totalup wlan0}${color}${font}
+${voffset 4}${goto 92}Signal:   ${font Ubuntu:style=Bold:size=9}${color1}${wireless_link_qual wlan0}%${color}${font} ${alignr 15}
+${voffset 4}${goto 92}Down:   ${font Ubuntu:style=Bold:size=9}${color1}${downspeed wlan0}${color}${font} ${goto 230}Insgesamt: ${font Ubuntu:style=Bold:size=9}${color2}${totaldown wlan0}${color}${font}
+
+
+
+# |--ETH0
+${else}${if_up eth0}
+${voffset -13}${color0}${font VariShapes Solid:size=14}q${font}${color}${goto 92}${voffset -6}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed eth0}${color}${font} ${alignr 15}${color2}${upspeedgraph eth0 8,60 92B6F1 CCDFFF}${color}
+${goto 92}Insgesamt: ${color2}${totalup eth0}${color}
+${voffset -2}${color0}${font VariShapes Solid:size=14}Q${font}${color}${goto 92}${voffset -6}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed eth0}${color}${font} ${alignr 15}${color2}${downspeedgraph eth0 8,60 92B6F1 CCDFFF}${color}
+${goto 92}Insgesamt: ${color2}${totaldown eth0}${color}
+#${voffset -2}${color0}${font Poky:size=13}w${font}${color}${goto 92}${voffset -4}Lokale IP: ${alignr 15}${color2}${addr eth0}${color}
+#${goto 92}Öffentliche IP: ${alignr 15}${color2}${execi 10800 ~/.conkycolors/bin/conkyIp}${color}
+# |--PPP0
+${endif}${else}${if_up ppp0}
+${voffset -13}${color0}${font VariShapes Solid:size=14}q${font}${color}${goto 92}${voffset -6}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed ppp0}${color}${font} ${alignr 15}${color2}${upspeedgraph ppp0 8,60 92B6F1 CCDFFF}${color}
+${goto 92}Insgesamt: ${color2}${totalup ppp0}${color}
+${voffset -2}${color0}${font VariShapes Solid:size=14}Q${font}${color}${goto 92}${voffset -6}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed ppp0}${color}${font} ${alignr 15}${color2}${downspeedgraph ppp0 8,60 92B6F1 CCDFFF}${color}
+${goto 92}Insgesamt: ${color2}${totaldown ppp0}${color}
+${voffset -2}${color0}${font Poky:size=13}w${font}${color}${goto 92}${voffset -4}Lokale IP: ${alignr 15}${color2}${addr ppp0}${color}
+${endif}${else}${voffset 4}${color0}${font PizzaDude Bullets:size=12}4${font}${color}${goto 92}Netzwerk nicht verfügbar${endif}${endif}
+
+${image ~/.conky/base.png -p 10,0 -s 339x86}${image ~/.conky/base.png -p 10,146 -s 339x86}${image ~/.conky/base.png -p 10,73 -s 339x86}${image ~/.conky/Task_Manager.png -p 32,20 -s 45x45}${image ~/.conky/Memory.png -p 32,93 -s 45x45}${image ~/.conky/wlan100.png -p 32,166 -s 45x45}
