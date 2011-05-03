@@ -21,7 +21,8 @@ vmap <C-?> <ESC>:call NERDComment(1, "toggle")<CR>
 " " CTags
 "map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 noremap <F9> :TlistToggle<CR>
-noremap <F8> :!/usr/bin/ctags-exuberant -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+noremap <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+set tags+=tags;$HOME
 let g:ctags_statusline = 1
 let generate_tags = 1
 let Tlist_Ctags_Cmd = "ctags"
@@ -53,6 +54,11 @@ if exists(":Tabularize")
     vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
 "inoremap <silent> <Bar>   <Bar><Esc>:call <SID>Align()<CR>a
+
+" Vimwiki
+let g:vimwiki_use_mouse = 1
+let g:vimwiki_camel_case = 0
+let g:vimwiki_CJK_length = 1
 
 " }}}
 " <<----------------------------------------------------------------------------

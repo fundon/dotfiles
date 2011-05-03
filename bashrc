@@ -6,6 +6,8 @@ USER_HOME="/home/$USER_NAME"
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 
+#source "${USER_HOME}/.colors"
+
 #PS1="┌── ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w\[\033[00m\]\$ \n└──>> "
 PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[1A\e[$((COLUMNS-2))G\e[31m\e[1;41m${a:(-3)}\e[u\]\[\e[0m\e[7m\e[2m\]"; fi`\[\e[1;32m\]\u@\h:\[\e[0m\e[1;34m\]\W\[\e[1;34m\]\$ \[\e[0m\]'
 

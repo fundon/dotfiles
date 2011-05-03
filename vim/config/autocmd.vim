@@ -53,7 +53,9 @@ if has('autocmd')
         let python_highlight_exceptions=0
         let python_highlight_builtins=0
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType python setlocal ts=8 tw=72 formatoptions+=croq
+        let g:pydoc_cmd = "/usr/bin/pydoc"
+        autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+        autocmd FileType python setlocal formatoptions+=croq
             \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
         autocmd BufNewFile *.py :call AutoHead()
     "
