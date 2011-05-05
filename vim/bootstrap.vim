@@ -7,9 +7,9 @@ filetype plugin indent on
 " }}}
 
 runtime! config/autocmd.vim
+runtime! config/utils.vim
 runtime! config/userinfo.vim
 runtime! config/langs.vim
-runtime! config/utils.vim
 runtime! config/settings.vim
 runtime! config/colors.vim
 runtime! config/plugins.vim

@@ -122,18 +122,19 @@ function! SetHead()
         return
     endif
 
+    call SetLangsTop()
     call SetLangsInfos()
     call SetUserInfos()
-    call SetLangsTop()
 
-    let l = line('.')
+    let l = line('$')
     let s = l - len(keys(g:MYVIM_User)) - len(g:MYVIM_Normal_Infos)
 
-    execute ':' . s . ',' . l . 'Tabularize /:\zs'
     execute ':' . s . ',' . l . 'call NERDComment(0, "toggle")'
-    execute ':' . (l-1) . 's/date/' . strftime('%Y-%m-%d %H:%M:%S')
+    execute ':' . s . ',' . (l - 1) . 'Tabularize /:\zs'
+
     call append(l, '')
-    call cursor(l+1, 0)
+    call append(l, '')
+    call cursor(l+2, 0)
 endfunction
 
 function! SetFoot()
@@ -146,20 +147,29 @@ endfunction
 
 function! SetUserInfos()
     let ui = g:MYVIM_User
+    let l = line('.')
     for [k,v] in items(ui)
-        call append(0, k . ':'. v)
+        call append(l, k . ':'. v)
     endfor
 endfunction
 
 function! SetLangsTop()
     let lv = get(g:MYVIM_langs, &filetype)
-    call append(0, add(lv, ''))
+    for v in lv 
+        call append(index(lv, v), v)
+    endfor
 endfunction
 
 function! SetLangsInfos()
     let lv = g:MYVIM_Normal_Infos
+    let l = line('.')
     for [k,v] in items(lv)
-        call append(0, k . ':' . v)
+        if k == 'FileName'
+            let v = substitute(v, '{name}', bufname('%'), '')
+        elseif k == 'LastChange'
+            let v = substitute(v, '{date}', strftime('   %Y-%m-%d %H:%M:%S'), '')
+        endif
+        call append(l, k . ':' . v)
     endfor
 endfunction
 

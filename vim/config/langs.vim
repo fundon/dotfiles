@@ -18,13 +18,13 @@ let g:MYVIM_langs={
     \'javascript': [
             \'#!/usr/bin/env node'
             \],
-    \'vim':     ['']
+    \'vim': ['']
 \}
 
 let g:MYVIM_Normal_Infos={
-    \'FileName': expand('%'),
+    \'FileName': '{name}',
     \'Description': '',
-    \'LastChange': 'date'
+    \'LastChange': '{date}'
 \}
 " }}}
 " <<----------------------------------------------------------------------------
