@@ -18,7 +18,7 @@ if has('autocmd')
     augroup vimrc
     autocmd!
     " SH:
-        autocmd BufNewFile *.sh call AutoHead()
+        "autocmd BufNewFile *.sh call AutoHead()
     "
 
     " HTML CSS:
@@ -57,12 +57,12 @@ if has('autocmd')
         autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
         autocmd FileType python setlocal formatoptions+=croq
             \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-        autocmd BufNewFile *.py :call AutoHead()
+        "autocmd BufNewFile *.py :call AutoHead()
     "
 
     " Ruby:
         autocmd FileType ruby setlocal et sw=2 ts=2 sts=2
-        autocmd BufNewFile *.rb call AutoHead()
+        "autocmd BufNewFile *.rb call AutoHead()
     "
 
     " Vim Txt Vimwiki:

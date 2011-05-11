@@ -6,7 +6,7 @@ FILENAME="$CHROME.zip"
 REVISION=$(curl 'http://build.chromium.org/f/chromium/snapshots/Linux/LATEST')
 LATEST="http://build.chromium.org/f/chromium/snapshots/Linux/$REVISION/$FILENAME"
 DOWN_DIR=~/Downloads
-OPT_DIR=~/opt
+OPT_DIR=~/Opt
 
 wget -c -O $FILENAME $LATEST
 

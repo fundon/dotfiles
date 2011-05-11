@@ -44,6 +44,8 @@ if [ -f $USER_HOME/.bash_aliases ]; then
 fi
 
 MountDisks() {
+    [[ ! -d $USER_HOME/develop ]] && mkdir $USER_HOME/develop
+    [[ ! -d $USER_HOME/others ]] && mkdir $USER_HOME/others
 	sudo mount /dev/sda3 $USER_HOME/develop
 	sudo mount /dev/sda4 $USER_HOME/others
 }
@@ -119,20 +121,22 @@ routeN() {
     route -n
 }
 
+[[ -f /etc/bash_completion ]] && source /etc/bash_completion
+
 export PATH=/sbin:$PATH
 
 if [ -d "$USER_HOME/bin" ] ; then
     export PATH=$USER_HOME/bin:$PATH
 fi
-export PATH=$USER_HOME/develop/LNMP/node/bin:$PATH
-export PATH=$USER_HOME/develop/LNMP/php/bin:$PATH
+#export PATH=$USER_HOME/develop/LNMP/node/bin:$PATH
+#export PATH=$USER_HOME/develop/LNMP/php/bin:$PATH
 
 # phpsh
-export PATH=$USER_HOME/develop/LNMP/phpsh/bin:$PATH
-export PYTHONPATH=$USER_HOME/develop/LNMP/phpsh/lib/python2.6/site-packages
+#export PATH=$USER_HOME/develop/LNMP/phpsh/bin:$PATH
+#export PYTHONPATH=$USER_HOME/develop/LNMP/phpsh/lib/python2.6/site-packages
 
 # python Completion
 export PYTHONSTARTUP=$USER_HOME/.pythonrc
 
 # ruby rvm
-[[ -s "$USER_HOME/.rvm/scripts/rvm" ]] && source "$USER_HOME/.rvm/scripts/rvm"
+#[[ -s "$USER_HOME/.rvm/scripts/rvm" ]] && source "$USER_HOME/.rvm/scripts/rvm"
