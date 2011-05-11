@@ -23,6 +23,8 @@ yum install -y iftop iptraf
 # ack grep
 yum install -y ack
 
+# irc
+yum install -y irssi
 yum install -y gnome-tweak-tool
 yum install -y amule
 # video code

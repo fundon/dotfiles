@@ -30,6 +30,7 @@ if has('win16') || has('win32') || has('win64')
     let g:iswin = 1
 else
     let $MYVIM = expand('~/.vim')
+    let g:lsb = substitute(system('lsb_release -si'), '[\s\n]\+', '', '')
 endif
 " }}}
 

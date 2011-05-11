@@ -44,7 +44,7 @@ let tlist_php_settings = 'php;c:Class;i:Interfaces;d:Constant;f:Function'
 let tlist_javascript_settings = 'javascript;f:Function;c:Class;o:Object;m:Method;s:String;a:Array;n:Constant'
 
 " ACK:
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ackprg="ack" . ( g:lsb == 'Fedora' ? "" : "-grep" ) . " -H --nocolor --nogroup --column"
 
 " Tabularize:
 if exists(":Tabularize")
