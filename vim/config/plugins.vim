@@ -20,7 +20,8 @@ vmap <C-?> <ESC>:call NERDComment(1, "toggle")<CR>
 " Taglist:
 " " CTags
 "map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-noremap <F9> :TlistToggle<CR>
+"noremap <F9> :TlistToggle<CR>
+noremap <F9> :TagbarToggle<CR>
 noremap <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 set tags+=tags;$HOME
 let g:ctags_statusline = 1

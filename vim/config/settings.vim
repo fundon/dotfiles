@@ -81,7 +81,7 @@ set fileformats=unix,dos,mac
 set termencoding=utf-8
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,big5,cp936,chinese,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,gbk,gb2312,gb18030,big5,cp936,chinese,euc-jp,euc-kr,latin1
 set autoread
 set ambiwidth=double
 if g:iswin
