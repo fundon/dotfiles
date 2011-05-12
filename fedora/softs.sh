@@ -22,6 +22,8 @@ yum install -y mtr
 yum install -y iftop iptraf
 # ack grep
 yum install -y ack
+# git svn
+yum install -y git
 
 # irc
 yum install -y irssi
@@ -33,3 +35,6 @@ yum install -y terminator
 # math tool
 yum install -y qalculate
 #su -c 'wget https://dl-ssl.google.com/linux/google-repo-setup.sh && bash google-repo-setup.sh'
+
+# games
+yum install -y teeworlds
