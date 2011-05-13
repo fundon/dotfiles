@@ -18,7 +18,7 @@ ln -sf $dotfiles/conkyrc ~/.conkyrc
 ln -sf $dotfiles/screenrc ~/.screenrc
 
 # python completion
-ln -sf $dotfiles/bash/completion/python-completion ~/.pythonrc
+ln -sf $dotfiles/bash/completion/pythonrc ~/.pythonrc
 
 # git completion
 ln -sf $dotfiles/bash/completion/git-completion.bash ~/.git-completion.bash
