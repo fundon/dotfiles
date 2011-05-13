@@ -1,0 +1,28 @@
+deb http://packages.linuxmint.com/ katya main upstream import
+deb http://archive.ubuntu.com/ubuntu/ natty main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ natty-updates main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ natty-security main restricted universe multiverse
+deb http://archive.canonical.com/ubuntu/ natty partner
+deb http://extras.ubuntu.com/ubuntu natty main
+deb http://packages.medibuntu.org/ natty free non-free
+
+#deb http://archive.getdeb.net/ubuntu natty-getdeb apps
+#deb http://archive.getdeb.net/ubuntu natty-getdeb games
+
+#https://launchpad.net/ubuntu/+archivemirrors
+#http://www.debian.org/mirror/list
+
+deb http://tw.archive.ubuntu.com/ubuntu/ natty main restricted universe multiverse
+deb http://tw.archive.ubuntu.com/ubuntu/ natty-updates main restricted universe multiverse
+
+#deb http://mirrors.ustc.edu.cn/ubuntu/ natty main restricted universe multiverse
+#deb http://mirrors.ustc.edu.cn/ubuntu/ natty-backports main restricted universe multiverse
+#deb http://mirrors.ustc.edu.cn/ubuntu/ natty-proposed main restricted universe multiverse
+#deb http://mirrors.ustc.edu.cn/ubuntu/ natty-security main restricted universe multiverse
+#deb http://mirrors.ustc.edu.cn/ubuntu/ natty-updates main restricted universe multiverse
+#deb-src http://mirrors.ustc.edu.cn/ubuntu/ natty main restricted universe multiverse
+#deb-src http://mirrors.ustc.edu.cn/ubuntu/ natty-backports main restricted universe multiverse
+#deb-src http://mirrors.ustc.edu.cn/ubuntu/ natty-proposed main restricted universe multiverse
+#deb-src http://mirrors.ustc.edu.cn/ubuntu/ natty-security main restricted universe multiverse
+#deb-src http://mirrors.ustc.edu.cn/ubuntu/ natty-updates main restricted universe multiverse
+
