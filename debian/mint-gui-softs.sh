@@ -51,3 +51,9 @@ echo -e ${firefox} >> ${slf}
 gconftool-2 --set /apps/metacity/general/button_layout --type string 'close,maximize,minimize:menu'
 # 不显示已挂载的图标
 gconftool-2 --set /apps/nautilus/desktop/volumes_visible --type bool 0
+
+aptitude install -y exuberant-ctags
+aptitude install -y wget curl
+aptitude install -y amule
+apt-get install -y ibus-gtk ibus-pinyin ibus-pinyin-db-open-phrase
+im-switch -s ibus
