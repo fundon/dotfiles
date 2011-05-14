@@ -1,15 +1,20 @@
+# ls
 alias ls='ls --color=auto -1'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# cd
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias md='mkdir -p'
 alias Dev='cd ~/develop'
 alias Oth='cd ~/others'
+
+# mkdir
+alias md='mkdir -p'

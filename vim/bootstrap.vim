@@ -1,6 +1,6 @@
 " --------------------------------------------------------------------------->>
 " VIM Initialize: " {{{
-filetype off
+"filetype off
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 filetype plugin indent on
