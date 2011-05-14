@@ -51,9 +51,16 @@ echo -e ${firefox} >> ${slf}
 gconftool-2 --set /apps/metacity/general/button_layout --type string 'close,maximize,minimize:menu'
 # 不显示已挂载的图标
 gconftool-2 --set /apps/nautilus/desktop/volumes_visible --type bool 0
+# 设置桌面图标
+gconftool-2 --set /apps/nautilus/icon_view/default_zoom_level --type string 'small'
+# 文件浏览器地址栏
+gconftool-2 --set /apps/nautilus/preferences/always_use_location_entry --type bool 1
 
 aptitude install -y exuberant-ctags
 aptitude install -y wget curl
+aptitude install -y p7zip-full
 aptitude install -y amule
+aptitude install -y mint-meta-codes
+aptitude install -y umplayer
 apt-get install -y ibus-gtk ibus-pinyin ibus-pinyin-db-open-phrase
 im-switch -s ibus
