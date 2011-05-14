@@ -8,11 +8,7 @@ LATEST="http://build.chromium.org/f/chromium/snapshots/Linux/$REVISION/$FILENAME
 DOWN_DIR=~/Downloads
 OPT_DIR=~/Opt
 
-wget -c -O $FILENAME $LATEST
-
-if [ -f "$FILENAME" ]; then
-    mv $FILENAME $DOWN_DIR
-fi
+wget -c -O "$DOWN_DIR/$FILENAME" $LATEST
 
 unzip "$DOWN_DIR/$FILENAME" -d $DOWN_DIR
 

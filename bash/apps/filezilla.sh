@@ -11,11 +11,7 @@ LATEST1="http://filezilla-project.org/nightlies/$YESDATE/i586-linux-gnu/FileZill
 DOWN_DIR=~/Downloads
 OPT_DIR=~/Opt
 
-wget -c -O $FILENAME $LATEST0 || wget -c -O $FILENAME $LATEST1
-
-if [ -f "$FILENAME" ]; then
-    mv $FILENAME $DOWN_DIR
-fi
+wget -c -O "$DOWN_DIR/$FILENAME" $LATEST0 || wget -c -O "$DOWN_DIR/$FILENAME" $LATEST1
 
 tar jxvf "$DOWN_DIR/$FILENAME" -C "$DOWN_DIR/"
 
