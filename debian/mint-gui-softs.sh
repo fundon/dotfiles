@@ -56,11 +56,12 @@ gconftool-2 --set /apps/nautilus/icon_view/default_zoom_level --type string 'sma
 # 文件浏览器地址栏
 gconftool-2 --set /apps/nautilus/preferences/always_use_location_entry --type bool 1
 
-aptitude install -y exuberant-ctags
 aptitude install -y wget curl
+aptitude install -y ibus-gtk ibus-pinyin ibus-pinyin-db-open-phrase
+aptitude install -y git-core vim vim-gtk
+aptitude install -y exuberant-ctags
 aptitude install -y p7zip-full
 aptitude install -y amule
 aptitude install -y mint-meta-codes
 aptitude install -y umplayer
-apt-get install -y ibus-gtk ibus-pinyin ibus-pinyin-db-open-phrase
 im-switch -s ibus
