@@ -2,7 +2,7 @@
 # opera latest
 
 OPERA="opera"
-BASEURL="http://get.opera.com/pub/opera/linux"
+BASEURL="http://get.opera.com/pub/opera/linux/"
 STUFFIX=".i386.linux.tar.bz2"
 REVISION=$(curl $BASEURL | tail -n 4 | sed 's/ //g' | awk '/href/ {sub(/^.*href="/,"");sub(/\/.*/, ""); print}')
 GETOPERA="$BASEURL/$REVISION/"
@@ -11,7 +11,7 @@ LATEST="$GETOPERA/$FILENAME"
 DOWN_DIR=~/Downloads
 OPT_DIR=~/Opt
 
-wget -c "$DOWN_DIR/$LATEST" -o $FILENAME
+wget -c -O "$DOWN_DIR/$FILENAME" $LATEST
 
 tar jxvf "$DOWN_DIR/$FILENAME" -C "$DOWN_DIR/$OPERA"
 

@@ -7,10 +7,10 @@ STUFFIX="Linux_x86.run"
 REVISION=$(curl "$SITE/LATEST.TXT")
 GETVBOX="$SITE/$REVISION/"
 FILENAME=$(curl $GETVBOX | sed -n '/Linux_x86\.run/p' | sed 's/ \|^.*NAME="\|"><.*$//g')
-LATEST="$GETBOX/$FILENAME"
+LATEST="$GETVBOX/$FILENAME"
 DOWN_DIR=~/Downloads
 
-wget -c $LATEST -o "$DOWN_DIR/$FILENAME"
+wget -c -O "$DOWN_DIR/$FILENAME" $LATEST
 
 if [ -f "$FILENAME" ]; then
     mv $FILENAME $DOWN_DIR
