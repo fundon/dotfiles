@@ -104,8 +104,14 @@ function! SetCursorPosition()
 endfunction
 
 " Remove trailing whitespaces and ^M chars
-function! RemoveSpacesM()
-    echo "Remove whitespaces and ^M chars"
+function! RemoveM()
+    "echo "Remove ^M chars"
+    "Ctrl+v+m  
+    normal m`:%s/$// ``
+endfunction
+function! RemoveSpaces()
+    call RemoveM()
+    "echo "Remove whitespaces"
     normal m`:%s/\s\+$//e ``
     call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 endfunction

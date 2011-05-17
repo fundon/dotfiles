@@ -41,7 +41,7 @@ cmap w!! w !sudo tee % >/dev/null
 noremap <F3> :call ToggleNumber()<CR>
 
 " Remove trailing whitespaces and ^M chars
-noremap <F6> :call RemoveSpacesM()<CR>
+noremap <F6> :call RemoveSpaces()<CR>
 
 set pastetoggle=<F7>
 
@@ -87,7 +87,7 @@ vnoremap <s-tab> <gv
 noremap + "+
 vnoremap <C-X> "+x
 vnoremap <C-C> "+y
-inoremap <C-V> <ESC>:set paste<CR>mui<C-R>+<ESC>mv'uV'v=:set nopaste<CR>
+"inoremap <C-V> <ESC>:set paste<CR>mui<C-R>+<ESC>mv'uV'v=:set nopaste<CR>
 
 " Quit window on <leader>q
 nnoremap <Leader>q :q<CR>
@@ -108,7 +108,7 @@ nmap <silent> <C-l> :wincmd l<CR>
 
 " Clear Search Highlight:
 " Toggle Search
-noremap <F6> <S-*>
+"noremap <F6> <S-*>
 noremap <F4> :set nohls!<CR>:echo "Toogle Highlight Search."<CR>
 inoremap <C-L> <C-O>:set nohls!<CR>
 noremap <Leader>l :let @/=""<CR>:echo "Cleared search register."<CR>
