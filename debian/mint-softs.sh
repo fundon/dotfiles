@@ -10,6 +10,7 @@ apt-get upgrade --show-upgraded
 
 apt-get install -y aptitude
 aptitude install -y sudo
+aptitude install -y tree
 aptitude install -y bash-completion
 aptitude install -y python-software-properties
 
