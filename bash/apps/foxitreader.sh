@@ -20,7 +20,7 @@ if [ ! -d "$OPT_DIR" ]; then
     mkdir $OPT_DIR
 fi
 
-if [ -f "$OPT_DIR/$FOXIT" ]; then
+if [ -d "$OPT_DIR/$FOXIT" ]; then
     rm -rf "$OPT_DIR/$FOXIT"
 fi
 

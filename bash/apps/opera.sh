@@ -23,7 +23,7 @@ if [ ! -d "$OPT_DIR" ]; then
     mkdir $OPT_DIR
 fi
 
-if [ -f "$OPT_DIR/$OPERA" ]; then
+if [ -d "$OPT_DIR/$OPERA" ]; then
     rm -rf "$OPT_DIR/$OPERA"
 fi
 

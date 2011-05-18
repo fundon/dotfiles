@@ -16,7 +16,7 @@ if [ ! -d "$OPT_DIR" ]; then
     mkdir $OPT_DIR
 fi
 
-if [ -f "$OPT_DIR/$CHROME" ]; then
+if [ -d "$OPT_DIR/$CHROME" ]; then
     rm -rf "$OPT_DIR/$CHROME"
 fi
 

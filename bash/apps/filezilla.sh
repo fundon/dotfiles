@@ -19,7 +19,7 @@ if [ ! -d "$OPT_DIR" ]; then
     mkdir $OPT_DIR
 fi
 
-if [ -f "$OPT_DIR/$FILEZILLA" ]; then
+if [ -d "$OPT_DIR/$FILEZILLA" ]; then
     rm -rf "$OPT_DIR/$FILEZILLA"
 fi
 
