@@ -1,0 +1,1 @@
+command CleanWhitespace %s/\s\+//
