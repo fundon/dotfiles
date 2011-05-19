@@ -63,5 +63,10 @@ aptitude install -y exuberant-ctags
 aptitude install -y p7zip-full
 aptitude install -y amule
 aptitude install -y mint-meta-codes
+# Minitunes
+aptitude install -y libqtgui4 libqt4-xml libqt4-network libqt4-dbus \
+    libqt4-sql-sqlite libtag1c2a phonon-backend-gstreamer \
+    gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad
+
 aptitude install -y umplayer
 im-switch -s ibus
