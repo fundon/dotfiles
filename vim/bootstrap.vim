@@ -2,7 +2,7 @@
 " VIM Initialize: " {{{
 "filetype off
 silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
+"silent! call pathogen#helptags()
 filetype plugin indent on
 " }}}
 
@@ -14,6 +14,7 @@ runtime! config/settings.vim
 runtime! config/colors.vim
 runtime! config/plugins.vim
 runtime! config/mappings.vim
+runtime! config/commands.vim
 "runtime! config/filetype.vim
 "runtime! config/autocmd_ft.vim
 " <<---------------------------------------------------------------------------
