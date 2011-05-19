@@ -13,6 +13,10 @@ ln -sf $dotfiles/conkyrc ~/.conkyrc
 # screenrc
 ln -sf $dotfiles/screenrc ~/.screenrc
 
+# fonts
+ln -sf $dotfiles/fonts ~/.fonts
+fc-cache -fv
+
 # git completion
 ln -sf $dotfiles/.gitconfig ~/.gitconfig
 ln -sf $dotfiles/.gitignore ~/.gitignore
