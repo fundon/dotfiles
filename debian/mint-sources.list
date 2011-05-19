@@ -11,6 +11,7 @@ deb http://packages.medibuntu.org/ natty free non-free
 
 #https://launchpad.net/ubuntu/+archivemirrors
 #http://www.debian.org/mirror/list
+#http://ftp.tw.debian.org/debian/
 
 deb http://tw.archive.ubuntu.com/ubuntu/ natty main restricted universe multiverse
 deb http://tw.archive.ubuntu.com/ubuntu/ natty-updates main restricted universe multiverse
