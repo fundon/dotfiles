@@ -15,7 +15,7 @@
 [alias]
     cl = clone
 	co = checkout
-	ci = commit
+	ci = commit -m
 	br = branch
 	st = status
 	last = log -1 HEAD
