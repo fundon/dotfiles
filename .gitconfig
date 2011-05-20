@@ -13,6 +13,7 @@
 [difftool]
 	prompt = gvimdiff
 [alias]
+    cl = clone
 	co = checkout
 	ci = commit
 	br = branch
