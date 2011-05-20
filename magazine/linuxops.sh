@@ -1,4 +1,6 @@
 #!/bin/bash
+# http://g.51cto.com/linuxops
+# Linux 运维趋势
 
 NUM=${*:-0}
 SITE="http://os.51cto.com/os/linuxops/pdf"
