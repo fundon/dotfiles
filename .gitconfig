@@ -1,6 +1,6 @@
 [core]
 	editor = vim
-	excludesfile = /home/cfddream/.gitignore
+	excludesfile = ~/.gitignore
 [user]
 	name = cfddream
 	email = cfddream@gmail.com
