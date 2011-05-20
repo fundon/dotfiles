@@ -59,7 +59,9 @@ gconftool-2 --set /apps/nautilus/preferences/always_use_location_entry --type bo
 aptitude install -y wget curl
 aptitude install -y ibus-gtk ibus-pinyin ibus-pinyin-db-open-phrase
 aptitude install -y git-core vim vim-gtk
+aptitude install -y mercurial
 aptitude install -y exuberant-ctags
+aptitude install -y terminator
 aptitude install -y p7zip-full
 aptitude install -y amule
 aptitude install -y mint-meta-codes
@@ -67,6 +69,7 @@ aptitude install -y mint-meta-codes
 aptitude install -y libqtgui4 libqt4-xml libqt4-network libqt4-dbus \
     libqt4-sql-sqlite libtag1c2a phonon-backend-gstreamer \
     gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad
+aptitude install -y goldendict
 
 aptitude install -y umplayer
 im-switch -s ibus
