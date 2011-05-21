@@ -35,7 +35,6 @@ endif
 " }}}
 
 " Load Bootstrap: " {{{
-"source $MYVIM/bootstrap.vim
 runtime! bootstrap.vim
 " }}}
 " <<----------------------------------------------------------------------------

@@ -2,6 +2,9 @@
 
 dotfiles=~/dotfiles
 
+# inputrc
+ln -sf $dotfiles/inputrc ~/.inputrc
+
 # bashrc
 ln -sf $dotfiles/bash ~/.bash
 ln -sf $dotfiles/bashrc ~/.bashrc
@@ -15,7 +18,7 @@ ln -sf $dotfiles/screenrc ~/.screenrc
 
 # fonts
 ln -sf $dotfiles/fonts ~/.fonts
-fc-cache -fv
+fc-cache -fv ~/.fonts
 
 # git completion
 ln -sf $dotfiles/.gitconfig ~/.gitconfig

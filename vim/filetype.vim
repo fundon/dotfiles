@@ -24,6 +24,8 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
     " Nginx
     autocmd! BufNewFile,BufRead /etc/nginx/* set ft=nginx
+    " SH
+    autocmd! BufNewFile,BufRead ~/.bash/* set ft=sh
 augroup END
 
 " }}}
