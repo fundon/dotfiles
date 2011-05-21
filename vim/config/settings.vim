@@ -70,8 +70,14 @@ set viewoptions=folds,options,cursor,unix,slash
 set modelines=0
 
 set helplang=cn,en
+helptags ~/.vim/doc
 "set langmenu=zh_CN.UTF-8
 "language message zh_CN.UTF-8
+
+" Speed up response to ESC key
+set notimeout
+set ttimeout
+set timeoutlen=100
 
 "set anti
 set nobomb
@@ -217,7 +223,10 @@ set noscrollbind
 " list
 " ctr-v u25b8 = ▸
 " http://www.fileformat.info/info/unicode/font/consolas/grid.htm
+" Show whitespace as unicode chars
 set listchars=tab:▸\ ,eol:¬
+set list
+"
 
 " }}}
 " <<---------------------------------------------------------------------------

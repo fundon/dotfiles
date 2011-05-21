@@ -17,6 +17,8 @@ inoremap uu _
 inoremap hh =>
 inoremap aa @
 
+" prev section "[[", next "]]"
+
 " Quickly open the vim config file in a new tab.
 noremap <Leader>v :tabedit $MYVIMRC<CR>
 " leader P copies full file path or filename to clipboard

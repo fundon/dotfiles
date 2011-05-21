@@ -60,6 +60,13 @@ endif
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_camel_case = 0
 let g:vimwiki_CJK_length = 1
+let g:vimwiki_folding    = 1
+let g:vimwiki_fold_lists = 1
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_auto_checkbox = 1
+let wiki = {}
+let wiki.nested_syntaxes = {'javascript': 'javascript', 'python': 'python', 'c++': 'cpp', 'c': 'c', 'ruby': 'ruby', 'haml': 'haml'}
+let vimwiki_list = [wiki]
 
 " }}}
 " <<----------------------------------------------------------------------------
