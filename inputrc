@@ -1,0 +1,25 @@
+# base-files version 4.0-6
+
+# To pick up the latest recommended .inputrc content,
+# look in /etc/defaults/etc/skel/.inputrc
+
+# Modifying /etc/skel/.inputrc directly will prevent
+# setup from updating it.
+
+# The copy in your home directory (~/.inputrc) is yours, please
+# feel free to customise it to create a shell
+# environment to your liking.  If you feel a change
+# would be benifitial to all, please feel free to send
+# a patch to the cygwin mailing list.
+
+
+# Ctrl+Left/Right
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
+# Ctrl+Up/Down
+"\e[1;5A": history-search-backward
+"\e[1;5B": history-search-forward
+
+# Alt-Backspace for undo
+"\e\d": undo
