@@ -56,7 +56,7 @@ $if mode=emacs
 "\C-j": menu-complete
 "\C-k": menu-complete-backward
 
-set completion-ignore-case On
+#set completion-ignore-case On
 
 $if term=rxvt
 "\e[8~": end-of-line
