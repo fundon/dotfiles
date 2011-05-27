@@ -1,0 +1,13 @@
+# nodejs
+node="$HOME/develop/lnmp/node/bin"
+if [ -d "$node" ]; then
+    PATH="$node:$PATH"
+fi
+
+# redis
+redis="$HOME/develop/lnmp/redis/bin"
+if [ -d "$redis" ]; then
+    PATH="$redis:$PATH"
+fi
+
+export PATH
