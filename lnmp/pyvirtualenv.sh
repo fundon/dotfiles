@@ -2,6 +2,8 @@
 # python virtualenv
 # start virtualenv
 # > virtualenv ~/develop/lnmp/pyvenvs/env2.7
+# > pyve
+# > deactivate
 
 sudo aptitude install -y python-pip
 sudo pip install virtualenv
