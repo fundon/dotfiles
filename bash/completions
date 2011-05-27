@@ -1,3 +1,12 @@
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 source ~/.bash/completion_scripts/git_completion
 export PYTHONSTARTUP=~/.bash/completion_scripts/pythonrc
+
+_pyve() {
+    COMPREPLY=()
+    if [[ $COMP_CWORD == 1 ]] ; then
+        COMPREPLY=( $(compgen -d $PYVENVS/${COMP_WORDS[COMP_CWORD]} | sed "s/\/.*\///") )
+        return 0
+    fi
+}
+complete -F _pyve pyve

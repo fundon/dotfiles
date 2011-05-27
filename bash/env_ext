@@ -11,3 +11,6 @@ if [ -d "$redis" ]; then
 fi
 
 export PATH
+
+# python virtualenv
+export PYVENVS="$HOME/develop/lnmp/pyvenvs"

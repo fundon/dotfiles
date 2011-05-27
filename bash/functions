@@ -14,9 +14,9 @@ cd() {
 	if [[ $@ == '-' ]]; then
 		builtin cd "$@" > /dev/null  # We'll handle pwd.
 	else
-        	builtin cd "$@"
-    	fi
-    	echo -e "   \033[1;30m"`pwd`"\033[0m"
+        builtin cd "$@"
+    fi
+    echo -e "   \033[1;30m"`pwd`"\033[0m"
 }
 
 man() {
@@ -40,23 +40,23 @@ random() {
 }
 
 clean() {
-    	sudo apt-get autoclean
-    	sudo apt-get clean
-    	sudo apt-get autoremove
-    	#rm /var/lib/apt/lists/*
-    	#rm /var/lib/apt/lists/partial/*
+    sudo apt-get autoclean
+    sudo apt-get clean
+    sudo apt-get autoremove
+    #rm /var/lib/apt/lists/*
+    #rm /var/lib/apt/lists/partial/*
 }
 
 webshare() {
-    	python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"
+    python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"
 }
 
 addToSudo() {
-    	usermod -a -G sudo cfd
+    usermod -a -G sudo cfd
 }
 
 VBOX_SSH() {
-    	ssh -p 2222 cfd@localhost
+    ssh -p 2222 cfd@localhost
 }
 
 M_VBOX() {
@@ -69,9 +69,18 @@ UM_VOBX() {
 }
 
 netStat() {
-    	netstat -lnpt
+    netstat -lnpt
 }
 
 routeN() {
-    	route -n
+    route -n
+}
+
+pyve() {
+    # deactivate
+    if [[ $1 == */* ]]; then
+        . $1/bin/activate
+    else
+        . $PYVENVS/$1/bin/activate
+    fi
 }
