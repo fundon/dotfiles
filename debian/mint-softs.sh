@@ -86,6 +86,10 @@ aptitude install -y mercurial
 aptitude install -y tmux
 aptitude install -y exuberant-ctags
 
+aptitude install -y ntpdate
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ntpdate cn.pool.ntp.org
+
 apt-get clean
 apt-get autoclean
 apt-get autoremove
