@@ -10,6 +10,12 @@ if [ -d "$redis" ]; then
     PATH="$redis:$PATH"
 fi
 
+# nginx
+nginx="$HOME/develop/lnmp/nginx/sbin"
+if [ -d "$redis" ]; then
+    PATH="$redis:$PATH"
+fi
+
 export PATH
 
 # python virtualenv
