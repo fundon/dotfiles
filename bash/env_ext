@@ -16,6 +16,12 @@ if [ -d "$redis" ]; then
     PATH="$redis:$PATH"
 fi
 
+# percona (mysql)
+mysql="$HOME/develop/lnmp/percona/bin"
+if [ -d "$mysql" ]; then
+    PATH="$mysql:$PATH"
+fi
+
 export PATH
 
 # python virtualenv
