@@ -27,6 +27,7 @@ aptitude install -y vim-nox nano
 aptitude install -y build-essential
 aptitude install -y automake autoconf make autotools-dev
 aptitude install -y gcc g++
+aptitude install -y cmake
 aptitude install -y cpp binutils
 aptitude install -y re2c wget curl cron file
 aptitude install -y rcconf flex gettext
