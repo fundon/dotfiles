@@ -113,7 +113,7 @@ nmap <silent> <C-l> :wincmd l<CR>
 "noremap <F6> <S-*>
 noremap <F4> :set nohls!<CR>:echo "Toogle Highlight Search."<CR>
 inoremap <C-L> <C-O>:set nohls!<CR>
-noremap <Leader>l :let @/=""<CR>:echo "Cleared search register."<CR>
+noremap <silent> <Leader>l :let @/=""<CR>:echo "Cleared search register."<CR>
 
 " List:
 noremap <F2> :set list!<CR>

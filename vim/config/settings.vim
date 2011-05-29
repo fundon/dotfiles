@@ -40,6 +40,9 @@ if has('gui_running')
         set guifont=Monaco:h10:cANSI
         set guifontwide=YaHei\ Mono:h10
         autocmd GUIEnter * simalt ~x
+        set shell=D:/cygwin/bin/bash
+        set shellcmdflag=--login\ -c
+        set shellxquote=\"
     endif
 
 endif
@@ -225,8 +228,6 @@ set noscrollbind
 " http://www.fileformat.info/info/unicode/font/consolas/grid.htm
 " Show whitespace as unicode chars
 set listchars=tab:▸\ ,eol:¬
-set list
-"
 
 " }}}
 " <<---------------------------------------------------------------------------

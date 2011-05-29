@@ -24,6 +24,9 @@ fc-cache -fv ~/.fonts
 ln -sf $dotfiles/.gitconfig ~/.gitconfig
 ln -sf $dotfiles/.gitignore ~/.gitignore
 
+# node npm
+ln -sf $dotfiles/npmrc ~/.npmrc
+
 # vim & gvim
 rm -rf ~/.vim
 ln -sf $dotfiles/vim ~/.vim
