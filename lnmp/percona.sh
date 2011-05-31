@@ -42,7 +42,7 @@ sh BUILD/autorun.sh
 --with-ssl \
 --enable-assembler \
 --enable-shared \
---enable-local-infile \ 
+--enable-local-infile \
 --with-big-tables
 make
 make install
@@ -63,6 +63,9 @@ $PERCONA/scripts/mysql_install_db \
 --basedir=$PERCONA \
 --user=mysql \
 --defaults-file=$PERCONA/my.conf
+
+# set root's passwd
+$PERCONA/bin/mysql_secure_installation
 
 # set users
 sudo $PERCONA/bin/mysql.server start
