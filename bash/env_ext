@@ -26,3 +26,6 @@ export PATH
 
 # python virtualenv
 export PYVENVS="$HOME/develop/lnmp/pyvenvs"
+
+# LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="$HOME/develop/lnmp/percona/lib:$LD_LIBRARY_PATH"
