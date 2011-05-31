@@ -64,9 +64,8 @@ $PERCONA/scripts/mysql_install_db \
 --user=mysql \
 --defaults-file=$PERCONA/my.conf
 
-# set root's passwd
-$PERCONA/bin/mysql_secure_installation
-
 # set users
 sudo $PERCONA/bin/mysql.server start
+
+# set root's passwd
 mysql_secure_installation
