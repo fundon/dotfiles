@@ -13,7 +13,7 @@ ETC="$PERCONA/etc"
 DATA="$HOME/develop/lnmp/datas/percona"
 FILE="Percona-Server-5.5.11-rel20.2"
 DFILE="$FILE.tar.gz"
-LATEST="http://www.percona.com/redir/downloads/Percona-Server-5.5/$FILE/source/$DFILE"
+LATEST="http://www.percona.com/downloads/Percona-Server-5.5/$FILE/source/$DFILE"
 DOWN_DIR=~/Downloads
 
 sudo groupadd mysql
