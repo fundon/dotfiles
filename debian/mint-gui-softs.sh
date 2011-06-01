@@ -57,6 +57,7 @@ gconftool-2 --set /apps/nautilus/icon_view/default_zoom_level --type string 'sma
 gconftool-2 --set /apps/nautilus/preferences/always_use_location_entry --type bool 1
 
 aptitude install -y cmake
+aptitude install -y python-dev
 aptitude install -y idle-python3.2
 aptitude install -y wget curl
 aptitude install -y ibus-gtk ibus-pinyin ibus-pinyin-db-open-phrase
