@@ -22,10 +22,16 @@ if [ -d "$mysql" ]; then
     PATH="$mysql:$PATH"
 fi
 
+# postgresql
+pgsql="$HOME/develop/lnmp/pgsql/bin"
+if [ -d "$pgsql" ]; then
+    PATH="$pgsql:$PATH"
+fi
+
 export PATH
 
 # python virtualenv
 export PYVENVS="$HOME/develop/lnmp/pyvenvs"
 
 # LD_LIBRARY_PATH
-export LD_LIBRARY_PATH="$HOME/develop/lnmp/percona/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/develop/lnmp/percona/lib:$HOME/develop/lnmp/pgsql/lib:$LD_LIBRARY_PATH"
