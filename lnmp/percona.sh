@@ -3,9 +3,9 @@
 # http://www.percona.com/
 # simple start
 # > ~/develop/lnmp/percona/bin/mysqld --skip-grant &
-# smart start
-# > sudo $HOME/develop/lnmp/percona/bin/mysql.server start
-# > sudo $HOME/develop/lnmp/percona/bin/mysql.server stop
+# smart start|stop
+# > ./init/mysql start
+# > ./init/mysql stop
 # > mysql -u root -p
 
 PERCONA="$HOME/develop/lnmp/percona"
@@ -15,9 +15,10 @@ FILE="Percona-Server-5.5.11-rel20.2"
 DFILE="$FILE.tar.gz"
 LATEST="http://www.percona.com/downloads/Percona-Server-5.5/$FILE/source/$DFILE"
 DOWN_DIR=~/Downloads
+INIT_DIR=~/develop/init
 
-sudo groupadd mysql
-sudo useradd mysql -g mysql -r -s /sbin/nologin
+#sudo groupadd mysql
+#sudo useradd mysql -g mysql -r -s /sbin/nologin
 
 if [ ! -s "$DOWN_DIR/$DFILE" ]; then
     wget -c -O "$DOWN_DIR/$DFILE" $LATEST
@@ -32,7 +33,7 @@ sh BUILD/autorun.sh
 ./configure --prefix=$PERCONA \
 --datadir=$DATA \
 --with-extra-charsets=complex \
---with-mysqld-user=mysql \
+#--with-mysqld-user=mysql \
 --with-charset=utf8 \
 --with-collation=utf8_general_ci \
 --without-plugin-innobase \
@@ -50,22 +51,25 @@ make install
 # config
 mkdir -p $ETC
 cp support-files/*.cnf $ETC
-cp support-files/my-medium.cnf $ETC/my.cnf
-cp support-files/mysql.server $PERCONA/bin/
+cp support-files/my-medium.cnf $PERCONA/my.cnf
 # set mysql.server
 # basedir="$HOME/develop/lnmp/percona"
 # datadir="$HOME/develop/lnmp/datas/percona"
-chomd +x $PERCONA/bin/mysql.server
+cat support-files/mysql.server | \
+sed -e 's/^\(basedir=\)\(.*\)/\1"$HOME\/develop\/lnmp\/percona"/' | \
+sed -e 's/^\(datadir=\)\(.*\)/\1"$HOME\/develop\/lnmp\/datas\/percona"/' | \
+> $INIT_DIR/mysql
+chomd +x $INIT_DIR/mysql
 
 # install db
 $PERCONA/scripts/mysql_install_db \
 --datadir=$DATA \
 --basedir=$PERCONA \
---user=mysql \
+#--user=mysql \
 --defaults-file=$PERCONA/my.conf
 
 # set users
-sudo $PERCONA/bin/mysql.server start
+sudo $INIT_DIR/mysql start
 
 # set root's passwd
 mysql_secure_installation
