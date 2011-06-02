@@ -13,13 +13,14 @@ VERSION="9.0.4"
 FILE="postgresql-$VERSION"
 DFILE="$FILE.tar.bz2"
 LATEST="ftp://ftp.postgresql.org/pub/latest/$DFILE"
-DOWN_DIR=~/Downloads
-INIT_DIR=~/develop/init
+DOWN_DIR="$HOME/Downloads"
+INIT_DIR="$HOME/develop/init"
 
 if [ ! -s "$DOWN_DIR/$DFILE" ]; then
     wget -c -O "$DOWN_DIR/$DFILE" $LATEST
 fi
 
+echo $DOWN_DIR
 cd $DOWN_DIR
 tar jxvf $DFILE
 cd $FILE
@@ -36,12 +37,13 @@ make install
 # prefix="$HOME/develop/lnmp/pgsql"
 # PGDATA="$HOME/develop/lnmp/datas/pgsql"
 # PGUSER="$USER"
-cat contrib/start-scripts/linux  \
+cat contrib/start-scripts/linux | \
 sed -e 's/^\(prefix=\)\(.*\)/\1"$HOME\/develop\/lnmp\/pgsql"/' | \
 sed -e 's/^\(PGDATA=\)\(.*\)/\1"$HOME\/develop\/lnmp\/datas\/pgsql"/' | \
 sed -e 's/^\(PGUSER=\)\(.*\)/\1"$USER"/' \
 > $INIT_DIR/postgresql
-chomd +x $INIT_DIR/postgresql
+
+chmod +x $INIT_DIR/postgresql
 
 # initdb
 $PGSQL/bin/initdb -D $DATA

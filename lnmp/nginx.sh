@@ -6,7 +6,7 @@
 NGINX="$HOME/develop/lnmp/nginx"
 SITE="http://nginx.org/download"
 LATEST=$(curl "$SITE/" | sed -n '/\.tar\.gz"/p' | sed '$!d' | sed 's/ \|^.*href="\|".*$//g')
-DOWN_DIR=~/Downloads
+DOWN_DIR="$HOME/Downloads"
 
 if [ ! -s "$DOWN_DIR/$LATEST" ]; then
     wget -c -O "$DOWN_DIR/$LATEST" "$SITE/$LATEST"
@@ -15,5 +15,5 @@ fi
 cd $DOWN_DIR
 tar zxvf $LATEST
 cd nginx-*
-./configure --prefix=$NGINX --with-http_ssl_module
+./configure --prefix=$NGINX --with-http_ssl_module 
 make && make install

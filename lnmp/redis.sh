@@ -7,6 +7,9 @@
 # > ./bin/redis-client
 # > ./bin/webdis ./etc/webdis.json
 
+DOWN_DIR="$HOME/Downloads"
+cd $DOWN_DIR
+
 # redis
 redis="$HOME/develop/lnmp/redis"
 git clone git://github.com/antirez/redis.git
