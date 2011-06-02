@@ -17,3 +17,4 @@ virtualenv $PYVENVS/$ENV
 . $PYVENVS/$ENV/bin/activate
 pip install --upgrade redis
 pip install --upgrade MySQL-python
+pip install --upgrade Flask
