@@ -18,3 +18,4 @@ virtualenv $PYVENVS/$ENV
 pip install --upgrade redis
 pip install --upgrade MySQL-python
 pip install --upgrade Flask
+pip install --upgrade gunicorn
