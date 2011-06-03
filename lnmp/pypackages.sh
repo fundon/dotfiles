@@ -20,3 +20,4 @@ pip install --upgrade MySQL-python
 pip install --upgrade Flask
 pip install --upgrade gunicorn
 pip install --upgrade flup
+pip install --upgrade uwsgi
