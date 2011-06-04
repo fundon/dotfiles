@@ -1,5 +1,6 @@
 #!/bin/bash
 # redis & webdis
+# http://library.linode.com/
 
 # start redis/webdis
 # > cd ~/develop/lnmp/redis
@@ -15,6 +16,7 @@ redis="$HOME/develop/lnmp/redis"
 git clone git://github.com/antirez/redis.git
 cd redis
 make PREFIX=$redis install
+mkdir -p $redis/var
 mkdir -p $redis/etc
 cp redis.conf $redis/etc/
 
