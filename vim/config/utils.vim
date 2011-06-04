@@ -107,10 +107,9 @@ endfunction
 function! RemoveM()
     "echo "Remove ^M chars"
     "Ctrl+v+m  
-    normal m`:%s/$// ``
+    normal m`:%s/$//e ``
 endfunction
 function! RemoveSpaces()
-    call RemoveM()
     "echo "Remove whitespaces"
     normal m`:%s/\s\+$//e ``
     call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))

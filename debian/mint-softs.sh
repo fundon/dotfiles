@@ -73,6 +73,7 @@ aptitude install -y libexpat1-dev
 aptitude install -y libmagic-dev
 aptitude install -y libpq-dev
 aptitude install -y libgdbm-dev
+aptitude install -y libsqlite3-dev
 
 # mongodb
 aptitude install -y libboost-dev

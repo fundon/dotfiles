@@ -8,6 +8,8 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.vimwiki setfiletype vimwiki
     autocmd! BufNewFile,BufRead {TODO,todo,TodoList} setfiletype todo
 
+    autocmd! BufNewFile,BufRead *.md setfiletype markdown
+
     autocmd! BufNewFile,BufRead *.php setfiletype php
     autocmd! BufNewFile,BufRead *.tpl.html setfiletype php
 
@@ -25,7 +27,7 @@ augroup filetypedetect
     " Nginx
     autocmd! BufNewFile,BufRead /etc/nginx/* set ft=nginx
     " SH
-    autocmd! BufNewFile,BufRead ~/.bash/* set ft=sh
+    autocmd! BufNewFile,BufRead $HOME/dotfiles/bash/* set ft=sh
 augroup END
 
 " }}}
