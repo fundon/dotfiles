@@ -36,3 +36,5 @@ pip install --upgrade uwsgi
 #git clone git://github.com/facebook/phpsh.git
 #cd phpsh
 #python setup.py install
+# pyenv env2.7
+# phpsh
