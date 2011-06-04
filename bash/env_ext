@@ -28,6 +28,18 @@ if [ -d "$pgsql" ]; then
     PATH="$pgsql:$PATH"
 fi
 
+# php
+php="$HOME/develop/lnmp/php"
+if [ -d "$php" ]; then
+    PATH="$php/bin:$php/sbin:$PATH"
+fi
+
+# memcached
+memcached="$HOME/develop/lnmp/memcached"
+if [ -d "$memcached" ]; then
+    PATH="$memcached/bin:$PATH"
+fi
+
 export PATH
 
 # python virtualenv
