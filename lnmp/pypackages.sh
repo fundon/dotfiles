@@ -16,7 +16,9 @@ fi
 virtualenv $PYVENVS/$ENV
 . $PYVENVS/$ENV/bin/activate
 
+# data storage
 pip install --upgrade redis
+pip install --upgrade pymongo
 pip install --upgrade MySQL-python
 
 # web frameworks
