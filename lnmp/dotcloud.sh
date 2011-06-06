@@ -57,3 +57,6 @@ def about():
 if __name__ == '__main__':
     app.run()
 EOF
+
+# test application
+#python kissdry.py
