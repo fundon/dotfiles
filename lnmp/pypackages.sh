@@ -34,6 +34,9 @@ pip install --upgrade gunicorn
 pip install --upgrade flup
 pip install --upgrade uwsgi
 
+# pass www.dotcloud.com
+pip install --upgrade dotcloud
+
 # phpsh
 #git clone git://github.com/facebook/phpsh.git
 #cd phpsh

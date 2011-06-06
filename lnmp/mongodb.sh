@@ -21,7 +21,7 @@ if [ ! -d "$mongodb" ]; then
     mkdir -p $mongodb/var
 fi
 
-cat >> $mongodb/etc/mongodb.conf<<EOF
+cat > $mongodb/etc/mongodb.conf<<EOF
 # Configuration Options for MongoDB
 #
 # For More Information, Consider:
