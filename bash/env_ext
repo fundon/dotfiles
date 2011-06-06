@@ -40,6 +40,18 @@ if [ -d "$memcached" ]; then
     PATH="$memcached/bin:$PATH"
 fi
 
+# mongodb
+mongodb="$HOME/develop/lnmp/mongodb"
+if [ -d "$mongodb" ]; then
+    PATH="$mongodb/bin:$PATH"
+fi
+
+# sphinx
+sphinx="$HOME/develop/lnmp/sphinx"
+if [ -d "$sphinx" ]; then
+    PATH="$sphinx/bin:$PATH"
+fi
+
 export PATH
 
 # python virtualenv
