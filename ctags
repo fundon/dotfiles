@@ -5,10 +5,22 @@
 --regex-rst=/^([-=`:.'"~^_*+#])+$/\1/s,Heading/e
 
 --langdef=markdown
---langmap=markdown:.markdown
---regex-markdown=/^#[ \t]+(.*)/\1/h,heading1/
---regex-markdown=/^##[ \t]+(.*)/2-\1/h,heading2/
---regex-markdown=/^###[ \t]+(.*)/3-\1/h,heading3/
+--langmap=markdown:.mkd.markdown
+--regex-markdown=/^#[ \t]+(.+)$/\1/h,header/
+--regex-markdown=/^##[ \t]+(.+)$/. \1/h,header/
+--regex-markdown=/^###[ \t]+(.+)$/. \1/h,header/
+--regex-markdown=/^####[ \t]+(.+)$/. \1/h,header/
+--regex-markdown=/^#####[ \t]+(.+)$/. \1/h,header/
+--regex-markdown=/^######[ \t]+(.+)$/. \1/h,header/
+
+--langdef=textile
+--langmap=textile:.textile
+--regex-textile=/^h1\.[ \t]*(.+)$/\1/h,header/
+--regex-textile=/^h2\.[ \t]*(.+)$/. \1/h,header/
+--regex-textile=/^h3\.[ \t]*(.+)$/. \1/h,header/
+--regex-textile=/^h4\.[ \t]*(.+)$/. \1/h,header/
+--regex-textile=/^h5\.[ \t]*(.+)$/. \1/h,header/
+--regex-textile=/^h6\.[ \t]*(.+)$/. \1/h,header/
 
 --langdef=xml
 --langmap=xml:.xml.html.xhtml
@@ -16,7 +28,19 @@
 
 --langdef=css
 --langmap=css:.css
---regex-css=/[ \t]*([^ \t\}]+)[ \t]*\{/\1/s,Selector/i
+--regex-css=/^[ \t]*\.([A-Za-z_][A-Za-z0-9_:"' \t\-]*)[ \t]*\{/.\1/c,class/
+--regex-css=/^[ \t]*\.([A-Za-z_][A-Za-z0-9_:"' \t\-]*)[ \t]*,/.\1/c,class/
+--regex-css=/,[ \t]*\.([A-Za-z_][A-Za-z0-9_:"' \t\-]*)[ \t]*\{/.\1/c,class/
+--regex-css=/,[ \t]*\.([A-Za-z_][A-Za-z0-9_:"' \t\-]*)[ \t]*,/.\1/c,class/
+--regex-css=/^[ \t]*#([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*\{/#\1/o,object/
+--regex-css=/^[ \t]*#([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*,/#\1/o,object/
+--regex-css=/,[ \t]*#([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*\{/#\1/o,object/
+--regex-css=/,[ \t]*#([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*,/#\1/o,object/
+--regex-css=/^[ \t]*([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*\{/\1/t,tags/
+--regex-css=/^[ \t]*([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*,/\1/t,tags/
+--regex-css=/,[ \t]*([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*\{/\1/t,tags/
+--regex-css=/,[ \t]*([A-Za-z_][A-Za-z0-9_:()="' \t\-]*)[ \t]*,/\1/t,tags/
+--regex-css=/^[ \t]*\*[ \t]*[,{]/*/t,tags/
 
 --langdef=js
 --langmap=js:.js
@@ -44,3 +68,27 @@
 --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\[/\1/,array/
 --regex-js=/([^= ]+)[ \t]*=[ \t]*[^"]'[^']*/\1/,string/
 --regex-js=/([^= ]+)[ \t]*=[ \t]*[^']"[^"]*/\1/,string/
+
+--langdef=html
+--langmap=html:.htm.html
+--regex-html=/<h1[^>]*>(.*)<\/h1>/\1/h,header/
+--regex-html=/<h2[^>]*>(.*)<\/h2>/. \1/h,header/
+--regex-html=/<h3[^>]*>(.*)<\/h3>/. \1/h,header/
+--regex-html=/<h4[^>]*>(.*)<\/h4>/. \1/h,header/
+--regex-html=/<h5[^>]*>(.*)<\/h5>/. \1/h,header/
+--regex-html=/<h6[^>]*>(.*)<\/h6>/. \1/h,header/
+--regex-html=/<([a-zA-Z][a-zA-Z0-9]*)[^>]*[ \t]+id[ \t]*=[ \t]*'([^']+)'/\1#\2/o,object/
+--regex-html=/<([a-zA-Z][a-zA-Z0-9]*)[^>]*[ \t]+id[ \t]*=[ \t]*"([^"]+)"/\1#\2/o,object/
+--regex-html=/<([a-zA-Z][a-zA-Z0-9]*)[^>]*[ \t]+id[ \t]*=[ \t]*([A-Za-z][A-Za-z0-9_:.-]*)[ \t>]/\1#\2/o,object/
+--regex-html=/<([a-zA-Z][a-zA-Z0-9]*)[^>]*[ \t]+class[ \t]*=[ \t]*'([^']+)'/\1.\2/c,class/
+--regex-html=/<([a-zA-Z][a-zA-Z0-9]*)[^>]*[ \t]+class[ \t]*=[ \t]*"([^"]+)"/\1.\2/c,class/
+--regex-html=/<([a-zA-Z][a-zA-Z0-9]*)[^>]*[ \t]+class[ \t]*=[ \t]*([A-Za-z][A-Za-z0-9_:.-]*)[ \t>]/\1.\2/c,class/
+
+--langdef=wiki
+--langmap=wiki:.wiki
+--regex-wiki=/^=[ \t]+(.+)[ \t]+=$/\1/h,header/
+--regex-wiki=/^==[ \t]+(.+)[ \t]+==$/. \1/h,header/
+--regex-wiki=/^===[ \t]+(.+)[ \t]+===$/. \1/h,header/
+--regex-wiki=/^====[ \t]+(.+)[ \t]+====$/. \1/h,header/
+--regex-wiki=/^=====[ \t]+(.+)[ \t]+=====$/. \1/h,header/
+--regex-wiki=/^======[ \t]+(.+)[ \t]+======$/. \1/h,header/
