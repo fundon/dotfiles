@@ -1,9 +1,6 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
-[user]
-	name = cfddream
-	email = cfddream@gmail.com
 [color]
 	ui = auto
 [format]
@@ -21,6 +18,3 @@
 	last = log -1 HEAD
 	mg = merge
 	df = difftool
-[github]
-	user = cfddream
-	token = 24b89d3f6739565fb383710c64e8b7ad

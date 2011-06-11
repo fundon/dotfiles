@@ -5,6 +5,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # grep
+alias ack="ack-grep -i -u"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -16,5 +17,25 @@ alias ....='cd ../../..'
 alias Dev='cd ~/develop'
 alias Oth='cd ~/others'
 
+# start vim, stty disable flow control
+alias vim='stty -ixon && vim -p'
+
 # mkdir
 alias md='mkdir -p'
+
+# ping
+alias pingoo='ping -c 3 www.google.com'
+alias p1="ping -c 1"
+alias p3="ping -c 3"
+
+# images
+alias imginfo="identify -format '-- %f -- \nType: %m\nSize: %b bytes\nResolution: %wpx x %hpx\nColors: %k'"
+alias imgres="identify -format '%f: %wpx x %hpx\n'"
+
+# fun
+alias rmatrix='echo -ne "\e[31m" ; while true ; do echo -ne "\e[$(($RANDOM % 2 + 1))m" ; tr -c "[:print:]" " " < /dev/urandom | dd count=1 bs=50 2>/dev/null ; done'
+alias gmatrix='echo -ne "\e[32m" ; while true ; do echo -ne "\e[$(($RANDOM % 2 + 1))m" ; tr -c "[:print:]" " " < /dev/urandom | dd count=1 bs=50 2>/dev/null ; done'
+
+# sysadminish
+alias swappy="sudo /sbin/sysctl vm.swappiness"
+alias sysl="sudo tail /var/log/syslog"

@@ -34,6 +34,8 @@ else
 endif
 " }}}
 
+source /home/cfddream/develop/myprojects/cfddream/dotfiles/vimrc
+
 " Load Bootstrap: " {{{
 runtime! bootstrap.vim
 " }}}

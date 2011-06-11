@@ -1,5 +1,4 @@
-"" <<--------------------------------------------------------------------------
-" Functions: " {{{
+" Functions: " {
 " Max Window
 function! MaximizeWindow()
     silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
@@ -222,5 +221,4 @@ function! ToggleBGG()
     exe 'colorscheme ' . cn
 endfunction
 
-" }}}
-" <<---------------------------------------------------------------------------
+" }

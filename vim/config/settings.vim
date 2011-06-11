@@ -99,7 +99,7 @@ if g:iswin
 endif
 
 set textwidth=79
-set colorcolumn=81
+set colorcolumn=+1
 set cursorline
 set number
 
