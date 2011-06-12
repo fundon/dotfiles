@@ -35,7 +35,7 @@ MANPATH="/usr/share/man:/usr/local/share/man"
 export PATH MANPATH
 
 # editor/pager
-export EDITOR="vim -p"
+export EDITOR="vim"
 export PAGER="`which less` -s"
 export BROWSER="$PAGER"
 export LESS_TERMCAP_mb=$'\E[01;31m'
