@@ -1,6 +1,5 @@
-source ~/.bash/env
-source ~/.bash/env_ext
-source ~/.bash/config
-source ~/.bash/aliases
-source ~/.bash/functions
-source ~/.bash/completions
+source ~/.sh/env
+source ~/.sh/env_ext
+source ~/.sh/aliases
+source ~/.sh/functions
+source ~/.sh/completions

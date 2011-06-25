@@ -6,8 +6,9 @@ dotfiles=~/dotfiles
 ln -sf $dotfiles/inputrc ~/.inputrc
 
 # bashrc
-ln -sf $dotfiles/bash ~/.bash
+ln -sf $dotfiles/sh ~/.sh
 ln -sf $dotfiles/bashrc ~/.bashrc
+ln -sf $dotfiles/zshrc ~/.zshrc
 ln -sf $dotfiles/bash_profile ~/.bash_profile
 
 # conky
