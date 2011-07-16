@@ -12,8 +12,8 @@ fi
 
 # nginx
 nginx="$HOME/develop/lnmp/nginx/sbin"
-if [ -d "$redis" ]; then
-    PATH="$redis:$PATH"
+if [ -d "$nginx" ]; then
+    PATH="$nginx:$PATH"
 fi
 
 # percona (mysql)
