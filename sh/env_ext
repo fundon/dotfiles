@@ -52,6 +52,12 @@ if [ -d "$sphinx" ]; then
     PATH="$sphinx/bin:$PATH"
 fi
 
+# ant
+ant="$HOME/develop/lnmp/ant"
+if [ -d "$ant" ]; then
+    PATH="$ant/bin:$PATH"
+fi
+
 export PATH
 
 # python virtualenv
