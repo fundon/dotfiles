@@ -58,7 +58,15 @@ if [ -d "$ant" ]; then
     PATH="$ant/bin:$PATH"
 fi
 
+maven="$HOME/develop/lnmp/maven"
+if [ -d "$maven" ]; then
+    PATH="$maven/bin:$PATH"
+fi
+
 export PATH
+
+# java home
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
 
 # python virtualenv
 export PYVENVS="$HOME/develop/lnmp/pyvenvs"
