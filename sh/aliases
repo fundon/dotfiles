@@ -19,6 +19,7 @@ alias Oth='cd ~/others'
 
 # start vim, stty disable flow control
 alias vim='stty -ixon && vim -p'
+alias gvim='gvim -p'
 
 # mkdir
 alias md='mkdir -p'
