@@ -32,3 +32,10 @@ source ~/.sh/env_ext
 source ~/.sh/aliases
 source ~/.sh/functions
 source ~/.sh/completions
+
+################ KEY BINDING #####################
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\e[3~' delete-char
+bindkey '\e[1;5D' backward-word
+bindkey '\e[1;5C' forward-word
