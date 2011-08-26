@@ -4,6 +4,8 @@ if [ -d "$node" ]; then
     PATH="$node:$PATH"
 fi
 
+export NODE_PATH="$HOME/develop/lnmp/node:$HOME/develop/lnmp/node/lib/node_modules"
+
 # redis
 redis="$HOME/develop/lnmp/redis/bin"
 if [ -d "$redis" ]; then
