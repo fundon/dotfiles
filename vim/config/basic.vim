@@ -98,7 +98,7 @@ endif
 
 set statusline=%F%m%r%h%w
 set stl+=%=(%{&ff}/%Y/%{&fenc})
-set stl+=\ (line\ %l\/%L,\ col\ %c)\ %P
+set stl+=\ (line\ %l\/%L,\ col\ %c,\ 0x%04.4B)\ %P
 
 set foldenable
 set foldmethod=marker
