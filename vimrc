@@ -13,8 +13,8 @@
 "     \___)=(___/         `-O  Linux for Human Beings
 "
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Author: ixkungfu
-" Email: ixkungfu[at]gmail.com
+" Author: cfddream
+" Email: cfddream[at]gmail.com
 " Blog:
 " Create: 2011-09-01
 " Vim: set et sw=ts=sts=4 ft=vim ff=unix fenc=utf-8
