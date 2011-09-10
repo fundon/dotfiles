@@ -1,34 +1,31 @@
-" ---------------------------------------------------------------------------->>
 if exists("did_load_filetypes")
     finish
 endif
+let did_load_filetypes = 1
 
 augroup filetypedetect
-    autocmd! BufNewFile,BufRead *.txt setfiletype txt
-    autocmd! BufNewFile,BufRead *.vimwiki setfiletype vimwiki
-    autocmd! BufNewFile,BufRead {TODO,todo,TodoList} setfiletype todo
 
-    autocmd! BufNewFile,BufRead *.md setfiletype markdown
+    au BufNewFile,BufRead *.c setf c
 
-    autocmd! BufNewFile,BufRead *.php setfiletype php
-    autocmd! BufNewFile,BufRead *.tpl.html setfiletype php
+    " Markdown
+    au BufNewFile,BufRead *.{md,mkd,mark,markdown} setf mkd
 
-    autocmd! BufNewFile,BufRead *.rss,*.atom setfiletype xml
-
-    autocmd! BufNewFile,BufRead *.as setfiletype javascript
-    autocmd! BufNewFile,BufRead *.json setfiletype json
-
-    autocmd! BufNewFile,BufRead *.go setfiletype go
-
-    autocmd! BufNewFile,BufRead *.css syntax=css3
-
-    " Apache
-    autocmd! BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
-    " Nginx
-    autocmd! BufNewFile,BufRead /etc/nginx/* set ft=nginx
     " SH
-    autocmd! BufNewFile,BufRead $HOME/dotfiles/bash/* set ft=sh
-augroup END
+    au BufNewFile,BufRead *.sh setf sh
 
-" }}}
-" <<----------------------------------------------------------------------------
+    " JavaScript, ECMAScript
+    au BufNewFile,BufRead *.{js,javascript,es,jsx} setf javascript
+
+    " Taskwarrior configuration file
+    au BufNewFile,BufRead .taskrc setf taskrc
+
+    " Taskwarrior data files
+    au BufNewFile,BufRead {pending,completed,undo}.data setf taskdata
+
+    " Taskwarrior handling of 'task 42 edit'
+    au BufNewFile,BufRead *.task setf taskedit
+
+    " Vim
+    au BufNewFile,BufRead *.vim,{*}vimrc,{*}gvimrc setf vim
+
+augroup END

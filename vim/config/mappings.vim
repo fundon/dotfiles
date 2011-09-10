@@ -1,129 +1,99 @@
-" --------------------------------------------------------------------------->>
-" Keyboard Mappings: " {{{
+" Key mappings " {{{
+let mapleader = ','
 
-" Map Leader:
-let mapleader=","
-let g:mapleader=","
-" map Q to something useful
-noremap  Q gq
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
-nnoremap / /\v
-vnoremap / /\v
+" Arrow keys
+nnoremap Q gq
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
-" Quick Keys:
-inoremap jj <Esc>
-inoremap uu _
-inoremap hh =>
-inoremap aa @
+" Useful Shortcuts
+vnoremap <leader>c "+y
+vnoremap <leader>x "+d
+nnoremap <leader>v "+P
+vnoremap <leader>v "+p
+nnoremap <leader>a ggVG
 
-" prev section "[[", next "]]"
+" Backspace in Visual mode deletes selection
+vnoremap <BS> d
 
-" Quickly open the vim config file in a new tab.
-noremap <Leader>v :tabedit $MYVIMRC<CR>
-" leader P copies full file path or filename to clipboard
-noremap <Leader>p :let @+=expand('%:p')<CR>:echo "copied" expand('%:p')<CR>
-noremap <Leader>cp :let @+=@%<CR>:echo "copied" @%<CR>
-" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-" Opens a tab edit command with the path of the currently edited file filled in
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-" Inserts the path of the currently edited file into a command
-" Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-" Clean whitespace
-map <Leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" Quickly edit/reload the vimrc file
+nnoremap <silent><leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <silent><leader>sv :source $MYVIMRC<cr>
 
-" Fast Save:
-noremap <Leader>w :w!<CR>:echo "saved" expand('%:p')<CR>
 " Sudo to write
-cmap w!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % > /dev/null
 
-" Toggle Number:
-noremap <F3> :call ToggleNumber()<CR>
+" Esc and Save
+inoremap <leader>, <esc>
+vnoremap <leader>, <esc>
+nnoremap <leader>q :q!<esc>
+nnoremap <c-s> :update<cr>
 
-" Remove trailing whitespaces and ^M chars
-noremap <F6> :call RemoveSpaces()<CR>
+" Search
+nnoremap <silent><leader><space> :set nohls!<cr>
+nnoremap <silent><leader>l :let @/=""<cr>
+vnoremap * y/<c-r>=escape(@", '\\/.*$^~[]')<cr><cr>
+vnoremap # y?<c-r>=escape(@", '\\/.*$^~[]')<cr><cr>
 
-set pastetoggle=<F7>
+" Command Mode like terminal command
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+cnoremap <c-p> <up>
+cnoremap <c-f> <right>
+cnoremap <c-n> <down>
+cnoremap <c-b> <left>
+cnoremap <c-d> <del>
 
-" Tabs Or Buffers:
-noremap <C-t> :tabnew<CR>
-noremap to :tabnew<CR>
-noremap tc :tabclose<CR>
-"noremap <C-w> :tabclose<CR>
-noremap tn :tabnext<CR>
-noremap tp :tabprevious<CR>
-noremap tf :tabfirst<CR>
-noremap tl :tablast<CR>
-noremap ts :tabs<CR>
-" Delete buffer
-noremap <Leader>d :bd<CR>
-" Delete buffer and file
-noremap <Leader>D :!rm %<CR>:bd!<CR>
+" Cursor
+" <s-i> line begin and insert
+nnoremap L $
 
-" allow moving with h/j/k/l in insert mode
-inoremap <A-h> <Left>
-inoremap <A-j> <Down>
-inoremap <A-k> <Up>
-inoremap <A-l> <Right>
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+nnoremap Y y$
 
-" Move Lines:
-noremap <C-Up> mz:m-2<CR>`z
-noremap <C-Down> mz:m+<CR>`z
-"inoremap <C-j> mz:m+<CR>`z
-"inoremap <C-k> mz:m-2<CR>`z
-"vnoremap <C-k> mz:m-2<CR>`z
-"vnoremap <C-j> mz:m+<CR>`z
+" Move Lines
+noremap <c-up> mz:m-2<cr>`z
+noremap <c-down> mz:m+<cr>`z
 
+" Tabs
+nnoremap <leader>lt :tabs<cr>
+nnoremap <leader>tt :tabnew<cr>
+nnoremap <leader>n :silent tabprev<cr>
+nnoremap <leader>m :silent tabnext<cr>
+nnoremap <leader>tf :silent tabfirst<cr>
+nnoremap <leader>tl :silent tablast<cr>
 
-" Indent Tab:
-noremap <Tab> v>
+" Move Windoes
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-h> <c-w>h
+
+" <c-0> rest
+map <c-kPlus> <c-w>+
+map <c-kMinus> <c-w>-
+map <s-left> <c-w><
+map <s-right> <c-w>>
+
+" Indent
+noremap <tab> v>
 noremap <s-tab> v<
 vnoremap <tab> >gv
 vnoremap <s-tab> <gv
-"inoremap <tab> <ESC> >gv
-"inoremap <s-tab> <ESC> <gv
 
-" Past:
-noremap + "+
-vnoremap <C-X> "+x
-vnoremap <C-C> "+y
-"inoremap <C-V> <ESC>:set paste<CR>mui<C-R>+<ESC>mv'uV'v=:set nopaste<CR>
+" ListChar
+noremap <silent><F4> :set invlist<cr>
 
-" Quit window on <leader>q
-nnoremap <Leader>q :q<CR>
-" Vertical And Horizontal Split:
-noremap <leader>vw :vsp^m^w^w<cr>
-noremap <Leader>hw :split^M^W^W<CR>
-noremap <Leader>qq :q<CR>
-" Switch windows with Ctrl + a movement key
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-"nmap <silent> <C--> :resize -5<CR>
-"nmap <silent> <C-=> :resize +5<CR>
-"nmap <silent> <C-]> :vertical resize +5<CR>
-"nmap <silent> <C-[> :vertical resize -5<CR>
+" Line Number
+noremap <silent><F2> :if &nu\|se rnu\
+            \|elsei &rnu\|se rnu!\
+            \|el\|se nu\|endif<cr>
 
+" Trim trailling whitespace
+noremap <silent><F7> :%s/\s\+$//g<cr>``
 
-" Clear Search Highlight:
-" Toggle Search
-"noremap <F6> <S-*>
-noremap <F4> :set nohls!<CR>:echo "Toogle Highlight Search."<CR>
-inoremap <C-L> <C-O>:set nohls!<CR>
-noremap <silent> <Leader>l :let @/=""<CR>:echo "Cleared search register."<CR>
-
-" List:
-noremap <F2> :set list!<CR>
-
-" Fold toggling with <Space> if a fold exists at the cursor.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
-vnoremap <Space> zf
-
-" Toggle solarized
-noremap <F7> :call ToggleBGG() <CR>
-
-" }}}
-" <<---------------------------------------------------------------------------
+" normal: 3id, insert ddd. :help .
+" "}}}
