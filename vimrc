@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " _________________________
-"( cfddream's VIM Settings )
+"( ixkungfu's VIM Settings )
 " -------------------------
 "   o
 "    o
@@ -13,28 +13,29 @@
 "     \___)=(___/         `-O  Linux for Human Beings
 "
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Author: cfddream
-" Email: cfddream[at]gmail.com
+" Author: ixkungfu
+" Email: ixkungfu[at]gmail.com
 " Blog:
-" Create: 07-12-2010 18:01:04
-" Modified: 08-12-2010 21:27:04
+" Create: 2011-09-01
 " Vim: set et sw=ts=sts=4 ft=vim ff=unix fenc=utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ---------------------------------------------------------------------------->>
-" Check OS: " {{{
-let g:iswin = 0
-if has('win16') || has('win32') || has('win64')
-    let $HOME = expand('F://opensources/dotfiles')
-    let $MYVIM = expand($HOME.'/.vim')
-    let g:iswin = 1
+" Check OS: {
+" g:KF#OS { 'unix': 1, 'mac': 2, 'others': 3 }
+" tips: set let
+" set runtimepath=~/xxx eq let &runtimepath="~/xxx"
+let g:KF#OS = has('unix') ? 1 :  has('mac') ? 2 : 3 
+if g:KF#OS == 1
+    let g:KF#MYVIM = expand('~/.vim')
+    let g:KF#LSB = substitute(system('lsb_release -si'), '[\s\n]\+', '', '')
+elseif g:KF#OS == 2
+    "let g:KF#MYVIM = 1
 else
-    let $MYVIM = expand('~/.vim')
-    let g:lsb = substitute(system('lsb_release -si'), '[\s\n]\+', '', '')
+    let g:KF#MYVIM = expand('F:/develop/vim')
 endif
-" }}}
+" }
 
-" Load Bootstrap: " {{{
-runtime! bootstrap.vim
+" Load Bootstrap: {{{
+"silent! runtime bootstrap.vim
+runtime bootstrap.vim
 " }}}
-" <<----------------------------------------------------------------------------

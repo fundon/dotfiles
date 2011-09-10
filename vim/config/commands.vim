@@ -1,1 +1,0 @@
-command CleanWhitespace %s/\s\+//
