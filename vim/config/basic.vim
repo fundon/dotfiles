@@ -96,9 +96,9 @@ if &diff && has('cursorbind')
     set scrollbind
 endif
 
-set statusline=%F%m%r%h%w
-set stl+=%=(%{&ff}/%Y/%{&fenc})
-set stl+=\ (line\ %l\/%L,\ col\ %c,\ 0x%04.4B)\ %P
+set statusline=%1*%F%m%r%h%w
+set stl+=%2*%=(%{&ff}/%Y/%{&fenc})
+set stl+=%3*\ (line\ %l\/%L,\ col\ %c,\ 0x%04.4B)\ %P
 
 set foldenable
 set foldmethod=marker

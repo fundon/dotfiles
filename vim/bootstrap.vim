@@ -9,9 +9,9 @@ if &term =~ 'xterm'
 endif
 
 runtime config/personal.vim
+runtime config/style.vim
 runtime config/basic.vim
 runtime config/mappings.vim
-runtime config/style.vim
 runtime config/plugins.vim
 runtime config/auto.vim
 runtime config/command.vim
