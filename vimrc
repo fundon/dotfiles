@@ -24,7 +24,7 @@
 " g:KF#OS { 'unix': 1, 'mac': 2, 'others': 3 }
 " tips: set let
 " set runtimepath=~/xxx eq let &runtimepath="~/xxx"
-let g:KF#OS = has('unix') ? 1 :  has('mac') ? 2 : 3 
+let g:KF#OS = has('unix') ? 1 : (has('mac') || system('uname -s') =~ 'Darwin') ? 2 : 3 
 if g:KF#OS == 1
     let g:KF#MYVIM = expand('~/.vim')
     let g:KF#LSB = substitute(system('lsb_release -si'), '[\s\n]\+', '', '')
