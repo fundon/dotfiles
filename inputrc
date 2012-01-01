@@ -12,3 +12,7 @@ set show-all-if-ambiguous on
 set show-all-if-unmodified on
 
 set completion-map-case on
+
+# Complete symlinks to folders with trailing /
+set mark-directories On
+set mark-symlinked-directories On

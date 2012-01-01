@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [format]
-	pretty = oneline
+	pretty = "%h %ad | %s%d [%an]" --graph --date=short
 [diff]
 	tool = gvimdiff
 [difftool]
