@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dotfiles=~/dotfiles
+dotfiles=.
 
 # inputrc
 ln -sf $dotfiles/inputrc ~/.inputrc
@@ -23,7 +23,7 @@ fc-cache -fv ~/.fonts
 
 # git completion
 ln -sf $dotfiles/.gitconfig ~/.gitconfig
-ln -sf $dotfiles/.gitignore ~/.gitignore
+ln -sf $dotfiles/.gitignore_global ~/.gitignore_global
 
 # node npm
 ln -sf $dotfiles/npmrc ~/.npmrc
