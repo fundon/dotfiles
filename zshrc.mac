@@ -25,16 +25,16 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git brew npm)
-
 source $ZSH/oh-my-zsh.sh
-source ~/develop/myprojects/nu/nu
- #Customize to your needs...
+
+#Customize to your needs...
 
 # Mac
 export PATH=~/develop/homebrew/bin:$PATH
 
 export PATH=~/develop/lnpp/bin:$PATH
-export NU_DIR=/Users/cfd/develop/lnpp/nu
+export NU_DIR=~/develop/lnpp/nu
+source ~/develop/myprojects/nu/nu
 
 ################ KEY BINDING #####################
 bindkey '\e[1~' beginning-of-line
@@ -48,11 +48,13 @@ if [ "$TERM" != "dumb" ]; then
     export LS_OPTIONS='--color=auto'
     eval "`dircolors -b ~/.dir_colors`"
 fi
+#[[ $TERM != "screen" ]] && tmux && exit
 
 # Useful aliases
 alias ls='ls $LS_OPTIONS -hF'
 alias ll='ls $LS_OPTIONS -lhF'
 alias l='ls $LS_OPTIONS -lAhF'
+alias ack="ack -i -u"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -61,3 +63,16 @@ alias c="clear"
 alias e="exit"
 alias ssh="ssh -X"
 alias ..="cd .."
+alias tmux="TERM=xterm-256color tmux"
+
+# editor/pager
+export EDITOR="vim"
+export PAGER="`which less` -s"
+export BROWSER="$PAGER"
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'

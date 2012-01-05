@@ -1,8 +1,8 @@
- # Always sort the files
---sort-files
+# Use "less -r" as my pager
+--pager=less -r
 
 # Always color, even if piping to a another program
 --color
 
-# Use "less -r" as my pager
---pager=less -r
+ # Always sort the files
+--sort-files

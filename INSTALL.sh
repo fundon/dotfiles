@@ -14,6 +14,9 @@ ln -sf $dotfiles/bash_profile ~/.bash_profile
 # conky
 ln -sf $dotfiles/conkyrc ~/.conkyrc
 
+# ack
+ln -sf $dotfiles/ackrc ~/.ackrc
+
 # screenrc
 ln -sf $dotfiles/screenrc ~/.screenrc
 

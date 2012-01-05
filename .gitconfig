@@ -3,8 +3,9 @@
 	excludesfile = ~/.gitignore_global
 [color]
 	ui = auto
+    diff = auto
 [format]
-	pretty = "%h %ad | %s%d [%an]" --graph --date=short
+	pretty = "%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset"
 [diff]
 	tool = gvimdiff
 [difftool]
@@ -16,5 +17,7 @@
 	br = branch
 	st = status
 	last = log -1 HEAD
-	mg = merge
+    sb = status -sb
 	df = difftool
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
