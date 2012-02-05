@@ -35,6 +35,7 @@ export PATH=~/develop/homebrew/bin:~/develop/homebrew/sbin:$PATH
 export PATH=~/develop/lnpp/bin:$PATH
 export NU_DIR=~/develop/lnpp/nu
 source ~/develop/myprojects/nu/nu
+export NODE_PATH=$(npm root -g):$NODE_PATH
 
 ################ KEY BINDING #####################
 bindkey '\e[1~' beginning-of-line
