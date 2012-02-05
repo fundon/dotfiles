@@ -7,6 +7,8 @@ brew install zsh
 brew install git
 brew install xz
 brew install --HEAD https://raw.github.com/adamv/homebrew/master/Library/Formula/coreutils.rb
+brew install gettext
+brew link gettext
 brew install libevent
 brew install tmux
 brew install wget
@@ -42,4 +44,6 @@ brew install siege
 brew create webbench
 brew install webbench
 brew install cmatrix
+brew install mongodb
+brew install memcached
 brew cleanup
