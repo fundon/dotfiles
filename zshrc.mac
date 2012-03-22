@@ -30,7 +30,7 @@ source $ZSH/oh-my-zsh.sh
 #Customize to your needs...
 
 # Mac
-export PATH=~/develop/homebrew/bin:~/develop/homebrew/sbin:$PATH
+export PATH=~/bin:~/develop/homebrew/bin:~/develop/homebrew/sbin:$PATH
 
 export PATH=~/develop/lnpp/bin:$PATH
 export NU_DIR=~/develop/lnpp/nu

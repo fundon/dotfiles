@@ -1,0 +1,73 @@
+export ARCHFLAGS="-arch x86_64"
+export TERM=xterm-256color
+
+export PATH=$HOME/Develop/lnpp/bin:$PATH
+export PATH=$HOME/Homebrew/bin:$PATH
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
+export NU_DIR=$HOME/Develop/lnpp/nu
+source $HOME/Develop/myprojects/nu/nu
+
+HOMEBREW=`brew --prefix`
+if [ -f $HOMEBREW/etc/bash_completion ]; then
+    source $HOMEBREW/etc/bash_completion
+fi
+if [ "$TERM" = "xterm-256color" ]; then
+    export LS_OPTIONS='--color=auto'
+    eval `dircolors $HOMEBREW/etc/dircolors.256dark`
+fi
+
+RESET="\[\033[0m\]"
+RED="\[\033[0;31m\]"
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+YELLOW="\[\033[0;33m\]"
+
+Time24h="\t"
+Time12h="\T"
+Time12a="\@"
+PathShort="\w"
+PathFull="\W"
+NewLine="\n"
+Jobs="\j"
+
+#PS_LINE=`printf -- '- %.0s' {1..200}`
+function parse_git_branch {
+      PS_GIT_BRANCH=''
+            PS_FILL=${PS_LINE:0:$COLUMNS}
+        ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+              PS_GIT_BRANCH="(${ref#refs/heads/}) "
+}
+PROMPT_COMMAND=parse_git_branch
+PS_INFO="$GREEN\u@\h$RESET:$BLUE\w"
+PS_GIT="$YELLOW\$PS_GIT_BRANCH"
+#PS_TIME="\[\033[\$((COLUMNS-10))G\] $RED[\t]"
+#export PS1=" \${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}\$ "
+export PS1="\t \u@\h:\w\$(__git_ps1 \" (%s)\") \$ "
+
+# editor/pager
+#export EDITOR="vim"
+export PAGER="`which less` -s"
+export BROWSER="$PAGER"
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# ls
+alias ls='ls $LS_OPTIONS -hF'
+alias ll='ls $LS_OPTIONS -lhF'
+alias l='ls $LS_OPTIONS -lAhF'
+
+# grep
+alias ack="ack-grep -i -u"
+alias grep='grep $LS_OPTIONS'
+alias fgrep='fgrep $LS_OPTIONS'
+alias egrep='egrep $LS_OPTIONS'
+
+# images must install imagemagick
+alias imginfo="identify -format '-- %f -- \nType: %m\nSize: %b bytes\nResolution: %wpx x %hpx\nColors: %k'"
+alias imgres="identify -format '%f: %wpx x %hpx\n'"
