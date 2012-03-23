@@ -1,0 +1,11 @@
+#!/bin/bash
+# vim: ft=sh
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
+
+oldPS1=$PS1
+oldPS2=$PS2
+export PS1="${GRAY}${Time24h} ${GREEN}${UserName}${YELLOW}@${BLUE}${HostName}:\
+  ${CYAN}${PathShort}${RED}\$(__git_ps1 ' (%s)') ${RED}→ ${RESET}"
+export PS2="${RED}↔ ${RESET}"
