@@ -46,6 +46,7 @@ mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix percona-se
 # /etc/my.cnf ~/.my.cnf
 mysql.server start
 mysql_secure_installation
+brew install postgresql
 brew install bcrypt
 brew install imagemagick
 brew install smartmontools # for Max OS

@@ -6,6 +6,5 @@ fi
 
 oldPS1=$PS1
 oldPS2=$PS2
-export PS1="${GRAY}${Time24h} ${GREEN}${UserName}${YELLOW}@${BLUE}${HostName}:\
-  ${CYAN}${PathShort}${RED}\$(__git_ps1 ' (%s)') ${RED}→ ${RESET}"
+export PS1="${GRAY}${Time24h} ${GREEN}${UserName}${YELLOW}@${BLUE}${HostName}:${CYAN}${PathShort}${RED}\$(parse_git_branch) ${RED}→ ${RESET}"
 export PS2="${RED}↔ ${RESET}"
