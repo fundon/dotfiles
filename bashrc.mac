@@ -9,6 +9,10 @@ shopt -s histappend
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
+# Time Zone
+# export TZ="/usr/share/zoneinfo/{TIMEZONE_DIRECTORY}/{TIMEZONE_FILE}>"
+# export TZ="TIMEZONE_DIRECTORY/TIMEZONE_FILE"
+export TZ="Asia/Shanghai"
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
@@ -39,12 +43,17 @@ export LD_LIBRARY_PATH="$DEVELOP_VD/python2/lib:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$DEVELOP_VD/lua/lib:$LD_LIBRARY_PATH"
 export DYLD_LIBRARY_PATH="$DEVELOP_VD/icu/lib:$DYLD_LIBRARY_PATH"
+export DYLD_LIBRARY_PATH="$DEVELOP_VD/imagemagick/lib:$DYLD_LIBRARY_PATH"
 
 export MANPATH=$DEVELOP_VD/share/man:$MANPATH
 
 export NU_DIR=$DEVELOP_VD/nu
 source $HOME/Develop/myprojects/nu/nu
 export NODE_PATH=$NODE_PATH:$NODE_PATH/node_modules
+
+export GOROOT=$DEVELOP_VD/go
+export GOARCH=amd64
+export GOOS=darwin
 
 if [ -f $DEVELOP_VD/etc/bash_completion ]; then
     BASH_COMPLETION=$DEVELOP_VD/etc/bash_completion
@@ -117,21 +126,38 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # ls
-alias ls='ls $LS_OPTIONS -hF'
-alias ll='ls $LS_OPTIONS -lahGFh'
-alias lc='ls $LS_OPTIONS -lCaG'
-alias l='ls $LS_OPTIONS -lAhF'
+alias ls="ls $LS_OPTIONS -hF"
+alias ll="ls $LS_OPTIONS -lahGFh"
+alias la="ls $LS_OPTIONS -A"
+alias lc="ls $LS_OPTIONS -lCaG"
+alias l="ls $LS_OPTIONS -lAhF"
 alias lsd="ls -l | grep '^d'"
 
 # stat
 alias stat_chmod="stat -c '%A %a %n' *"
 
 alias c="clear"
+alias h="history"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ~="cd ~"
 alias b="cd -"
 alias i="whoami"
+alias untgz="tar -zxvf"
+alias untbz2="tar -jxvf"
+alias maketargz="tar czf"
+
+# prev command
+alias prevC="!!"
+# prev command result
+alias prevR="!$"
+
+# use JSON.stringify to pretty-print JSON.
+# formatjson '{ foo: "lorem", bar: "ipsum" }'
+function formatjson() {
+  local json=${1-''}
+  node -e "console.log(JSON.stringify(eval($json), null, 2));"
+}
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -165,7 +191,7 @@ alias pgsql-up="pg_ctl -D $HOMEBREW/var/postgres -l $HOMEBREW/var/postgres/serve
 alias pgsql-down="pg_ctl -D $HOMEBREW/var/postgres stop -s -m fast"
 
 # nginx
-alias nginx-up="sudo nginx"
+alias nginx-up="sudo nginx -c $DEVELOP_VD/nginx/etc/nginx.conf"
 alias nginx-down="sudo nginx -s stop"
 
 # redis
@@ -176,8 +202,24 @@ alias redis-down="killall redis-server"
 alias lighttpd-up="sudo lighttpd -f $DEVELOP_VD/lighttpd/config/lighttpd.conf.back"
 alias lighttpd-down="killall lighttpd"
 
+# php-fpm
 alias phpfpm-up="php-fpm 2> /dev/null"
 alias phpfpm-down="killall php-fpm"
+
+# mongodb
+alias mongodb-up="mongod -f $DEVELOP_VD/mongodb/mongodb.conf > /dev/null &"
+alias mongodb-down="killall mongod"
+
+# website speed test
+function speedtest() {
+  curl -o /dev/null -s -w "connect: %{time_connect}s\nresponse: %{time_starttransfer}s\ntotal: %{time_total}s\ncode: %{http_code}\n" $1
+}
+
+# generate a random password
+function randompassword() {
+  local LEN=${1-6}
+  head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-$LEN};
+}
 
 # volume
 #http://xkcd.com/530/
@@ -265,7 +307,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # Create a data URL from an image (works for other file types too, if you tweak the Content-Type afterwards)
-dataurl() {
+function dataurl() {
   echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
 }
 

@@ -1,11 +1,12 @@
 [core]
-	editor = vim
+    editor = vim
 	excludesfile = ~/.gitignore_global
 [color]
 	ui = auto
     diff = auto
 [format]
-	pretty = "%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset"
+    pretty = " %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %an"
+
 [diff]
 	tool = gvimdiff
 [difftool]
@@ -19,5 +20,14 @@
 	last = log -1 HEAD
     sb = status -sb
 	df = difftool
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    lg = log --graph --pretty=format:'%an: %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
+[user]
+	name = cfddream
+	email = cfddream@gmail.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Users/cfd/Apps/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
