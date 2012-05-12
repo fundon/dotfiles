@@ -13,10 +13,10 @@
 "     \___)=(___/         `-O  Linux for Human Beings
 "
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Author: cfddream
-" Email: cfddream[at]gmail.com
-" Blog:
-" Create: 07-12-2010 18:01:04
-" Modified: 08-12-2010 21:27:04
+" Author:     cfddream
+" Email:      cfddream[at]gmail.com
+" Blog:       http://kissdry.com/
+" Create:     18:01:04 07/12/2010
+" Modified:   21:26:37 05/12/2012
 " Vim: set et sw=ts=sts=4 ft=vim ff=unix fenc=utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
