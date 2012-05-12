@@ -34,12 +34,12 @@ export GOARCH=amd64
 export GOOS=darwin
 
 if [ -f $DEVELOP_VD/etc/bash_completion ]; then
-    BASH_COMPLETION=$DEVELOP_VD/etc/bash_completion
-    BASH_COMPLETION_DIR=$DEVELOP_VD/etc/bash_completion.d
-    BASH_COMPLETION_COMPAT_DIR=$DEVELOP_VD/etc/bash_completion.d
-    source $DEVELOP_VD/etc/bash_completion
+  BASH_COMPLETION=$DEVELOP_VD/etc/bash_completion
+  BASH_COMPLETION_DIR=$DEVELOP_VD/etc/bash_completion.d
+  BASH_COMPLETION_COMPAT_DIR=$DEVELOP_VD/etc/bash_completion.d
+  source $DEVELOP_VD/etc/bash_completion
 fi
 
 if [ -d $DEVELOP_VD/python2/lib/python2.7/site-packages ]; then
-    export PYTHONPATH="$DEVELOP_VD/python2/lib/python2.7/site-packages"
+  export PYTHONPATH="$DEVELOP_VD/python2/lib/python2.7/site-packages"
 fi
