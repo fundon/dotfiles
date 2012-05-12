@@ -1,0 +1,45 @@
+# vim: set ft=sh:
+
+MACOSX_DEPLOYMENT_TARGET=10.7
+ARCHFLAGS="-arch x86_64"
+CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp"
+CCFLAGS="-arch x86_64 -g -Os -pipe"
+CXXFLAGS="-arch x86_64 -g -Os -pipe"
+LDFLAGS="-arch x86_64 -bind_at_load"
+EXTRACTFLAGS="-arch X86_64 -g -Os -pipe -no-cpp-precomp"
+export ARCHFLAGS CFLAGS CXXFLAGS LDFLAGS CCFLAGS MACOSX_DEPLOYMENT_TARGET
+
+HOMEBREW="$HOME/Develop/homebrew"
+
+DEVELOP_VD="$HOME/Develop/VD"
+
+export PATH="$DEVELOP_VD/bin:$HOMEBREW/bin:$HOMEBREW/sbin:$PATH"
+
+# LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="$DEVELOP_VD/python2/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$DEVELOP_VD/lua/lib:$LD_LIBRARY_PATH"
+export DYLD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$DYLD_LIBRARY_PATH"
+export DYLD_LIBRARY_PATH="$DEVELOP_VD/icu/lib:$DYLD_LIBRARY_PATH"
+export DYLD_LIBRARY_PATH="$DEVELOP_VD/imagemagick/lib:$DYLD_LIBRARY_PATH"
+
+export MANPATH="$DEVELOP_VD/share/man:$MANPATH"
+
+export NU_DIR="$DEVELOP_VD/nu"
+source $HOME/Develop/myprojects/nu/nu
+export NODE_PATH="$NODE_PATH:$NODE_PATH/node_modules"
+
+export GOROOT="$DEVELOP_VD/go"
+export GOARCH=amd64
+export GOOS=darwin
+
+if [ -f $DEVELOP_VD/etc/bash_completion ]; then
+    BASH_COMPLETION=$DEVELOP_VD/etc/bash_completion
+    BASH_COMPLETION_DIR=$DEVELOP_VD/etc/bash_completion.d
+    BASH_COMPLETION_COMPAT_DIR=$DEVELOP_VD/etc/bash_completion.d
+    source $DEVELOP_VD/etc/bash_completion
+fi
+
+if [ -d $DEVELOP_VD/python2/lib/python2.7/site-packages ]; then
+    export PYTHONPATH="$DEVELOP_VD/python2/lib/python2.7/site-packages"
+fi

@@ -1,0 +1,24 @@
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+tags
+tmp/
+vim/tags
+vim/.git*
+.netrwhist
+undofiles
+.viminfo
+*.swp
+*.pyc
+
+# svn
+*.svn
+*.git

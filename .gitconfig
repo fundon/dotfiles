@@ -1,33 +1,82 @@
+# vim: ft=gitconfig et st=2 sw=2 sts=2
+#
+# http://oli.jp/2012/git-powerup/
+# http://gitimmersion.com/lab_10.html
+# http://blog.blindgaenger.net/advanced_git_aliases.html
+
 [core]
-    editor = vim
-	excludesfile = ~/.gitignore_global
+  editor          = vim
+  excludesfile    = ~/.gitignore
+  attributesfile  = ~/.gitattributes
+  whitespace      = fix,spushace-before-tab,tab-in-indent,trailing-space
+  pager           = less -r
 [color]
-	ui = auto
-    diff = auto
+  ui              = always
+  interactive     = auto
+[color "branch"]
+  current         = yellow reverse
+  local           = yellow
+  remote          = green
+[color "diff"]
+  meta            = yellow bold
+  frag            = magenta bold
+  old             = red bold
+  new             = green bold
+[color "status"]
+  added           = yellow
+  changed         = green
+  untracked       = cyan
+[apply]
+  whitespace      = fix
 [format]
-    pretty = " %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %an"
-
+  pretty          = " %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %an"
 [diff]
-	tool = gvimdiff
+  tool            = gvimdiff
 [difftool]
-	prompt = gvimdiff
+  prompt          = gvimdiff
 [alias]
-    cl = clone
-	co = checkout
-	ci = commit -m
-	br = branch
-	st = status
-	last = log -1 HEAD
-    sb = status -sb
-	df = difftool
-    lg = log --graph --pretty=format:'%an: %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-
+  alias           = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort                              #Show all defined aliases
+  a               = !git add . && git status
+  au              = !git add -u && git status
+  aa              = !git add . && git add -u && git status
+  amend           = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend                                                               #Amend with the same message
+  br              = branch
+  c               = commit -am
+  cm              = commit -m
+  cl              = clone
+  co              = checkout
+  d               = diff --color-words
+  df              = difftool
+  ignore          = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 →.gitignore                                                                #Ignore a file
+  r               = !git ls-files -z --deleted | xargs -0 git rm                                                                                    #Remove files which have been deleted
+  this            = !git init && git add . && git commit -m \"initial commit\"                                                                      #Make this a git repo
+  s               = status
+  sb              = status -sb
+  sl              = shortlog -sn
+  spull           = svn rebase
+  spush           = svn dcommit
+  tc              = !git log -a --pretty=oneline | wc -l
+  last            = log -1 HEAD
+  lg              = log --graph --pretty=format:'%an: %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  ll              = log --stat --abbrev-commit
+  rmlastcommit    = reset --soft HEAD~1
+  targz           = !git archive master | gzip > source-tree.tar.gz
+  up              = pull
+  p               = push
+[merge]
+  log             = true
 [user]
-	name = cfddream
-	email = cfddream@gmail.com
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Users/cfd/Apps/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  name            = cfddream
+  email           = cfddream@gmail.com
+[url "git@github.com:"]
+  insteadOf       = "gh:"
+  pushInsteadOf   = "github:"
+  pushInsteadOf   = "git://github.com/"
+[url "git://github.com/"]
+  insteadOf       = "github:"
+[url "git@gist.github.com:"]
+  insteadOf       = "gst:"
+  pushInsteadOf   = "gist:"
+  pushInsteadOf   = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf       = "gist:"
