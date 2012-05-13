@@ -30,6 +30,9 @@ alias lsd='ls -l | grep "^d"'
 #   sudo easy_install Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
 
+# images must install imagemagick
+alias imginfo="identify -format '-- %f -- \nType: %m\nSize: %b bytes\nResolution: %wpx x %hpx\nColors: %k'"
+alias imgres="identify -format '%f: %wpx x %hpx'"
 
 # GIT STUFF
 
@@ -122,3 +125,35 @@ alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && kil
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+
+# Development
+# mysql
+alias mysql-login="mysql -u`im`"
+alias mysql-up="mysql.server start"
+alias mysql-down="mysql.server stop"
+
+# pgsql
+alias pgsql-login="psql -d postgres"
+alias pgsql-up="pg_ctl -D $HOMEBREW/var/postgres -l $HOMEBREW/var/postgres/server.log start"
+alias pgsql-down="pg_ctl -D $HOMEBREW/var/postgres stop -s -m fast"
+
+# nginx
+alias nginx-up="sudo nginx -c $DEVELOP_VD/nginx/etc/nginx.conf"
+alias nginx-down="sudo nginx -s stop"
+
+# redis
+alias redis-up="redis-server $DEVELOP_VD/redis/redis.conf > /dev/null &"
+alias redis-down="killall redis-server"
+
+# lighttpd
+alias lighttpd-up="sudo lighttpd -f $DEVELOP_VD/lighttpd/config/lighttpd.conf.back"
+alias lighttpd-down="killall lighttpd"
+
+# php-fpm
+alias phpfpm-up="php-fpm 2> /dev/null"
+alias phpfpm-down="killall php-fpm"
+
+# mongodb
+alias mongodb-up="mongod -f $DEVELOP_VD/mongodb/mongodb.conf > /dev/null &"
+alias mongodb-down="killall mongod"
