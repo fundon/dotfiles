@@ -95,3 +95,22 @@ function codepoint() {
   perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))"
   echo # newline
 }
+
+# Start-Up Development Servers
+function UpDev() {
+  mysql-up
+  redis-up
+  echo "redis up..."
+  phpfpm-up
+  echo "php-fpm up..."
+  lighttpd-up
+  echo "lighttpd up..."
+}
+
+# Down Development Servers
+function DownDev() {
+  mysql-down
+  redis-down
+  phpfpm-down
+  lighttpd-down
+}
