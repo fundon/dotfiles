@@ -11,7 +11,7 @@
 var request = require('http').request;
 
 var buffer = [];
-var has = true;
+var has = 0;
 
 var options = {
   host: 'www.doesbuyvmhavestock.com',
@@ -32,11 +32,11 @@ var req = request(options, function (res) {
       if (v.qty) {
         console.log(v.name + ' has ' + String(v.qtv) + ' \n');
       } else {
-        has && (has = false);
+        has^1 && (has = 1);
       }
     });
 
-    if (!has) {
+    if (has&1) {
       console.log('nothing.\n');
     }
   });
