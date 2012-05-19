@@ -9,7 +9,6 @@
  */
 
 var request = require('http').request;
-var stream = require('stream');
 
 var buffer = [];
 var has = true;
