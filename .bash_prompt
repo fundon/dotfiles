@@ -40,23 +40,22 @@ else
 fi
 
 
-function parse_git_dirty() {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+function parse_git_deleted {
+  [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
 }
-
-function parse_git_branch() {
+function parse_git_added {
+  [[ $(git status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
+}
+function parse_git_modified {
+  [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
+}
+function parse_git_dirty {
+  echo "$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)"
+}
+function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
 
-# iTerm Tab and Title Customization and prompt customization
-# http://sage.ucsc.edu/xtal/iterm_tab_customization.html
-
-# Put the string " [bash]   hostname::/full/directory/path"
-# in the title bar using the command sequence
-# \[\e]2;[bash]   \h::\]$PWD\[\a\]
-
-# Put the penultimate and current directory 
-# in the iterm tab
-# \[\e]1;\]$(basename $(dirname $PWD))/\W\[\a\]
-
-PS1="\[\e]2;$PWD\[\a\]\[\e]1;\]\w\[\a\]\[${BOLD}${MAGENTA}\]\u\[$BLACK\]@\[$YELLOW\]\h \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]])\[$BLUE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+export PS1="
+╭─\[$(tput sgr0)\]( \[$(tput setaf 4)\]\w\[$(tput sgr0)\] as \[$(tput setaf 2)\]\u\[$(tput sgr0)\] at \[$(tput setaf 6)\]\h\[$(tput sgr0)\] ) \[$(tput setaf 5)\]\$(parse_git_branch)\[$(tput sgr0)\]
+╰─\[$(tput bold)\]\[$(tput setaf 1)\]⚡\[$(tput sgr0)\] "
