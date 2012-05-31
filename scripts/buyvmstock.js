@@ -3,7 +3,7 @@
  * BuyVM Stock
  * @author: cfddream@gmail.com
  * @date: 14:18:42 05/19/2012
- * 
+ *
  * Usage:
  * ./buyvmstock.js
  */
@@ -31,12 +31,11 @@ var req = request(options, function (res) {
     buffer.forEach(function (v, i) {
       if (v.qty) {
         console.log(v.name + ' has ' + v.qty + ' \n');
-      } else {
         has^1 && (has = 1);
       }
     });
 
-    if (has&1) {
+    if (!has) {
       console.log('nothing.\n');
     }
   });
