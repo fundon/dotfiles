@@ -30,7 +30,7 @@ var req = request(options, function (res) {
     buffer = JSON.parse(buffer.join(''));
     buffer.forEach(function (v, i) {
       if (v.qty) {
-        console.log(v.name + ' has ' + v.qtv + ' \n');
+        console.log(v.name + ' has ' + v.qty + ' \n');
       } else {
         has^1 && (has = 1);
       }
