@@ -157,3 +157,6 @@ alias phpfpm-down="killall php-fpm"
 # mongodb
 alias mongodb-up="mongod -f $DEVELOP_VD/mongodb/mongodb.conf > /dev/null &"
 alias mongodb-down="killall mongod"
+
+# Sublime Text 2
+alias sublime="$HOME/Apps/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl -w"
