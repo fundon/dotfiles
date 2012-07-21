@@ -40,32 +40,52 @@
 [alias]
   alias           = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort                              #Show all defined aliases
   a               = !git add . && git status
+  ac              = !git add -A && git commit -m
   au              = !git add -u && git status
   aa              = !git add . && git add -u && git status
   amend           = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend                                                               #Amend with the same message
-  br              = branch
-  c               = commit -am
+
+  branches        = branch -a
+
+  c               = clone
+  # Commit all changes
+  ca = !git add -A && git commit -av
+  # Clone a repository including all submodules
+  cr              = clone -recursive
+  # Switch to a branch, creating it if necessary
+  go              = checkout -B
   cm              = commit -m
-  cl              = clone
-  co              = checkout
-  d               = diff --color-words
+
+  # Credit an author on the latest commit
+ credit = "!f() { goit commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+  # Diff
+  d               = diff --color-words --patch-with-stat
   df              = difftool
+
   ignore          = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 →.gitignore                                                                #Ignore a file
   r               = !git ls-files -z --deleted | xargs -0 git rm                                                                                    #Remove files which have been deleted
   this            = !git init && git add . && git commit -m \"initial commit\"                                                                      #Make this a git repo
   spull           = svn rebase
   spush           = svn dcommit
   tc              = !git log -a --pretty=oneline | wc -l
+
+  l               = log --pretty=oneline -n 20 --graph
   last            = log -1 HEAD
   lg              = log --graph --pretty=format:'%an: %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ll              = log --stat --abbrev-commit
+
   targz           = !git archive master | gzip > source-tree.tar.gz
 
   # pull
   pl              = pull
+  # Pull in remote changes for the current repository and all its submodules
+  pls             = !"git pull; git submodule foreach git pull origin master"
 
   # push
   ps              = push
+  # Undo a `git push`
+  undopush = push -f origin HEAD^:master
 
   # rebase
   rc              = rebase --continue
@@ -90,11 +110,15 @@
   sd              = stash drop
 
   # status
-  s               = status
-  sb              = status -sb
+  # View the current working tree status using the short forma
+  s               = status -s
 
   # tag
   t               = tag -n
+  # Show verbose output about tags
+  tags            = tag -l
+
+  remotes         = remote -v
 [merge]
   log             = true
   summary         = true
@@ -104,6 +128,12 @@
 [user]
   name            = cfddream
   email           = cfddream@gmail.com
+
+# Use `origin` as the default remote on the `master` branch in all cases
+[branch "master"]
+ remote = origin
+ merge = refs/heads/master
+
 [url "git@github.com:"]
   insteadOf       = "gh:"
   pushInsteadOf   = "github:"

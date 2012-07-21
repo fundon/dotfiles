@@ -58,4 +58,4 @@ function parse_git_branch {
 
 export PS1="
 ╭─\[$(tput sgr0)\]( \[$(tput setaf 4)\]\w\[$(tput sgr0)\] as \[$(tput setaf 2)\]\u\[$(tput sgr0)\] at \[$(tput setaf 6)\]\h\[$(tput sgr0)\] ) \[$(tput setaf 5)\]\$(parse_git_branch)\[$(tput sgr0)\]
-╰─\[$(tput bold)\]\[$(tput setaf 1)\]⚡\[$(tput sgr0)\] "
+╰─\[$(tput bold)\]\[$(tput setaf 1)\]<3\[$(tput sgr0)\] "

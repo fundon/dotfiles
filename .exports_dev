@@ -1,6 +1,6 @@
 # vim: set ft=sh:
 
-MACOSX_DEPLOYMENT_TARGET=10.7
+MACOSX_DEPLOYMENT_TARGET=10.8
 ARCHFLAGS="-arch x86_64"
 CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp"
 CCFLAGS="-arch x86_64 -g -Os -pipe"
@@ -16,12 +16,14 @@ DEVELOP_VD="$HOME/Develop/VD"
 export PATH="$DEVELOP_VD/bin:$HOMEBREW/bin:$HOMEBREW/sbin:$PATH"
 
 # LD_LIBRARY_PATH
-export LD_LIBRARY_PATH="$DEVELOP_VD/python2/lib:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH="$DEVELOP_VD/lua/lib:$LD_LIBRARY_PATH"
-export DYLD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$DYLD_LIBRARY_PATH"
-export DYLD_LIBRARY_PATH="$DEVELOP_VD/icu/lib:$DYLD_LIBRARY_PATH"
-export DYLD_LIBRARY_PATH="$DEVELOP_VD/imagemagick/lib:$DYLD_LIBRARY_PATH"
+#export LD_LIBRARY_PATH="$DEVELOP_VD/python2/lib"
+#export LD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$LD_LIBRARY_PATH"
+#export LD_LIBRARY_PATH="$DEVELOP_VD/lua/lib:$LD_LIBRARY_PATH"
+#export DYLD_LIBRARY_PATH="$DEVELOP_VD/percona/lib:$DYLD_LIBRARY_PATH"
+#export DYLD_LIBRARY_PATH="$DEVELOP_VD/icu/lib:$DYLD_LIBRARY_PATH"
+#export DYLD_LIBRARY_PATH="$DEVELOP_VD/imagemagick/lib:$DYLD_LIBRARY_PATH"
+#
+#export DYLD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/opt/X11/lib:$DYLD_LIBRARY_PATH"
 
 export MANPATH="$DEVELOP_VD/share/man:$MANPATH"
 

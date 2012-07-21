@@ -129,7 +129,7 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 
 # Development
 # mysql
-alias mysql-login="mysql -u`im`"
+alias mysql-login="mysql -u"
 alias mysql-up="mysql.server start"
 alias mysql-down="mysql.server stop"
 
