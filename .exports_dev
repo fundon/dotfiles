@@ -13,7 +13,7 @@ HOMEBREW="$HOME/Develop/homebrew"
 
 DEVELOP_VD="$HOME/Develop/VD"
 
-export PATH="$DEVELOP_VD/bin:$HOMEBREW/bin:$HOMEBREW/sbin:$PATH"
+export PATH="$DEVELOP_VD/bin:$HOME/dev/go/bin:$HOMEBREW/bin:$HOMEBREW/sbin:$PATH"
 
 # LD_LIBRARY_PATH
 #export LD_LIBRARY_PATH="$DEVELOP_VD/python2/lib"
@@ -32,6 +32,7 @@ source $HOME/Develop/myprojects/nu/nu
 export NODE_PATH="$NODE_PATH:$NODE_PATH/node_modules"
 
 export GOROOT="$DEVELOP_VD/go"
+export GOPATH="$HOME/dev/go"
 export GOARCH=amd64
 export GOOS=darwin
 
