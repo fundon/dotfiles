@@ -9,6 +9,7 @@ CTRL + K                Clear the characters on the line after the current curso
 ESC + [backspace]       Delete the word in front of the cursor <br />
 CTRL + W                Delete the word in front of the cursor <br />
 ALT + D                 Delete the word after the cursor <br />
+ALT + Delete            Delete the word after the cursor <br />
 CTRL + R                Search history <br />
 CTRL + G                Escape from search mode <br />
 CTRL + _                Undo the last change <br />
