@@ -28,8 +28,9 @@ brew install lua
 brew install ctags
 brew install tree
 brew install autojump
+brew install rename
 #brew install macvim --override-system-vim
-brew install macvim 
+brew install macvim
 brew install mercurial
 brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb
 brew install --HEAD htop
