@@ -151,7 +151,7 @@ alias lighttpd-up="sudo lighttpd -f $DEVELOP_VD/lighttpd/config/lighttpd.conf.ba
 alias lighttpd-down="killall lighttpd"
 
 # php-fpm
-alias phpfpm-up="php-fpm 2> /dev/null"
+alias phpfpm-up="php-fpm > /dev/null 2>&1"
 alias phpfpm-down="killall php-fpm"
 
 # mongodb

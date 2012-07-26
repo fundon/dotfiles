@@ -101,7 +101,7 @@ function UpDev() {
   mysql-up
   redis-up
   echo "redis up..."
-  phpfpm-up
+  phpfpm-up &
   echo "php-fpm up..."
   lighttpd-up
   echo "lighttpd up..."
