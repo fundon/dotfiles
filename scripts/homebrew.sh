@@ -60,4 +60,6 @@ brew install cmatrix
 brew install mongodb
 brew install memcached
 brew install autossh
+brew install newlisp
+brew install z
 brew cleanup

@@ -46,3 +46,6 @@ fi
 if [ -d $DEVELOP_VD/python2/lib/python2.7/site-packages ]; then
   export PYTHONPATH="$DEVELOP_VD/python2/lib/python2.7/site-packages"
 fi
+
+# homebrew
+[ -r ~/.brewrc ] && source ~/.brewrc
