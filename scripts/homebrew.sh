@@ -17,6 +17,7 @@ brew install gettext
 brew link gettext
 brew install libevent
 brew install tmux
+brew install reattach-to-user-namespace
 brew install ruby
 brew install wget
 brew install curl -f
@@ -62,4 +63,5 @@ brew install memcached
 brew install autossh
 brew install newlisp
 brew install z
+brew install haproxy
 brew cleanup

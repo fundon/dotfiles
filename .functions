@@ -48,6 +48,19 @@ function server() {
   python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
+ # This script lists all commands that appear more than once in your $PATH.
+ # For of each command its locations and the number of occurrences are displayed.
+ # Nils Breunese <nils@breun.nl>, 2012.
+function multibin() {
+  for command in `compgen -c`
+  do
+    count=`which -a $command | wc -l | tr -d ' '`
+    if [ "$count" -gt "1" ]; then
+      echo "$command: `which -a $command | tr '\n' ' '`($count)"
+    fi
+  done
+}
+
 # Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
 # Send a fake UA string for sites that sniff it instead of using the Accept-Encoding header. (Looking at you, ajax.googleapis.com!)
 function httpcompression() {
