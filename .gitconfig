@@ -12,6 +12,8 @@
   attributesfile  = ~/.gitattributes
   whitespace      = fix,spushace-before-tab,tab-in-indent,trailing-space
   pager           = less -r
+  # https://help.github.com/articles/dealing-with-line-endings
+  autocrlf        = input # input, true, false
 [color]
   ui              = always
   interactive     = auto
