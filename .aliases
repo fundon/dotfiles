@@ -12,19 +12,29 @@ alias im="whoami"
 
 # ssh!
 
+# for `ls` (BSD, OSX)
+export CLICOLOR=1
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
+# for `ls` (GNU coreutils, homebrew)
 # Always use color output for `ls`
-if [ "$TERM" = "xterm-256color" ]; then
-  export LS_OPTIONS='--color'
+if type dircolors >/dev/null 2>&1; then
+  export LS_OPTIONS='--color=auto --file-type'
   eval `dircolors ~/.dircolors.256dark`
-  alias ls="command ls $LS_OPTIONS -G"
-  alias l="ls"
 fi
+
+alias ls='ls $LS_OPTIONS -F'
+alias ll='ls $LS_OPTIONS -lF'
+alias l='ls $LS_OPTIONS -lAF'
 
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
 
 # List only directories
 alias lsd='ls -l | grep "^d"'
+
+# Colored `greq` output
+export GREP_OPTIONS='--color=auto'
 
 # `cat` with beautiful colors. requires Pygments installed.
 #   sudo easy_install Pygments
@@ -129,21 +139,22 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 
 # Development
 # mysql
-alias mysql-login="mysql -u"
+alias mysql-login="mysql -uroot -pFuusah7"
+alias mysql-exfe="mysql -uroot -pFuusah7 exfe_dev"
 alias mysql-up="mysql.server start"
 alias mysql-down="mysql.server stop"
 
 # pgsql
 alias pgsql-login="psql -d postgres"
-alias pgsql-up="pg_ctl -D $HOMEBREW/var/postgres -l $HOMEBREW/var/postgres/server.log start"
-alias pgsql-down="pg_ctl -D $HOMEBREW/var/postgres stop -s -m fast"
+alias pgsql-up="/usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pgsql-down="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 # nginx
-alias nginx-up="sudo nginx -c $DEVELOP_VD/nginx/etc/nginx.conf"
+alias nginx-up="sudo nginx"
 alias nginx-down="sudo nginx -s stop"
 
 # redis
-alias redis-up="redis-server $DEVELOP_VD/redis/redis.conf > /dev/null &"
+alias redis-up="redis-server /usr/local/etc/redis.conf"
 alias redis-down="killall redis-server"
 
 # lighttpd
@@ -155,7 +166,7 @@ alias phpfpm-up="php-fpm > /dev/null 2>&1"
 alias phpfpm-down="killall php-fpm"
 
 # mongodb
-alias mongodb-up="mongod -f $DEVELOP_VD/mongodb/mongodb.conf > /dev/null &"
+alias mongodb-up="mongod -f /dev/null &"
 alias mongodb-down="killall mongod"
 
 # Sublime Text 2

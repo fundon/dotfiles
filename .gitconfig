@@ -6,6 +6,9 @@
 # https://github.com/skwp/dotfiles/blob/master/git/gitconfig
 # http://skwp.github.com/dotfiles/
 
+[gc]
+  auto            = 1
+
 [core]
   editor          = vim
   excludesfile    = ~/.gitignore
@@ -47,6 +50,7 @@
   aa              = !git add . && git add -u && git status
   amend           = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend                                                               #Amend with the same message
 
+  b               = branch -v
   branches        = branch -a
 
   c               = clone
@@ -57,6 +61,7 @@
   # Switch to a branch, creating it if necessary
   go              = checkout -B
   cm              = commit -m
+  cp              = cherry-pick -x
 
   # Credit an author on the latest commit
  credit = "!f() { goit commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
