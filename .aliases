@@ -6,6 +6,8 @@ alias ...="cd ../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
+alias desktop="cd ~/Desktop"
+
 alias cl="clear"
 alias hi="history"
 alias im="whoami"
@@ -58,7 +60,12 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias localip="ipconfig getifaddr en0"
 
 # Finding port for all running services on Mac
-alias listen="lsof -i -s TCP:listen"
+# `lsof` = `list open files`
+alias lsipu="lsof -i -P -U"
+# > listen:80
+alias listen="lsof -i -s TCP"
+alias lsTCP="lsof -i TCP"
+alias lsUDP="lsof -i UDP"
 
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
@@ -170,4 +177,4 @@ alias mongodb-up="mongod -f /dev/null &"
 alias mongodb-down="killall mongod"
 
 # Sublime Text 2
-alias sublime="$HOME/Apps/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl -w"
+alias sublime="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"

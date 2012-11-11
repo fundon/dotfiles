@@ -14,6 +14,9 @@ brew install bash-completion
 # Coreutils
 brew install coreutils
 
+# Htop
+brew install htop
+
 # Openssl
 brew install openssl
 
@@ -156,3 +159,9 @@ brew install go --HEAD
 
 # siege
 brew install siege
+
+# polarssl
+brew install polarssl
+
+# Aria2c
+brew install aria2
