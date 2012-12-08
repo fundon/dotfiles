@@ -1,1 +1,1 @@
-http://www.proposedsolution.com/solutions/osx-terminal-slow-launch/
+I <3 CLI.
