@@ -12,6 +12,8 @@ export ARCHFLAGS CFLAGS CXXFLAGS LDFLAGS CCFLAGS MACOSX_DEPLOYMENT_TARGET
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
+export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+
 # Python virtual env
 export PATH="/usr/local/share/python:$PATH"
 export WORKON_HOME="$HOME/.virtualenvs"

@@ -18,7 +18,7 @@ alias im="whoami"
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
-# for `ls` (GNU coreutils, homebrew)
+# For `ls` (GNU coreutils, homebrew)
 # Always use color output for `ls`
 if type dircolors >/dev/null 2>&1; then
   export LS_OPTIONS='--color=auto --file-type'
@@ -57,7 +57,7 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias localip="ipconfig getifaddr en0"
+alias localeip="ipconfig getifaddr en0"
 
 # Finding port for all running services on Mac
 # `lsof` = `list open files`

@@ -12,12 +12,12 @@ echo $NUM
 
 for p in $NUM;
 do
-    FILE=`printf "fc_py%02d.pdf" $p`
-    FILE_NAME=`printf $FILE_TEMP $p`
-    if [ ! -f "$Documents/$FILE" ]; then
-        ISSUE="$SITE/$FILE_NAME"
-        wget -c -O "$Documents/$FILE" $ISSUE
-        echo "Download $FILE successy!"
-    fi
+  FILE=`printf "fc_py%02d.pdf" $p`
+  FILE_NAME=`printf $FILE_TEMP $p`
+  if [ ! -f "$Documents/$FILE" ]; then
+    ISSUE="$SITE/$FILE_NAME"
+    wget -c -O "$Documents/$FILE" $ISSUE
+    echo "Download $FILE successy!"
+  fi
 done;
 

@@ -63,12 +63,14 @@
   # Branch
   b               = branch -v                                                                                                                       # branch (verbose)
   bs              = branch -a
+  master          = checkout master
 
   # Commit
   c               = commit -m                                                                                                                       # commit with message
   ca              = commit -am                                                                                                                      # commit with all message
   ci              = commit                                                                                                                          # commit
   amend           = commit --amend                                                                                                                  # ammend your last commit
+  contains        = !sh -c 'git branch -a --contains $1' -
 
   # Checkout
   co              = checkout
@@ -119,12 +121,17 @@
 
   # Remote
   r               = remote -v                                                                                                                     # show remotes (verbose)
+  url             = config --get remote.origin.url
+
+  # Fetch
+  fa              = fetch --all
 
   # Reset
   unstage         = reset HEAD                                                                                                                    # remove files from index (tracking)
   uncommit        = reset --soft HEAD^                                                                                                            # go back before last commit, with files in uncommitted state
   filelog         = log -u                                                                                                                        # show changes to a file
   mt              = mergetool                                                                                                                     # fire up the merge tool
+  rollback        = reset --hard HEAD@{1}
 
   # Status
   st              = status
