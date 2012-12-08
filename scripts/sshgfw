@@ -1,0 +1,7 @@
+#!/usr/bin/expect -f
+# vim: ft=sh
+set timeout 30
+spawn ssh -qTfnN -D 8964 kissdry.ssh3.hangssh.info@69.85.93.147
+expect "password:"
+send "Qtz31ixQ89\r"
+interact

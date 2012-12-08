@@ -1,0 +1,13 @@
+--type-add=html=.html.haml,.hbs
+--type-add=js=.js
+--type-add=css=.sass,.less,.scss
+--type-add=markdown=.md,.mdown,.markdown
+--type-set=cucumber=.feature
+--ignore-dir=log
+--ignore-dir=tmp
+--ignore-dir=doc
+--sort-files
+--color
+--follow
+--group
+-a

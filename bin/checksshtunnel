@@ -1,0 +1,18 @@
+#!/bin/bash
+
+##!/usr/bin/expect -f
+#set timeout 30
+#set password $SSHTUNNEL_PASSWORD
+#spawn ssh -qTfnN -D $SSHTUNNEL_PORT $SSHTUNNEL_HOST
+#expect "password:"
+#send "$password\r"
+#interact
+
+checkSSHTunnel() {
+  text="`curl --socks5 127.0.0.1:$SSHTUNNEL_PORT --connect-timeout 21 --max-time 21 --silent --url http://apple.com`"
+  if [ "$text" = '' ]; then
+    echo 1
+  else
+    echo 0
+  fi
+}
