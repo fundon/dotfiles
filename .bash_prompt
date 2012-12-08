@@ -44,45 +44,44 @@ export BOLD
 export RESET
 
 # git
-export GIT_STATUS=""
-export GIT_BRANCH=""
-
 function parse_git_status() {
-  GIT_STATUS=$(git status 2> /dev/null | tail -n1)
+  echo "$(git status 2> /dev/null)"
 }
 
 function parse_git_deleted {
-  [[ $(echo $GIT_STATUS | grep "deleted:")          != "" ]] && echo "-"
+  [[ $(echo $1 | grep "deleted:")          != '' ]] && echo '-'
 }
 
 function parse_git_added() {
-  [[ $(echo $GIT_STATUS | grep "Untracked files:")  != "" ]] && echo "+"
+  [[ $(echo $1 | grep "Untracked files:")  != '' ]] && echo '+'
 }
 
 function parse_git_modified {
-  [[ $(echo $GIT_STATUS | grep "modified:")         != "" ]] && echo "*"
+  [[ $(echo $1 | grep "modified:")         != '' ]] && echo '*'
 }
 
 function parse_git_stash {
-  [[ $(echo $GIT_STATUS | grep "stash@")            != "" ]] && echo "?"
+  [[ $(echo $1 | grep "stash@")            != '' ]] && echo '?'
 }
 
 function parse_git_dirty() {
-  parse_git_status
-  local status="$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)$(parse_git_stash)"
-  export GIT_STATUS=""
-  echo "$status"
+  local s="$(echo `parse_git_status`)"
+  local added=$(parse_git_added "$s")
+  local modified=$(parse_git_modified "$s")
+  local stash=$(parse_git_stash "$s")
+  local deleted=$(parse_git_deleted "$s")
+  echo "$modified$added$stash$deleted"
 }
 
 function check_git_branch() {
-  GIT_BRANCH=$(git branch --no-color 2> /dev/null)
+  echo "$(git branch --no-color 2> /dev/null)"
 }
 
 function parse_git_branch() {
-  local branch=$(echo $GIT_BRANCH | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/")
-  export GIT_BRANCH=""
-  echo "$branch"
+  local branch="$(check_git_branch)"
+  [[ -z "$branch" ]] && echo '' || echo " on "$PURPLE$(echo "$branch" | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/")
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(check_git_branch) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+#export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(check_git_branch) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
