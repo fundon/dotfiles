@@ -61,7 +61,7 @@ function parse_git_modified {
 }
 
 function parse_git_stash {
-  [[ $(echo $1 | grep "stash@")            != '' ]] && echo '?'
+  [[ $(echo $1 | grep "stash@")            != '' ]] && echo ':'
 }
 
 function parse_git_dirty() {
@@ -83,5 +83,6 @@ function parse_git_branch() {
 }
 
 #export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(check_git_branch) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+#export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(parse_git_branch)\[$WHITE\]\nλ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"

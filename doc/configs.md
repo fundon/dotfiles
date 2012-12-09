@@ -8,6 +8,9 @@
   * https://github.com/josegonzalez/homebrew-php
   * http://library.linode.com/
 
+## rudix:
+  * http://rudix.org/
+
 ## cmake
   * /usr/local/opt/cmake
 

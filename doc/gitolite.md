@@ -1,44 +1,48 @@
 ## gitolite
 http://sitaramc.github.com/gitolite/qi.html
 
-# get the software
-git clone git://github.com/sitaramc/gitolite
+  ```sh
+  # get the software
+  git clone git://github.com/sitaramc/gitolite
 
-# create git user
-sudo adduser --system --shell /bin/bash --gecos 'git version control' --group --disabled-password --home /home/git git
-sudo su git
-echo "PATH=$HOME/bin:$PATH" > ~/.bashrc
-cd
+  # create git user
+  sudo adduser --system --shell /bin/bash --gecos 'git version control' --group --disabled-password --home /home/git git
+  sudo su git
+  echo "PATH=$HOME/bin:$PATH" > ~/.bashrc
+  cd
 
-# mkdir bin
-mkdir /home/git/bin
+  # mkdir bin
+  mkdir /home/git/bin
 
-# install it
-gitolite/install -ln
+  # install it
+  gitolite/install -ln
 
-# setup the initial repos with your key
-gitolite setup -pk your-name.pub
-cp ~/.gitolite/conf/gitolite.rc ~/
-gitolite compile
-gitolite setup -pk your-name.pub
+  # setup the initial repos with your key
+  gitolite setup -pk your-name.pub
+  cp ~/.gitolite/conf/gitolite.rc ~/
+  gitolite compile
+  gitolite setup -pk your-name.pub
 
-vim ~/.ssh/config
+  vim ~/.ssh/config
 
-  Host git
-    User git
-    Hostname 127.0.0.1
-    Port 22
-    IdentityFile /home/git/.ssh/gitolite
+    Host git
+      User git
+      Hostname 127.0.0.1
+      Port 22
+      IdentityFile /home/git/.ssh/gitolite
 
-chmod 644 ~/.ssh/config
-chmod 700 ~/.ssh/id_dsa
+  chmod 644 ~/.ssh/config
+  chmod 700 ~/.ssh/id_dsa
+  ```
 
 # [Markdoc](http://markdoc.org/)
 ## Ubuntu:
-  > aptitude install python-pip
-  > pip install markdoc
-  > which markdoc # /usr/local/bin/markdoc
-  > aptitude install monit
+  ```sh
+  $ aptitude install python-pip
+  $ pip install markdoc
+  $ which markdoc # /usr/local/bin/markdoc
+  $ aptitude install monit
+  ```
 
 ## Referrs:
   * http://blog.countableset.ch/2012/04/29/ubuntu-12-dot-04-installing-gitolite-and-gitweb/
