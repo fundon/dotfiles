@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo nginx -s stop \
+  && mysql.server stop \
+  && killall redis-server \
+  && killall php-fpm
