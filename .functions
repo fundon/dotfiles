@@ -5,20 +5,13 @@ function md() {
 
 #http://thelucid.com/2012/01/04/naming-your-terminal-tabs-in-osx-lion/
 #https://gist.github.com/3874646
+#https://gist.github.com/3877451
 function tabname {
   printf "\e]1;$1\a"
 }
 
-if [ x`type -t cd` == "xfunction" ]; then
-  # previously wrapped cd
-  eval $(type cd | grep -v 'cd is a function' | sed 's/^cd/original_cd/' | sed 's/^}/;}/' )
-else
-  # builtin
-  eval "original_cd() { builtin cd \$*; }"
-fi
-
 cd() {
-  original_cd "$*"
+  test $# -ne 0 && builtin cd "$*" || builtin cd
   tabname $(basename $(pwd))
 }
 
