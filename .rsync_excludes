@@ -1,0 +1,12 @@
+.git
+.DS_Store
+.rsync_excludes
+bootstrap.sh
+README.md
+agents/
+colors/
+doc/
+init/
+scripts/
+fonts/
+monit/
