@@ -1,1 +1,3 @@
 # vim: set ft=sh:
+# Add tab completion for Projects based on ~/Works, ignoring wildcards
+[ -d "$HOME/Works" ] && complete -o "default" -o "nospace" -W "$(tree -d -n -L 1 -i --noreport "$HOME/Works")" cdp
