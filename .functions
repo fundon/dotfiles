@@ -1,3 +1,8 @@
+# Cd Projects
+function cdp() {
+	cd "$HOME/Codes/$1"
+}
+
 # Simple calculator
 function calc() {
 	local result=""

@@ -25,6 +25,9 @@ brew install wget --enable-iri
 # Grep
 brew install homebrew/dupes/grep
 
+# Git
+brew install git
+
 # Htop
 brew install htop
 
@@ -90,6 +93,9 @@ brew install aria2
 
 # Openvpn
 brew install openvpn --devel
+
+# Webkit2png
+brew install webkit2png
 
 ## Cleanup
 brew cleanup
