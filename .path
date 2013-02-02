@@ -1,13 +1,13 @@
 # vim: set ft=sh:
 
-MACOSX_DEPLOYMENT_TARGET=10.8
-ARCHFLAGS="-arch x86_64"
-CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp"
-CCFLAGS="-arch x86_64 -g -Os -pipe"
-CXXFLAGS="-arch x86_64 -g -Os -pipe"
-LDFLAGS="-arch x86_64 -bind_at_load"
-EXTRACTFLAGS="-arch X86_64 -g -Os -pipe -no-cpp-precomp"
-export ARCHFLAGS CFLAGS CXXFLAGS LDFLAGS CCFLAGS MACOSX_DEPLOYMENT_TARGET
+#MACOSX_DEPLOYMENT_TARGET=10.8
+#ARCHFLAGS="-arch x86_64"
+#CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp"
+#CCFLAGS="-arch x86_64 -g -Os -pipe"
+#CXXFLAGS="-arch x86_64 -g -Os -pipe"
+#LDFLAGS="-arch x86_64 -bind_at_load"
+#EXTRACTFLAGS="-arch X86_64 -g -Os -pipe -no-cpp-precomp"
+#export ARCHFLAGS CFLAGS CXXFLAGS LDFLAGS CCFLAGS MACOSX_DEPLOYMENT_TARGET
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -15,17 +15,17 @@ export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 
 # Python virtual env
-export PATH="/usr/local/share/python:$PATH"
-export WORKON_HOME="$HOME/.virtualenvs"
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python2.7"
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
-export PIP_VIRTUALENV_BASE="$WORKON_HOME"
-export PIP_RESPECT_VIRTUALENV=true
-if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
-  source /usr/local/share/python/virtualenvwrapper.sh
-else
-  echo "WARNING: Can't find virtualenvwrapper.sh"
-fi
+#export PATH="/usr/local/share/python:$PATH"
+#export WORKON_HOME="$HOME/.virtualenvs"
+#export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python2.7"
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
+#export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+#export PIP_RESPECT_VIRTUALENV=true
+#if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
+#  source /usr/local/share/python/virtualenvwrapper.sh
+#else
+#  echo "WARNING: Can't find virtualenvwrapper.sh"
+#fi
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
@@ -38,6 +38,3 @@ export NODE_PATH="/usr/local/share/npm/lib/node_modules"
 #export GOPATH="$HOME/dev/go"
 #export GOARCH=amd64
 #export GOOS=darwin
-
-# homebrew
-[ -r ~/.brewrc ] && source ~/.brewrc
