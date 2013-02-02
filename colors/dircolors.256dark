@@ -47,6 +47,8 @@ TERM rxvt-unicode-256color
 TERM screen
 TERM screen-256color
 TERM screen-256color-bce
+TERM screen-256color-s
+TERM screen-256color-bce-s
 TERM screen-bce
 TERM screen-w
 TERM screen.linux
@@ -135,6 +137,7 @@ EXEC 01;38;5;64
 .7z     01;38;5;61
 .rz     01;38;5;61
 .apk    01;38;5;61
+.gem    01;38;5;61
 
 # Image formats (yellow)
 .jpg    00;38;5;136
@@ -254,8 +257,11 @@ EXEC 01;38;5;64
 .gl     01;38;5;166
 .m2ts   01;38;5;166
 .divx   01;38;5;166
+.webm   01;38;5;166
 # http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 .axv 01;38;5;166
 .anx 01;38;5;166
 .ogv 01;38;5;166
 .ogx 01;38;5;166
+
+
