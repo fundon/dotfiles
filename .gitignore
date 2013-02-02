@@ -1,6 +1,3 @@
-# ~/.localrc
-.localrc
-
 # Compiled Python files
 *.pyc
 
@@ -15,17 +12,3 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
-tags
-tmp/
-
-# Vim files
-vim/tags
-vim/.git*
-.netrwhist
-undofiles
-.viminfo
-*.swp
-
-# svn
-*.svn
-*.git
