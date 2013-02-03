@@ -98,13 +98,14 @@ brew install openvpn --devel
 brew install webkit2png
 
 # Python
-brew install python3 --framework
-# easy_install3 pip
-# pip3 install virtualenv
-# pip3 install virtualenvwrapper
+brew install python --framework
+# easy_install pip
+# pip install --upgrade virtualenv
+# pip install --upgrade virtualenvwrapper
 # mkdir $HOME/.virtualenvs
-# mkvirtualenv py3
-# pip install pelican Markdown
+# mkvirtualenv py27
+# pip install --upgrade https://github.com/jkbr/httpie/tarball/master
+# pip install --upgrade pelican markdown
 
 
 ## Cleanup
