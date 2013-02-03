@@ -97,5 +97,15 @@ brew install openvpn --devel
 # Webkit2png
 brew install webkit2png
 
+# Python
+brew install python3 --framework
+# easy_install3 pip
+# pip3 install virtualenv
+# pip3 install virtualenvwrapper
+# mkdir $HOME/.virtualenvs
+# mkvirtualenv py3
+# pip install pelican Markdown
+
+
 ## Cleanup
 brew cleanup
