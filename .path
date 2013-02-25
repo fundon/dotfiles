@@ -22,6 +22,7 @@ export GOROOT="$HOME/Codes/bin"
 export GOPATH="$HOME/Codes/go"
 export GOARCH=amd64
 export GOOS=darwin
+export PATH="$PATH:$GOROOT"
 
 # Python Virtualenv
 export PATH="/usr/local/share/python:$PATH"
