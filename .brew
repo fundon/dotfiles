@@ -37,6 +37,8 @@ brew install openssl
 # Nmap
 brew install nmap
 
+brew install ssh-copy-id
+
 # Vim
 #brew install homebrew/dupes/vim
 
@@ -65,7 +67,7 @@ psql -l
 brew install zeromq
 
 # Nginx
-brew install nginx --devel
+brew install nginx --with-stub-status --with-flv --with-mp4 --with-secure-link --devel
 
 # Redis
 brew install redis

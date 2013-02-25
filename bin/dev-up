@@ -1,6 +1,6 @@
 #!/bin/bash
 
 sudo nginx \
+  && sudo php-fpm > /dev/null 2>&1 \
   && mysql.server start \
-  && redis-server /usr/local/etc/redis.conf \
-  && php-fpm > /dev/null 2>&1
+  && redis-server /usr/local/etc/redis.conf
