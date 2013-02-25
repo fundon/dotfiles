@@ -18,11 +18,11 @@ export PATH="$HOME/bin:/usr/local/share/npm/bin:$PATH"
 export NODE_PATH="/usr/local/share/npm/lib/node_modules"
 
 # GO
-export GOROOT="$HOME/Codes/bin"
+#export GOROOT="$HOME/Codes/bin"
 export GOPATH="$HOME/Codes/go"
 export GOARCH=amd64
 export GOOS=darwin
-export PATH="$PATH:$GOROOT"
+export PATH="$PATH:$GOPATH/bin"
 
 # Python Virtualenv
 export PATH="/usr/local/share/python:$PATH"
