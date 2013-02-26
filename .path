@@ -13,12 +13,13 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
+PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+
 # Nodejs
 export PATH="$HOME/bin:/usr/local/share/npm/bin:$PATH"
 export NODE_PATH="/usr/local/share/npm/lib/node_modules"
 
 # GO
-#export GOROOT="$HOME/Codes/bin"
 export GOPATH="$HOME/Codes/go"
 export GOARCH=amd64
 export GOOS=darwin

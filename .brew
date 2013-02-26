@@ -45,6 +45,10 @@ brew install ssh-copy-id
 # Tree
 brew install tree
 
+# libxml
+brew install libxml2
+ln -sf $(brew --prefix libxml2)/lib/pkgconfig/libxml-2.0.pc /usr/local/lib/pkgconfig/libxml-2.0.pc
+
 # Mysql - percona-server
 brew install percona-server percona-toolkit
 unset TMPDIR
