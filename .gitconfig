@@ -3,6 +3,8 @@
 	l = log --pretty=oneline -n 20 --graph
   # A better git log: git lg, git lg -p
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  # Show git branches sorted by latest commit
+  latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(committerdate:relative) %(refname:short)'
 	# View the current working tree status using the short format
 	s = status -s
 	# Show the diff between the latest commit and the current state
