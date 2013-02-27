@@ -113,6 +113,8 @@ brew install python --framework
 # pip install --upgrade https://github.com/jkbr/httpie/tarball/master
 # pip install --upgrade pelican markdown
 
+# Mon
+brew install mon
 
 ## Cleanup
 brew cleanup
