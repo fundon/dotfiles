@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$1" ]
+then
+  SPACES="    "
+  curl -w "\n${SPACES}   time_namelookup:  %{time_namelookup}\n${SPACES}      time_connect:  %{time_connect}\n${SPACES}   time_appconnect:  %{time_appconnect}\n${SPACES}  time_pretransfer:  %{time_pretransfer}\n${SPACES}     time_redirect:  %{time_redirect}\n${SPACES}time_starttransfer:  %{time_starttransfer}\n${SPACES}           ----------\n${SPACES}        time_total:  %{time_total}\n\n" -o /dev/null -s $1
+  unset $SPACES
+fi
