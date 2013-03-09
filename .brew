@@ -116,5 +116,9 @@ brew install python --framework
 # Mon
 brew install mon
 
+brew install libxslt
+brew install libksba
+brew install apple-gcc42
+
 ## Cleanup
 brew cleanup

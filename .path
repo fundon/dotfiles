@@ -35,6 +35,9 @@ export PIP_VIRTUALENV_BASE="$WORKON_HOME"
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
 
+# Ruby rvm
+export PATH="$HOME/.rvm/scripts/rvm:$PATH"
+
 if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
   source /usr/local/share/python/virtualenvwrapper.sh
 fi
