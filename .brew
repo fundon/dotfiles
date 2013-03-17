@@ -113,6 +113,9 @@ brew install python --framework
 # pip install --upgrade https://github.com/jkbr/httpie/tarball/master
 # pip install --upgrade pelican markdown
 
+# tmux
+brew install tmux --HEAD
+
 # Mon
 brew install mon
 
