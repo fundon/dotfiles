@@ -3,6 +3,11 @@ function cdp() {
 	cd "$HOME/Codes/$1"
 }
 
+# format json from `pbpaste`
+function fj() {
+  pbpaste | python -mjson.tool | pygmentize -f terminal256 -l javascript -O style=native
+}
+
 # Simple calculator
 function calc() {
 	local result=""

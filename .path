@@ -26,18 +26,22 @@ export GOOS=darwin
 export PATH="$PATH:$GOPATH/bin"
 
 # Python Virtualenv
-export PATH="/usr/local/share/python:$PATH"
-export WORKON_HOME="$HOME/.virtualenvs"
-export VIRTUALENVWRAPPER_PYTHON="$(brew --prefix python)/bin/python"
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
-export VIRTUALENV_DISTRIBUTE=true
-export PIP_VIRTUALENV_BASE="$WORKON_HOME"
-export PIP_REQUIRE_VIRTUALENV=true
-export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
+export PY3="/usr/local/share/python3"
+export PATH="$PY3:$PATH"
+export PYTHONPATH="$(brew --prefix)/lib/python3.3/site-packages:$PYTHONPATH"
+#export WORKON_HOME="$HOME/.virtualenvs"
+#export VIRTUALENVWRAPPER_PYTHON="$(brew --prefix python3)/bin/python"
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
+#export VIRTUALENV_DISTRIBUTE=true
+#export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+#export PIP_REQUIRE_VIRTUALENV=true
+#export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
+
+#if [[ -r $PY3/virtualenvwrapper.sh ]]; then
+#  source $PY3/virtualenvwrapper.sh
+#fi
+
+unset PY3
 
 # Ruby rvm
 export PATH="$HOME/.rvm/scripts/rvm:$PATH"
-
-if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
-  source /usr/local/share/python/virtualenvwrapper.sh
-fi
