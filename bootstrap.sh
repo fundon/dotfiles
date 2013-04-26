@@ -2,7 +2,7 @@
 cd "$(dirname "${BASH_SOURCE}")"
 git pull
 function doIt() {
-  rsync --exclude-from=.rsync_excludes -av . ~
+  rsync -h --progress --exclude-from=.rsync_excludes -av . ~
 }
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
   doIt
