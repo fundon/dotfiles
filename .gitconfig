@@ -30,6 +30,7 @@
   reb = "!r() { git rebase -i HEAD~$1; }; r"
   up = pull
   p = push
+  ph = config remote.origin.push HEAD
   # Pull in remote changes for the current repository and all its submodules
   upa = !"git pull; git submodule foreach git pull origin master"
   # Undo a `git push`
