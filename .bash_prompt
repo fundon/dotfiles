@@ -128,5 +128,6 @@ PS1+="\n" # Newline
 PS1+="  λ"
 PS1+="${style_path}\w" # Working directory
 PS1+="\$(prompt_git)" # Git details
-PS1+=" ${style_chars}: " # :
+PS1+="\n" # Newline
+PS1+="  ${style_chars}: " # :
 PS1+="\[${RESET}\]" # $ (and reset color)
