@@ -19,7 +19,7 @@
   # Commit all changes
   ca = !git add -A && git commit -av
   # Commit -m
-  cm = git commit -m
+  cm = commit -m
   # Switch to a branch, creating it if necessary
   go = checkout -B
   # Show verbose output about tags, branches or remotes
