@@ -3,9 +3,11 @@
   aa = add --all
   ap = add --patch
   # View the SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline -n 20 --graph
-  # A better git log: git lg, git lg -p
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  # A better git log: git l, git l -p
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lp = log -p --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lg = log --pretty=oneline --graph -n 20
+  ls = log --pretty=oneline --graph --abbrev-commit
   # git log detailed history 
   ll = log --decorate --stat --graph --abbrev-commit
   # Show git branches sorted by latest commit
