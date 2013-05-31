@@ -1,5 +1,7 @@
 [alias]
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort 
+  aa = add --all
+  ap = add --patch
   # View the SHA, description, and history graph of the latest 20 commits
   l = log --pretty=oneline -n 20 --graph
   # A better git log: git lg, git lg -p
@@ -16,10 +18,9 @@
   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
   # Clone a repository including all submodules
   c = clone --recursive
-  # Commit all changes
-  ca = !git add -A && git commit -av
-  # Commit -m
-  cm = commit -m
+  ca = commit --amend
+  ci = commit -v
+  co = checkout
   # Switch to a branch, creating it if necessary
   go = checkout -B
   # Show verbose output about tags, branches or remotes
@@ -50,6 +51,7 @@
   # Use custom `.gitignore` and `.gitattributes`
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
+  autocrlf = input
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 
 [color]
@@ -99,3 +101,6 @@
 
 [help]
   autocorrect = 1
+
+[credential]
+  helper = cache

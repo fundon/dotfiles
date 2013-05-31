@@ -20,10 +20,11 @@ export PATH="$HOME/bin:/usr/local/share/npm/bin:$PATH"
 export NODE_PATH="/usr/local/share/npm/lib/node_modules"
 
 # GO
-export GOPATH="$HOME/Codes/go"
-export GOARCH=amd64
 export GOOS=darwin
-export PATH="$PATH:$GOPATH/bin"
+export GOARCH=amd64
+export GOROOT="$HOME/Codes/go"
+export GOPATH="$HOME/Codes/go/cfd"
+export PATH="$PATH:$GOROOT/bin"
 
 # Python Virtualenv
 export PY="/usr/local/share/python"
