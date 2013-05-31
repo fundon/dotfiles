@@ -10,16 +10,17 @@
   ls = log --pretty=oneline --graph --abbrev-commit
   # git log detailed history 
   ll = log --decorate --stat --graph --abbrev-commit
+  today = log --stat --since="1 Day Ago" --graph --pretty=oneline --abbrev-commit --date=relative
   # Show git branches sorted by latest commit
   latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(committerdate:relative) %(refname:short)'
   # View the current working tree status using the short format
   s = status -s
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+  dc = diff --cached
   # `git di $number` shows the diff between the state `$number` revisions ago and the current state
   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-  # Clone a repository including all submodules
-  c = clone --recursive
+  c = commit -m
   ca = commit --amend
   ci = commit -v
   co = checkout
@@ -33,13 +34,15 @@
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
   # Interactive rebase with the given number of latest commits
   reb = "!r() { git rebase -i HEAD~$1; }; r"
-  up = pull
+  u = pull
+  ur = pull --rebase
+  ua = !"git pull; git submodule foreach git pull origin master"
   p = push
   ph = config remote.origin.push HEAD
   # Pull in remote changes for the current repository and all its submodules
-  upa = !"git pull; git submodule foreach git pull origin master"
   # Undo a `git push`
   undopush = push -f origin HEAD^:master
+  unstage = reset HEAD
   # Cherry-pick
   cp = cherry-pick -x
   # show changed
