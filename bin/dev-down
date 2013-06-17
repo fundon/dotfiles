@@ -3,4 +3,5 @@
 sudo nginx -s stop \
   && sudo killall php-fpm \
   && mysql.server stop \
+  && pg_ctl stop \
   && killall redis-server

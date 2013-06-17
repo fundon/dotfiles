@@ -3,4 +3,5 @@
 sudo nginx \
   && sudo php-fpm -c /usr/local/etc/php/5.4/php.ini \
   && mysql.server start \
+  && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/log/postgres.log start \
   && redis-server /usr/local/etc/redis.conf
