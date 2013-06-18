@@ -42,6 +42,7 @@
   ua = !"git pull; git submodule foreach git pull origin master"
   p = push
   ph = config remote.origin.push HEAD
+  pdp = push dropbox master
   # Pull in remote changes for the current repository and all its submodules
   # Undo a `git push`
   undopush = push -f origin HEAD^:master
