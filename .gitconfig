@@ -1,17 +1,38 @@
+[user]
+  name = cfddream
+  email = cfddream@gmail.com
+
+[core]
+  # Use custom `.gitignore` and `.gitattributes`
+  pager = cat
+  editor = vim
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  autocrlf = input
+  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+
 [alias]
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  point-the-fucking-branch-at = "!sh -c 'git checkout $1 && git reset --hard $2' -"
+  root = rev-parse --show-toplevel
+
+  l = log -18 --graph --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %Cblack(%cr)%Creset %C(blue bold)(by %an)%Creset' --abbrev-commit --date=relative
+
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort 
+  authors = shortlog -ns
   a = add
   aa = add --all
   ap = add --patch
   # View the SHA, description, and history graph of the latest 20 commits
   # A better git log: git l, git l -p
-  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   lp = log -p --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   lg = log --pretty=oneline --graph -n 20
   ls = log --pretty=oneline --graph --abbrev-commit
   # git log detailed history 
   ll = log --decorate --stat --graph --abbrev-commit
-  today = log --stat --since="1 Day Ago" --graph --pretty=oneline --abbrev-commit --date=relative
+  today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
   # Show git branches sorted by latest commit
   latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(committerdate:relative) %(refname:short)'
   # View the current working tree status using the short format
@@ -30,10 +51,7 @@
   # Switch to a branch, creating it if necessary
   go = checkout -B
   # Show verbose output about tags, branches or remotes
-  tags = tag -l
   b = branch
-  branches = branch -a
-  remotes = remote -v
   # Credit an author on the latest commit
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
   # Interactive rebase with the given number of latest commits
@@ -63,13 +81,6 @@
 [apply]
   # Detect whitespace errors when applying a patch
   whitespace = fix
-
-[core]
-  # Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
-  autocrlf = input
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 
 [color]
   # Use colors in Git commands that are capable of colored output when outputting to the terminal
