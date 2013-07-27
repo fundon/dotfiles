@@ -4,51 +4,51 @@ MACOSX_DEPLOYMENT_TARGET=10.8
 ARCHFLAGS="-arch x86_64"
 export MACOSX_DEPLOYMENT_TARGET ARCHFLAGS
 
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+#[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
-#export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-#export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-#
-#export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
-#
-#if [ -f $(brew --prefix)/etc/bash_completion ]; then
-#  source $(brew --prefix)/etc/bash_completion
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
+export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
+
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig"
+
+# Ruby
+export PATH="$(brew --prefix ruby)/bin:$PATH"
+#source="$HOME/.rvm/scripts/rvm"
+
+# Python Virtualenv
+export PY="/usr/local/share/python"
+export PY3="/usr/local/share/python3"
+export PATH="$PY:$PY3:$PATH"
+export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
+#export WORKON_HOME="$HOME/.virtualenvs"
+#export VIRTUALENVWRAPPER_PYTHON="$(brew --prefix python3)/bin/python"
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
+#export VIRTUALENV_DISTRIBUTE=true
+#export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+#export PIP_REQUIRE_VIRTUALENV=true
+#export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
+
+#if [[ -r $PY3/virtualenvwrapper.sh ]]; then
+#  source $PY3/virtualenvwrapper.sh
 #fi
-#
-#export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
-#export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig"
-#
-## Ruby
-#export PATH="$(brew --prefix ruby)/bin:$PATH"
-##source="$HOME/.rvm/scripts/rvm"
-#
-## Python Virtualenv
-#export PY="/usr/local/share/python"
-#export PY3="/usr/local/share/python3"
-#export PATH="$PY:$PY3:$PATH"
-#export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
-##export WORKON_HOME="$HOME/.virtualenvs"
-##export VIRTUALENVWRAPPER_PYTHON="$(brew --prefix python3)/bin/python"
-##export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
-##export VIRTUALENV_DISTRIBUTE=true
-##export PIP_VIRTUALENV_BASE="$WORKON_HOME"
-##export PIP_REQUIRE_VIRTUALENV=true
-##export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
-#
-##if [[ -r $PY3/virtualenvwrapper.sh ]]; then
-##  source $PY3/virtualenvwrapper.sh
-##fi
-#
-#unset PY
-#unset PY3
-#
-## GO
-#export GOOS=darwin
-#export GOARCH=amd64
-#export GOROOT="$(brew --prefix go)"
-#export GOPATH="$HOME/Codes/go"
-#export PATH="$PATH:$GOPATH/bin"
-#
-## Nodejs
-#export PATH="$HOME/bin:/usr/local/share/npm/bin:$PATH"
-#export NODE_PATH="/usr/local/share/npm/lib/node_modules"
+
+unset PY
+unset PY3
+
+# GO
+export GOOS=darwin
+export GOARCH=amd64
+export GOROOT="$(brew --prefix go)"
+export GOPATH="$HOME/Codes/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# Nodejs
+export PATH="$HOME/bin:/usr/local/share/npm/bin:$PATH"
+export NODE_PATH="/usr/local/share/npm/lib/node_modules"

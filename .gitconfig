@@ -10,6 +10,7 @@
   attributesfile = ~/.gitattributes
   autocrlf = input
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+  quotepath = false
 
 [alias]
   tags = tag -l
