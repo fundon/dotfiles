@@ -1,2 +1,0 @@
-#!/bin/sh
-set -- -f; source $HOME/Codes/dotfiles/bootstrap.sh

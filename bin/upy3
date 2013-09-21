@@ -1,4 +1,0 @@
-#!/bin/sh
-
-pip3 install --upgrade distribute
-pip3 install --upgrade pip

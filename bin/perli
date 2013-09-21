@@ -1,3 +1,0 @@
-#!/usr/bin/env perl
-#https://gist.github.com/4240761
-do{print("perl> ");$_x=<>;chomp $_x;print(eval($_x)."\n")}while($_x ne "q")
