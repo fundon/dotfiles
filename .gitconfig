@@ -1,101 +1,119 @@
-[alias]
-  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort 
-  a = add
-  aa = add --all
-  ap = add --patch
-  # View the SHA, description, and history graph of the latest 20 commits
-  # A better git log: git l, git l -p
-  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lp = log -p --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lg = log --pretty=oneline --graph -n 20
-  ls = log --pretty=oneline --graph --abbrev-commit
-  # git log detailed history 
-  ll = log --decorate --stat --graph --abbrev-commit
-  today = log --stat --since="1 Day Ago" --graph --pretty=oneline --abbrev-commit --date=relative
-  # Show git branches sorted by latest commit
-  latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(committerdate:relative) %(refname:short)'
-  # View the current working tree status using the short format
-  s = status -s
-  # Show the diff between the latest commit and the current state
-  d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
-  dc = diff --cached
-  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
-  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-  c = commit -m
-  ca = commit --amend
-  caa = commit -a --amend -C HEAD
-  # cherry-pick
-  cma = commit -a
-  co = checkout
-  # Switch to a branch, creating it if necessary
-  go = checkout -B
-  # Show verbose output about tags, branches or remotes
-  tags = tag -l
-  b = branch
-  branches = branch -a
-  remotes = remote -v
-  # Credit an author on the latest commit
-  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-  # Interactive rebase with the given number of latest commits
-  reb = "!r() { git rebase -i HEAD~$1; }; r"
-  u = pull
-  ur = pull --rebase
-  ua = !"git pull; git submodule foreach git pull origin master"
-  p = push
-  ph = config remote.origin.push HEAD
-  pdp = push dropbox master
-  # Pull in remote changes for the current repository and all its submodules
-  # Undo a `git push`
-  undopush = push -f origin HEAD^:master
-  unstage = reset HEAD
-  r = reset
-  r1 = reset HEAD^
-  r2 = reset HEAD^^
-  rh = reset --hard
-  rh1 = reset HEAD^ --hard
-  rh2 = reset HEAD^^ --hard
-  f = fetch
-  # Cherry-pick
-  cp = cherry-pick -x
-  # show changed
-  ssp = stash show -p
-
-[apply]
-  # Detect whitespace errors when applying a patch
-  whitespace = fix
-
-[core]
-  # Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
-  autocrlf = input
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+[user]
+  name = fundon
+  email = cfddream@gmail.com
 
 [color]
-  # Use colors in Git commands that are capable of colored output when outputting to the terminal
-  ui = auto
-  interactive = auto
+  branch = auto
+  diff = auto
+  status = auto
+  ui = true
+[color "status"]
+  added = green bold
+  changed  = cyan bold
+  untracked = yellow bold
 [color "branch"]
-  current = yellow reverse
+  current = cyan bold
   local = yellow
   remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-[merge]
-  # Include summaries of merged commits in newly created merge commit messages
-  log = true
 
-# Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-  remote = origin
-  merge = refs/heads/master
+[core]
+  pager = cat
+  editor = vim
+  excludesfile = /opt/boxen/config/git/gitignore
+
+[credential]
+  helper = /opt/boxen/bin/boxen-git-credential
+
+[alias]
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+
+  a = add
+  aa = add --all :/
+  b = branch -avv
+  bd = branch -d
+  bm = branch -m
+  ba = branch -a
+
+  ci = commit
+  cia = commit --amend
+  ciaa = commit --all --amend
+  ciaan = commit --all --amend --no-edit
+  cian = commit --all --no-edit
+  co = checkout
+  com = checkout master
+  contains = branch -avv --contains
+  cp = cherry-pick -p
+  cm = commit -m
+
+  d  = diff --word-diff=color
+  di = diff --staged --word-diff=color
+  discard = checkout HEAD --
+
+  e = config --local user.email
+
+  f = fetch --prune --all
+  fd = filter-branch --subdirectory-filter
+  fm = !git f && git m
+
+  h = show HEAD --word-diff=color
+  hf = show HEAD --name-only
+
+  l = log --oneline --decorate
+  laf = log --oneline --decorate --follow --all --
+  lag = log --oneline --decorate --graph --all
+  lc = log --oneline --decorate --graph --left-right
+  lch = !git log --oneline --decorate --graph --left-right HEAD...$1
+  lf = log --oneline --decorate --follow --
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ll = log --stat --abbrev-commit
+
+  m = merge
+
+  n = config --local user.name
+  r = rebase
+  ri = rebase --interactive
+  rc = rebase --continue
+  ra = rebase --abort
+  rs = rebase --skip
+  rv = remote -v
+
+  s = status -sb
+  su = submodule update --init --recursive
+  supgrade = submodule foreach 'git f && git co FETCH_HEAD'
+
+  t = tag
+  td = tag -d
+  today = log --since=midnight --author='fundon' --oneline
+
+  unstage = reset HEAD --
+  up = push origin
+
+  yesterday = log --since yesterday --author='fundon'
+
+[hub]
+  protocol = https
+[push]
+  default = current
+[diff]
+  renames = copies
+[rerere]
+  enabled = true
+[blame]
+  date = short
+[status]
+  submodulesummary = true
+  relativePaths = false
+  showUntrackedFiles = all
+[notes]
+  rewriteRef = refs/notes/*
+[merge]
+  defaultToUpstream = true
+
+[advice]
+  statusHints = false
+  pushNonFastForward = false
+  implicitIdentity = false
+  detachedHead = false
 
 # URL shorthands
 [url "git@github.com:"]
@@ -110,14 +128,5 @@
   pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
   insteadOf = "gist:"
-[url "git@github.com:cfddream/"]
-  insteadOf = "git://github.com/cfddream/"
-
-[push]
-  default = simple
-
-[help]
-  autocorrect = 1
-
-[credential]
-  helper = cache
+[url "git@github.com:fundon/"]
+  insteadOf = "git://github.com/fundon/"

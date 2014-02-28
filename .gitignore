@@ -13,5 +13,4 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-bin/ip-up
-bin/ip-down
+.zsh/functions/coins

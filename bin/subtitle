@@ -1,0 +1,31 @@
+#!/bin/bash
+# vim: ft=sh
+# Based on SPlayerX sscl
+# http://hg.splayer.org/splayerx/src/b2450c8f20b68dcb7d7261329034051424d30d43/plug-ins
+
+if [ $# -eq 0 ]; then
+  echo "Input a movie name."
+  exit 0
+fi
+
+SSCL=~/bin/sscl
+SUBTITLE=/tmp/subtitle
+SPLAYERX_SUB="$HOME/Library/Application Support/SPlayerX/SVPSub"
+
+movie="$*"
+movie_filename=`basename "$movie"`
+movie_path=`dirname "$movie"`
+
+$SSCL --video-file "$movie" --pull > "$SUBTITLE"
+mv "$SPLAYERX_SUB"/* "$movie_path"/ 2> /dev/null
+
+i=0
+while read line; do
+  i=$((i+1))
+  title=`basename "$line"`
+  echo "Got subtitle: $title."
+done < $SUBTITLE
+
+rm "$SUBTITLE" 2> /dev/null
+rm "$SPLAYERX_SUB" 2> /dev/null
+exit 0

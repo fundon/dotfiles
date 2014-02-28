@@ -1,0 +1,141 @@
+typeset -Ag GIT_SYMBOLS
+GIT_SYMBOLS[ahead]='↑'
+GIT_SYMBOLS[behind]='↓'
+GIT_SYMBOLS[diverged]='⬍'
+GIT_SYMBOLS[staged]='♦'
+GIT_SYMBOLS[changed]='‣'
+GIT_SYMBOLS[untracked]='✭'
+GIT_SYMBOLS[clean]='✔'
+GIT_SYMBOLS[clean_smiley]='☺'
+GIT_SYMBOLS[dirty]='±'
+GIT_SYMBOLS[dirty_smiley]='☹'
+GIT_SYMBOLS[unmerged]='≠'
+GIT_SYMBOLS[sha1]=':'
+GIT_SYMBOLS[added]='✚'
+GIT_SYMBOLS[modified]='✹'
+GIT_SYMBOLS[deleted]='✖'
+GIT_SYMBOLS[renamed]='➜'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="["
+ZSH_THEME_GIT_PROMPT_SUFFIX="]"
+ZSH_THEME_GIT_PROMPT_CLEAN="$GIT_SYMBOLS[clean]"
+ZSH_THEME_GIT_PROMPT_DIRTY="$GIT_SYMBOLS[dirty]"
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%}$GIT_SYMBOLS[added]%{$fg[black]%}"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%}$GIT_SYMBOLS[modified]%{$fg[black]%}"
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}$GIT_SYMBOLS[deleted]%{$fg[black]%}"
+ZSH_THEME_GIT_PROMPT_RENAMED="$GIT_SYMBOLS[renamed]"
+ZSH_THEME_GIT_PROMPT_UNMERGED="$GIT_SYMBOLS[unmerged]"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}$GIT_SYMBOLS[untracked]%{$fg[black]%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="$GIT_SYMBOLS[ahead]"
+ZSH_THEME_GIT_PROMPT_BEHIND="$GIT_SYMBOLS[behind]"
+ZSH_THEME_GIT_PROMPT_DIVERGED="$GIT_SYMBOLS[diverged]"
+
+function git_branch_current() {
+  echo "${$(git name-rev --name-only --no-undefined --always HEAD 2> /dev/null)#(tags/)}"
+}
+
+function git_prompt_status() {
+  setopt LOCAL_OPTIONS
+  index="$(git status --porcelain -b 2> /dev/null)"
+  STATUS=""
+  ahead=$(echo $index | egrep -o '\[ahead [0-9]+\]$' | sed 's/^.*\[ahead //;s/\]$//')
+  untracked=${$(echo $index | egrep -o '^\?\? ' | wc -l)//[[:space:]]/}
+  changed=${$(echo $index | egrep -o '^ M ' | wc -l)//[[:space:]]/}
+  added=${$(echo $index | egrep -o '^A ' | wc -l)//[[:space:]]/}
+  renamed=${$(echo $index | egrep -o '^R ' | wc -l)//[[:space:]]/}
+  deleted=${$(echo $index | egrep -o '^.D ' | wc -l)//[[:space:]]/}
+
+  if [ "$ahead" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[ahead] $ahead"
+  fi
+
+  if [ "$untracked" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[untracked] $untracked"
+  fi
+
+  if [ "$changed" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[changed] $changed"
+  fi
+
+  if [ "$added" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[added] $added"
+  fi
+
+  if [ "$renamed" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[renamed] $renamed"
+  fi
+
+  if [ "$deleted" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[deleted] $deleted"
+  fi
+
+  if [ "$STATUS" ]; then
+    STATUS="$GIT_SYMBOLS[dirty]$STATUS"
+  else
+    STATUS="$GIT_SYMBOLS[clean]"
+  fi
+
+  echo $STATUS
+}
+
+function preexec_update_git_vars() {
+  case "$2" in
+    g|git*|hub*)
+    __EXECUTED_GIT_COMMAND=1
+    ;;
+  esac
+}
+
+function precmd_update_git_vars() {
+  #vcs_info
+  if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
+    update_current_git_vars
+    unset __EXECUTED_GIT_COMMAND
+  fi
+}
+
+function chpwd_update_git_vars() {
+  update_current_git_vars
+}
+
+function update_current_git_vars() {
+  unset GIT_BRANCH
+  unset GIT_REMOTE
+  unset GIT_STATUS
+
+  GIT_BRANCH="$(git_branch_current)"
+  if [ -n "$GIT_BRANCH" ]; then
+    GIT_BRANCH="%{$fg[cyan]%}$GIT_BRANCH%{$reset_color%}"
+  fi
+
+  GIT_STATUS+="$GIT_BRANCH"
+  GIT_STATUS+="$(git_prompt_status)"
+
+  if [ -n "$GIT_STATUS" ]; then
+    GIT_STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$GIT_STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  fi
+}
+
+function prompt_eve_setup {
+  setopt LOCAL_OPTIONS
+
+  autoload -Uz add-zsh-hook
+  add-zsh-hook chpwd chpwd_update_git_vars
+  add-zsh-hook preexec preexec_update_git_vars
+  add-zsh-hook precmd precmd_update_git_vars
+
+  #autoload -Uz vcs_info
+  #zstyle ':vcs_info:*' check-for-changes true
+  #zstyle ':vcs_info:*' stagedstr ':S'
+  #zstyle ':vcs_info:*' unstagedstr ':U'
+  #zstyle ':vcs_info:*' enable git hg
+  #zstyle ':vcs_info:*' actionformats  \
+  #'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}$b%F{3}%c%u|%F{1}%a%F{5}]%f '
+  #zstyle ':vcs_info:*' formats  \
+  #'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}%c%u]%f '
+
+  PROMPT=" %{$fg[magenta]%}λ%{$reset_color%} %{$fg_no_bold[yellow]%}%~$b %{$reset_color%}"
+  RPROMPT='$GIT_STATUS %D{%H:%M:%S}'
+}
+
+prompt_eve_setup "$@"
