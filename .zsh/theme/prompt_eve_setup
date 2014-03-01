@@ -71,7 +71,7 @@ function git_prompt_status() {
 
   if [ "$STATUS" ]; then
     STATUS="$GIT_SYMBOLS[dirty]$STATUS"
-  else
+  elif [ "$index" ]; then
     STATUS="$GIT_SYMBOLS[clean]"
   fi
 
