@@ -78,6 +78,7 @@ export LS_COLORS=Gxfxcxdxbxegedabagacad
 # }}}
 
 # Exports {{{
+export DISABLE_CORRECTION="true"
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 export HISTFILE=~/.zshhistory
