@@ -125,6 +125,9 @@ export DOCKER_HOST=tcp://
 # QT
 export QTDIR=$(brew --prefix qt5)
 
+# pkg-config
+export PKG_CONFIG_PATH=/opt/boxen/homebrew/lib/pkgconfig:/opt/X11/lib/pkgconfig
+
 # ~/bin
 export PATH=~/bin:$PATH
 # }}}
