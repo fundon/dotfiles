@@ -36,6 +36,7 @@ unsetopt nomatch
 
 # Bind Keys {{{
 # vi mode
+zmodload zsh/terminfo
 bindkey -v
 bindkey "^F" vi-cmd-mode
 bindkey jj vi-cmd-mode
@@ -50,8 +51,9 @@ bindkey "^N" insert-last-word
 bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
 bindkey "^K"      kill-whole-line                      # ctrl-k
-bindkey "^D"      delete-char                          # ctrl-d
+#bindkey -M viins "^[[3~"   delete-char                          # Delete
 bindkey "^W"      backward-delete-word                 # ctrl-w
+#bindkey -M viins "^?" backward-delete-word
 bindkey "^L"      forward-char                         # ctrl-l
 bindkey "^H"      backward-char                        # ctrl-h
 # }}}
@@ -107,7 +109,7 @@ export PIP_DOWNLOAD_CACHE=~/.pip/cache
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 # Nodejs
-export PATH=/opt/boxen/nodenv/versions/$(nodenv version)/bin:$PATH
+#export PATH=/opt/boxen/nodenv/versions/$(nodenv version)/bin:$PATH
 
 # Ruby
 export GEM_HOME=~/Dev/gem
