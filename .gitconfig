@@ -90,7 +90,7 @@
   unstage = reset HEAD --
   up = push origin
 
-  yesterday = log --since yesterday --author='fundon'
+  yesterday = log --since yesterday --author='fundon' --oneline
 
 [hub]
   protocol = https
