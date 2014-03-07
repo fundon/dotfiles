@@ -1,3 +1,5 @@
+# vim: ft=gitconfig:
+
 [user]
   name = fundon
   email = cfddream@gmail.com
