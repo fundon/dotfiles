@@ -103,11 +103,15 @@ export LC_CTYPE="en_US.UTF-8"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/X11/bin:${PATH}"
 
-# Python
-export PIP_DOWNLOAD_CACHE=~/.pip/cache
-
 # Boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
+# Python & pyenv
+export PIP_DOWNLOAD_CACHE=~/.pip/cache
+export PYENV_ROOT=/opt/boxen/pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
 
 # Nodejs
 #export PATH=/opt/boxen/nodenv/versions/$(nodenv version)/bin:$PATH
@@ -156,6 +160,7 @@ alias c='clear'
 alias g="git"
 alias tmux="tmux -2"
 alias node-harmony="node --harmony-generators"
+alias boxen-restart="boxen --no-fde"
 # }}}
 
 # Prompt {{{
