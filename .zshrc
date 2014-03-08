@@ -99,6 +99,7 @@ export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 
 export LC_COLLATE=C
+export LC_CTYPE="en_US.UTF-8"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/X11/bin:${PATH}"
 
@@ -153,6 +154,8 @@ alias e="$EDITOR"
 alias v="$VISUAL"
 alias c='clear'
 alias g="git"
+alias tmux="tmux -2"
+alias node-harmony="node --harmony-generators"
 # }}}
 
 # Prompt {{{
