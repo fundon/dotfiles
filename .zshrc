@@ -5,8 +5,10 @@ fpath=(/opt/boxen/homebrew/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
 
 # completion
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
+
+zmodload zsh/complist
+zmodload zsh/terminfo
 
 for function in ~/.zsh/functions/*; do
   source $function
@@ -36,7 +38,6 @@ unsetopt nomatch
 
 # Bind Keys {{{
 # vi mode
-zmodload zsh/terminfo
 bindkey -v
 bindkey "^F" vi-cmd-mode
 bindkey jj vi-cmd-mode
@@ -76,7 +77,6 @@ export PR_BOLD_WHITE PR_BOLD_BLACK
 unset LSCOLORS
 
 export CLICOLOR=1
-#export LS_COLORS=exfxcxdxbxegedabagacad
 export LS_COLORS=Gxfxcxdxbxegedabagacad
 # }}}
 
@@ -137,9 +137,16 @@ export PKG_CONFIG_PATH=/opt/boxen/homebrew/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 # ~/bin
 export PATH=~/bin:$PATH
+
+# dircolors
+eval `$(brew --prefix coreutils)/libexec/gnubin/dircolors ~/.zsh/colors/dircolors.256dark`
+[[ -f ~/.zsh/theme/zstyle ]] && source ~/.zsh/theme/zstyle
+export LS_COLORS
+
 # }}}
 
 # Aliases {{{
+alias ~="cd ~"
 alias ..="cd .."
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -154,13 +161,14 @@ alias -g ONE="| awk '{ print \$1}'"
 alias tlf='tail -f'
 alias mkdir='mkdir -p'
 alias vim='mvim -v'
+alias h="history"
 alias e="$EDITOR"
 alias v="$VISUAL"
 alias c='clear'
 alias g="git"
 alias tmux="tmux -2"
 alias node-harmony="node --harmony-generators"
-alias boxen-restart="boxen --no-fde"
+alias boxen-update="boxen --no-fde"
 # }}}
 
 # Prompt {{{
