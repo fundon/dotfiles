@@ -2,15 +2,10 @@
 
 fpath=(~/.zsh/theme $fpath)
 
-for file in $HOME/.zsh/{options,functions,exports,path,misc,prompt,aliases}.zsh; do
+for file in $HOME/.zsh/{options,functions/*,exports,path,misc,prompt,aliases}.zsh; do
   [ -r "$file" ] && source "$file"
 done
 unset file
-
-for fn in ~/.zsh/functions/*; do
-  [ -r "$fn" ] && source "$fn"
-done
-unset fn
 
 fpath=(/opt/boxen/homebrew/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
