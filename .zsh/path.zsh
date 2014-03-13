@@ -21,6 +21,10 @@ eval "$(pyenv init -)"
 
 # Nodejs
 #export PATH=/opt/boxen/nodenv/versions/$(nodenv version)/bin:$PATH
+NPM_COMPLETION=$HOME/.zsh/completion/_npm
+[ ! -f "$NPM_COMPLETION" ] && npm completion > $NPM_COMPLETION
+source $NPM_COMPLETION
+unset NPM_COMPLETION
 
 # Ruby
 export GEM_HOME=~/opt/gem
