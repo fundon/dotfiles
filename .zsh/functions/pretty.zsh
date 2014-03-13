@@ -1,5 +1,5 @@
 # https://github.com/jkbr/httpie/blob/master/httpie/solarized.py
-# Add to `site-packages/pygments/styles`
+# Add to `site-packages/pygments/styles/solarized256.py`
 # Example:
 #   pretty -l json package.json
 
