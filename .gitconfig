@@ -5,18 +5,23 @@
   email = cfddream@gmail.com
 
 [color]
+  ui = true
   branch = auto
   diff = auto
   status = auto
-  ui = true
-[color "status"]
-  added = green bold
-  changed  = cyan bold
-  untracked = yellow bold
 [color "branch"]
-  current = cyan bold
+  current = red
   local = yellow
   remote = green
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[color "diff"]
+  meta = cyan
+  frag = magenta
+  old = red bold
+  new = green bold
 
 [core]
   pager = cat
@@ -31,6 +36,9 @@
 
   a = add
   aa = add --all :/
+  authors= shortlog -sn
+  autotrack = "!x() { b=`git symbolic-ref -q --short HEAD` && git branch -u \"origin/$b\" || echo \"error: not a branch\"; }; x"
+
   b = branch -avv
   bd = branch -d
   bm = branch -m
@@ -44,7 +52,8 @@
   co = checkout
   com = checkout master
   contains = branch -avv --contains
-  cp = cherry-pick -p
+  cp = cherry-pick
+  cps = cherry-pick -s
   cm = commit -m
 
   d  = diff --word-diff=color
@@ -68,6 +77,8 @@
   lf = log --oneline --decorate --follow --
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ll = log --stat --abbrev-commit
+  lasttag = describe --tags --abbrev=0
+  ls = ls-files
 
   m = merge
 
@@ -89,6 +100,11 @@
 
   unstage = reset HEAD --
   up = push origin
+  unci = reset HEAD^
+  uncommit = reset HEAD^
+
+  wdiff = diff --word-diff=color
+  wshow = show --word-diff=color
 
   yesterday = log --since yesterday --author='fundon' --oneline
 
@@ -98,6 +114,7 @@
   default = current
 [diff]
   renames = copies
+  algorithm = patience
 [rerere]
   enabled = true
 [blame]
