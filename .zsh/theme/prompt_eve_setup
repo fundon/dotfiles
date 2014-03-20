@@ -137,7 +137,7 @@ function prompt_eve_setup {
   test -z "$TMUX" && TIME="%D{%H:%M:%S}" || TIME=''
 
   PROMPT=" %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242} %{$reset_color%}"
-  RPROMPT='❯❯(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $GIT_STATUS $TIME'
+  RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $GIT_STATUS $TIME'
 }
 
 prompt_eve_setup "$@"
