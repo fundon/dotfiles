@@ -51,6 +51,7 @@
   cian = commit --all --no-edit
   co = checkout
   com = checkout master
+  con = !git checkout --orphan "$@" && git rm -rf .
   contains = branch -avv --contains
   cp = cherry-pick
   cps = cherry-pick -s

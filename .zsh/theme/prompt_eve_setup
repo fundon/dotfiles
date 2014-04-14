@@ -39,6 +39,7 @@ function git_prompt_info() {
   index="$(git status --porcelain -b 2> /dev/null)"
   STATUS=""
   ahead=$(echo $index | egrep -o '\[ahead [0-9]+\]$' | sed 's/^.*\[ahead //;s/\]$//')
+  behind=$(echo $index | egrep -o '\[behind [0-9]+\]$' | sed 's/^.*\[behind //;s/\]$//')
   untracked=${$(echo $index | egrep -o '^\?\? ' | wc -l)//[[:space:]]/}
   changed=${$(echo $index | egrep -o '^ M ' | wc -l)//[[:space:]]/}
   added=${$(echo $index | egrep -o '^A ' | wc -l)//[[:space:]]/}
@@ -47,6 +48,10 @@ function git_prompt_info() {
 
   if [ "$ahead" -gt 0 ]; then
     STATUS+="$GIT_SYMBOLS[ahead] $ahead"
+  fi
+
+  if [ "$behind" -gt 0 ]; then
+    STATUS+="$GIT_SYMBOLS[behind] $behind"
   fi
 
   if [ "$untracked" -gt 0 ]; then

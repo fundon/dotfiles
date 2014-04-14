@@ -33,10 +33,9 @@ bindkey "^F" forward-word
 bindkey "^B" backward-word
 bindkey "^L" forward-char
 bindkey "^H" backward-char
-bindkey "^K" kill-line 
-bindkey "^D" backward-kill-line 
-bindkey "^U" kill-whole-line 
-bindkey "^W" backward-kill-word 
+bindkey "^K" kill-line
+bindkey "^D" backward-kill-line
+bindkey "^U" kill-whole-line
+bindkey "^W" backward-kill-word
 bindkey "^?" backward-delete-char
-bindkey "^N" insert-last-word
 bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"

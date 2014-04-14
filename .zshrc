@@ -1,6 +1,9 @@
 # .zshrc
 
-fpath=(~/.zsh/theme $fpath)
+fpath=(
+  ~/.zsh/theme
+  $fpath
+)
 
 for file in $HOME/.zsh/{options,functions/*,exports,path,misc,prompt,aliases}.zsh; do
   [ -r "$file" ] && source "$file"
@@ -12,6 +15,9 @@ fpath=(~/.zsh/completion $fpath)
 
 # Local Settings
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# remove duplicates in $PATH
+typeset -aU path
 
 # Links {{{
 # https://github.com/sorin-ionescu/prezto

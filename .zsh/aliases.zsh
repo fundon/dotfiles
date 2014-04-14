@@ -15,11 +15,12 @@ alias 4.="cd ../../../.."
 alias 5.="cd ../../../../.."
 
 # use -G instead of --color for Mac OS X built-in ls utility
-alias l="ls --color"
-alias la="ls -A --color"
-alias ll="ls -lh --color"
-alias lla="ls -lAh --color"
-alias lsd='ls -A --color | grep "^d"'
+alias l="ls"
+alias l.='ls -ld .[^.]*'
+alias la="ls -a"
+alias ll="ls -l"
+alias lh="ls -Alh"
+alias lsd='ls -A | grep "^d"'
 alias lsg='ls -A | grep'
 
 alias -g G='| grep'
@@ -34,9 +35,14 @@ alias oo="open ."
 alias c="clear"
 alias g="git"
 alias tlf='tail -f'
+alias ln="ln -v"
 alias vim='mvim -v'
 alias tmux="tmux -2"
 alias mkdir='mkdir -p'
+alias df="df -h"
+alias du="du -h"
+
 alias node-harmony="node --harmony-generators"
 alias brewup="brew update; brew upgrade; brew cleanup"
 alias boxenup="boxen --no-fde"
+alias boxencleanup="rm -rf /opt/boxen/repo/{.librarian,.tmp,Puppetfile.lock}; boxenup"

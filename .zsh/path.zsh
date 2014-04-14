@@ -1,4 +1,3 @@
-
 # path
 
 export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/X11/bin:${PATH}"
@@ -33,6 +32,7 @@ export GEM_SPEC_CACHE=$GEM_HOME/specs
 export PATH=$GEM_HOME/bin:$PATH
 
 # Go
+export CHGO_ROOT=/opt/boxen/chgo
 export GOPATH=~/opt/go
 export PATH=$GOPATH/bin:$PATH
 
