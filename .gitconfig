@@ -1,133 +1,114 @@
 # vim: ft=gitconfig:
 
-[user]
-  name = fundon
-  email = cfddream@gmail.com
-
-[color]
-  ui = true
-  branch = auto
-  diff = auto
-  status = auto
-[color "branch"]
-  current = red
-  local = yellow
-  remote = green
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-[color "diff"]
-  meta = cyan
-  frag = magenta
-  old = red bold
-  new = green bold
-
-[core]
-  pager = cat
-  editor = vim
-  excludesfile = /opt/boxen/config/git/gitignore
-
-[credential]
-  helper = /opt/boxen/bin/boxen-git-credential
-
 [alias]
+  aa = add --all
+  ap = add --patch
+
+  # Display all aliases
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 
-  a = add
-  aa = add --all :/
-  authors= shortlog -sn
-  autotrack = "!x() { b=`git symbolic-ref -q --short HEAD` && git branch -u \"origin/$b\" || echo \"error: not a branch\"; }; x"
-
-  b = branch -avv
-  bd = branch -d
-  bm = branch -m
-  ba = branch -a
-
-  ci = commit
-  cia = commit --amend
-  ciaa = commit --all --amend
-  ciaan = commit --all --amend --no-edit
-  cian = commit --all --no-edit
+  # Clone a repository including all submodules
+  c = clone --recursive
+  ca = commit --amend
+  ci = commit -v
   co = checkout
-  com = checkout master
-  con = !git checkout --orphan "$@" && git rm -rf .
-  contains = branch -avv --contains
-  cp = cherry-pick
-  cps = cherry-pick -s
-  cm = commit -m
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  # Credit an author on the latest commit
+  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
-  d  = diff --word-diff=color
-  di = diff --staged --word-diff=color
-  discard = checkout HEAD --
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
+  # Remove branches that have already been merged with master
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-  e = config --local user.email
+  # Find branches containing commit
+  fb = "!f() { git branch -a --contains $1; }; f"
+  # Find tags containing commit
+  ft = "!f() { git describe --always --contains $1; }; f"
+  # Find commits by source code
+  fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+  # Find commits by commit message
+  fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
-  f = fetch --prune --all
-  fd = filter-branch --subdirectory-filter
-  fm = !git f && git m
+  # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
-  h = show HEAD --word-diff=color
-  hf = show HEAD --name-only
+  merge-branch = !git checkout master && git merge @{-1}
 
-  l = log --oneline --decorate
-  laf = log --oneline --decorate --follow --all --
-  lag = log --oneline --decorate --graph --all
-  lc = log --oneline --decorate --graph --left-right
-  lch = !git log --oneline --decorate --graph --left-right HEAD...$1
-  lf = log --oneline --decorate --follow --
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+
+  # Pull in remote changes for the current repository and all its submodules
+  p = !"git pull; git submodule foreach git pull origin master"
+  pr = !hub pull-request
+
+  # Interactive rebase with the given number of latest commits
+  reb = "!r() { git rebase -i HEAD~$1; }; r"
+  # View the current working tree status using the short format
+  s = status -s
+  st = status
+  up = !git fetch origin && git rebase origin/master
+
+  # View abbreviated SHA, description, and history graph of the latest 20 commits
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
   ll = log --stat --abbrev-commit
   lasttag = describe --tags --abbrev=0
   ls = ls-files
 
-  m = merge
+[core]
+  pager = cat
+  editor = vim
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  autocrlf = input
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error.
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of
+  # a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
 
-  n = config --local user.name
-  r = rebase
-  ri = rebase --interactive
-  rc = rebase --continue
-  ra = rebase --abort
-  rs = rebase --skip
-  rv = remote -v
+[credential]
+  helper = /opt/boxen/bin/boxen-git-credential
 
-  s = status -sb
-  su = submodule update --init --recursive
-  supgrade = submodule foreach 'git f && git co FETCH_HEAD'
+[include]
+  path = .gitconfig.local
+[commit]
+  template = ~/.gitmessage
 
-  t = tag
-  td = tag -d
-  today = log --since=midnight --author='fundon' --oneline
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
 
-  unstage = reset HEAD --
-  up = push origin
-  unci = reset HEAD^
-  uncommit = reset HEAD^
-
-  wdiff = diff --word-diff=color
-  wshow = show --word-diff=color
-
-  yesterday = log --since yesterday --author='fundon' --oneline
-
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
 [hub]
   protocol = https
 [push]
-  default = current
-[diff]
-  renames = copies
-  algorithm = patience
-[rerere]
-  enabled = true
-[blame]
-  date = short
-[status]
-  submodulesummary = true
-  relativePaths = false
-  showUntrackedFiles = all
-[notes]
-  rewriteRef = refs/notes/*
+  default = matching
 [merge]
-  defaultToUpstream = true
+  ff = only
+  log = true
 
 [advice]
   statusHints = false
@@ -150,3 +131,8 @@
   insteadOf = "gist:"
 [url "git@github.com:fundon/"]
   insteadOf = "git://github.com/fundon/"
+
+[user]
+  name = fundon
+  email = cfddream@gmail.com
+

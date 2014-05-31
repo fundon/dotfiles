@@ -1,24 +1,12 @@
 -- Official docs: http://www.postgresql.org/docs/9.3/static/app-psql.html
 -- Unofficial docs: http://robots.thoughtbot.com/improving-the-command-line-postgres-experience
--- Thanks: mitsuhiko https://github.com/mitsuhiko/dotfiles/blob/master/psql/psqlrc
+-- Thanks to: mitsuhiko https://github.com/mitsuhiko/dotfiles/blob/master/psql/psqlrc
 
 -- disable output temporarily
 \set QUIET on
 
 -- nicer rendering for null
-\pset null '❌'
-
--- nicer tables
-\pset linestyle unicode
-
--- enable timers
-\timing
-
--- disable default pager
-\pset pager off
-
--- automatically switch to \x for large outputs
-\x auto
+\pset null '[NULL]'
 
 -- nicer prompt
 -- http://www.postgresql.org/docs/9.3/static/app-psql.html#APP-PSQL-PROMPTING
@@ -26,6 +14,18 @@
 -- PROMPT2 is printed when the prompt expects more input, like when you type
 -- SELECT * FROM<enter>. %R shows what type of input it expects.
 \set PROMPT2 '[more] %R > '
+
+-- disable default pager
+\pset pager off
+
+-- nicer tables
+\pset linestyle unicode
+
+-- enable timers
+\timing
+
+-- automatically switch to \x for large outputs
+\x auto
 
 -- better errors
 \set VERBOSITY verbose
