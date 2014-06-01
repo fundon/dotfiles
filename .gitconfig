@@ -75,9 +75,6 @@
   # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
   trustctime = false
 
-[credential]
-  helper = /opt/boxen/bin/boxen-git-credential
-
 [include]
   path = .gitconfig.local
 [commit]
