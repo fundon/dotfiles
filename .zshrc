@@ -4,7 +4,7 @@
 source ~/.zsh/prompt.zsh
 setopt promptsubst
 PROMPT=" %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242} %{$reset_color%}"
-RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $(update_current_git_vars)'
+RPROMPT="(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $(update_current_git_vars)"
 
 # boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
