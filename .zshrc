@@ -1,7 +1,7 @@
 # .zshrc
 
 # prompt
-source ~/.zsh/prompt.zsh
+source ~/.zsh/prompt
 setopt promptsubst
 PROMPT=' %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242}%{$reset_color%} '
 RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $(update_current_git_vars)'
@@ -9,11 +9,13 @@ RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $(update_current_git_va
 # boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
-# brew zsh
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-
-# load our own completion functions
-fpath=(~/.zsh/completion $fpath)
+fpath=(
+  # brew zsh
+  $(brew --prefix)/share/zsh/site-functions
+  # load our own completion functions
+  ~/.zsh/completion 
+  $fpath
+)
 
 # completion
 autoload -U compinit
@@ -71,7 +73,7 @@ export EDITOR=$VISUAL
 export PATH="$HOME/.bin:$PATH"
 
 # aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.zsh/aliases ]] && source ~/.zsh/aliases
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

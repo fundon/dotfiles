@@ -1,0 +1,35 @@
+# Unix
+alias ~="cd ~"
+alias cb="cd -"
+alias ..="cd .."
+alias ...='../..'
+alias tlf="tail -f"
+alias ln='ln -v'
+alias mkdir='mkdir -p'
+alias l='ls'
+alias ll='ls -al'
+alias lh='ls -Alh'
+alias -g G='| grep'
+alias -g M='| less'
+alias -g L='| wc -l'
+alias -g ONE="| awk '{ print \$1}'"
+alias c="clear"
+alias e="$EDITOR"
+alias v="$VISUAL"
+alias df='df -h'
+alias du='du -h -d 2'
+
+# PS
+alias psa='ps aux'
+alias psg='ps aux | grep '
+
+alias ka9='killall -9'
+alias k9='kill -9'
+
+alias node-harmony="node --harmony"
+alias brewup="brew update; brew upgrade; brew cleanup"
+alias boxenup="boxen --no-fde --debug"
+alias boxencleanup="rm -rf /opt/boxen/repo/{.librarian,.tmp,Puppetfile.lock}; boxenup"
+
+# Include custom aliases
+[[ -f ~/.zsh/aliases.local ]] && source ~/.zsh/aliases.local
