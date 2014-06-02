@@ -116,10 +116,10 @@ endif
 " Set $MYVIM variable
 let $MYVIM  = expand('~/.vim')
 
+filetype off
+
 " Config neobundle
 let $NEOBUNDLE_DIR = $MYVIM . '/.bundle'
-
-filetype off
 
 set runtimepath+=$NEOBUNDLE_DIR/neobundle
 call neobundle#rc(expand($NEOBUNDLE_DIR))
