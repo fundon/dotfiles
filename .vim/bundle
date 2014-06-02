@@ -1,0 +1,3 @@
+" vim: set ft=vim:
+
+NeoBundleFetch 'Shougo/neobundle.vim', { 'name': 'neobundle' }
