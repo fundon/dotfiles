@@ -89,15 +89,16 @@ update_current_git_vars() {
   unset GIT_STATUS
 
   GIT_BRANCH="$(git_branch_info)"
+
   if [ -n "$GIT_BRANCH" ]; then
     GIT_BRANCH="%{$fg[cyan]%}$GIT_BRANCH%{$reset_color%}"
-  fi
 
-  GIT_STATUS+="$GIT_BRANCH"
-  GIT_STATUS+="$(git_prompt_info)"
+    GIT_STATUS+="$GIT_BRANCH"
+    GIT_STATUS+="$(git_prompt_info)"
 
-  if [ -n "$GIT_STATUS" ]; then
-    GIT_STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$GIT_STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    if [ -n "$GIT_STATUS" ]; then
+      GIT_STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$GIT_STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    fi
+    echo $GIT_STATUS
   fi
-  echo $GIT_STATUS
 }
