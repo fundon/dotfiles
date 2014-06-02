@@ -117,12 +117,9 @@ endif
 let $MYVIM  = expand('~/.vim')
 
 filetype off
-
 " Config neobundle
 let $NEOBUNDLE_DIR = $MYVIM . '/.bundle'
-
 set runtimepath+=$NEOBUNDLE_DIR/neobundle
 call neobundle#rc(expand($NEOBUNDLE_DIR))
 source ~/.vim/bundle
-
-filetype plugin indent on
+filetype on
