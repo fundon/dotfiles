@@ -1,3 +1,25 @@
-" vim: set ft=vim:
+" vim: set ft=vim :
 
 NeoBundleFetch 'Shougo/neobundle.vim', { 'name': 'neobundle' }
+
+NeoBundle 'sjl/badwolf'
+NeoBundle 'altercation/vim-colors-solarized'
+
+NeoBundle 'mattn/benchvimrc-vim.git'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'majutsushi/tagbar'
+
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'gcmt/wildfire.vim'
+
+NeoBundle 'kien/ctrlp.vim'
+
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'jnwhiteh/vim-golang'
+
+NeoBundle 'othree/html5.vim'
+NeoBundle 'mattn/emmet-vim'
+
