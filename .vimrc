@@ -119,7 +119,7 @@ let $MYVIM  = expand('~/.vim')
 filetype off
 
 " Config neobundle
-let $NEOBUNDLE_DIR = $MYVIM . '/.bundle'
+let $NEOBUNDLE_DIR = $MYVIM . '/.bundles'
 set runtimepath+=$NEOBUNDLE_DIR/neobundle
 call neobundle#rc(expand($NEOBUNDLE_DIR))
 source ~/.vim/bundle
