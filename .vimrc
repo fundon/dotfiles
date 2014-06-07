@@ -131,4 +131,3 @@ filetype on
 syntax enable
 " Installation check.
 NeoBundleCheck
-

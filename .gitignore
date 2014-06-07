@@ -9,4 +9,5 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
+.*.local
 .zsh/functions/coins.zsh

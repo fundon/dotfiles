@@ -72,6 +72,22 @@ export EDITOR=$VISUAL
 # load dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
 
+# Nodejs
+NPM_COMPLETION=$HOME/.zsh/completion/_npm
+[ ! -f "$NPM_COMPLETION" ] && npm completion > $NPM_COMPLETION
+source $NPM_COMPLETION
+unset NPM_COMPLETION
+
+# Go
+export CHGO_ROOT=/opt/boxen/chgo
+export GOPATH=~/dev/go
+export PATH=$GOPATH/bin:$PATH
+source $(brew --prefix)/share/zsh/site-functions/go
+#export GOPATH=`godep path`:$GOPATH
+
+# Docker, access to Box's docker
+export DOCKER_HOST="tcp://127.0.0.1:4243"
+
 # aliases
 [[ -f ~/.zsh/aliases ]] && source ~/.zsh/aliases
 
