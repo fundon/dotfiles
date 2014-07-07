@@ -26,6 +26,8 @@ alias psg='ps aux | grep '
 alias ka9='killall -9'
 alias k9='kill -9'
 
+alias cdws="open -a Google\ Chrome --args --disable-web-security"
+
 alias node-harmony="node --harmony"
 alias brewup="brew update; brew upgrade; brew cleanup"
 alias boxenup="boxen --no-fde --debug"
