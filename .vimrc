@@ -1,12 +1,15 @@
+" vim: set ft=vim:
+
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+set clipboard+=unnamed
 " Change mapleader
-let mapleader=","
-let maplocalleader = '  '
+let mapleader=','
+let maplocalleader = '\'
+set timeoutlen=500 " Time to wait for a command
 " Enhance command-line completion
 set wildmenu
 set wildmode=longest,list
@@ -25,15 +28,20 @@ set noeol
 set nobackup
 set nowritebackup 
 set noswapfile
-set history=50
+set history=1000
+set undofile
 set undodir=$MYVIM/undo
 set undoreload=10000
-set undofile
+
+set completeopt+=longest " Optimize auto complete
+set completeopt-=preview " Optimize auto complete
 
 " show the cursor position all the time
 set ruler
 " Always display the status line
 set laststatus=2
+" Set autoread when a file is changed outside
+set autoread
 " Automatically :write before running commands
 set autowrite
 " Automatically :change directory
@@ -81,6 +89,8 @@ set list
 set mouse=a
 " Disable error bells
 set noerrorbells
+set novisualbell
+set t_vb=
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
 
