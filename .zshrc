@@ -7,13 +7,13 @@ PROMPT=' %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242}%{$reset_col
 RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $(update_current_git_vars)'
 
 # boxen
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+#[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 fpath=(
   # brew zsh
   $(brew --prefix)/share/zsh/site-functions
   # load our own completion functions
-  ~/.zsh/completion 
+  ~/.zsh/completion
   $fpath
 )
 
@@ -72,6 +72,10 @@ export EDITOR=$VISUAL
 # load dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
 
+
+# autojump
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
 # Nodejs
 NPM_COMPLETION=$HOME/.zsh/completion/_npm
 [ ! -f "$NPM_COMPLETION" ] && npm completion > $NPM_COMPLETION
@@ -82,11 +86,18 @@ unset NPM_COMPLETION
 export CHGO_ROOT=/opt/boxen/chgo
 export GOPATH=~/dev/go
 export PATH=$GOPATH/bin:$PATH
-source $(brew --prefix)/share/zsh/site-functions/go
+source $(brew --prefix)/share/zsh/site-functions/_go
 #export GOPATH=`godep path`:$GOPATH
 
+# Ruby
+export RBENV_ROOT=~/dev/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Docker, access to Box's docker
-export DOCKER_HOST="tcp://127.0.0.1:4243"
+export DOCKER_HOST="tcp://127.0.0.1:2375"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 
 # aliases
 [[ -f ~/.zsh/aliases ]] && source ~/.zsh/aliases
