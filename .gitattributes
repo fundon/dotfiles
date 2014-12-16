@@ -12,3 +12,6 @@
 *.svg   text eol=lf
 *.yml   text eol=lf
 *.go    text eol=lf
+
+# Enforce Unix newlines
+*.bat   text eol=crlf
