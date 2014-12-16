@@ -2,6 +2,8 @@
 
 [alias]
   aa = add --all
+  # Amend the currently staged files to the latest commit
+  amend = commit --amend --reuse-message=HEAD
   ap = add --patch
 
   # Display all aliases
@@ -9,12 +11,15 @@
 
   # Clone a repository including all submodules
   c = clone --recursive
-  ca = commit --amend
+  # Commit all changes
+  ca = !git add -A && git commit -av
   ci = commit -v
   co = checkout
   create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
   # Credit an author on the latest commit
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+  # List contributors with number of commits
+  contributors = shortlog --summary --numbered
 
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -74,6 +79,9 @@
   # Make `git rebase` safer on OS X
   # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
   trustctime = false
+  # show chinese in `git status`
+  quotepath = false
+  safecrlf = false
 
 [include]
   path = .gitconfig.local
@@ -88,24 +96,28 @@
   remote = green
 [color "diff"]
   meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
+  frag = magenta bold # line info
+  old = red # deletions
+  new = green # additions
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
 
+[help]
+  # Automatically correct and execute mistyped commands
+  autocorrect = 1
 [apply]
   # Detect whitespace errors when applying a patch
   whitespace = fix
 [hub]
   protocol = https
-[push]
-  default = matching
 [merge]
   ff = only
   log = true
+[diff]
+  # Detect copies as well as renames
+  renames = copies
 
 [advice]
   statusHints = false
@@ -133,3 +145,5 @@
   name = fundon
   email = cfddream@gmail.com
 
+[push]
+	default = simple
