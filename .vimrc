@@ -1,8 +1,11 @@
 " vim: set ft=vim:
 
-" Use Vim settings, rather then Vi settings. This setting must be as early as
-" possible, as it has side effects.
-set nocompatible
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+function! s:source_rc(path)
+  execute 'source' fnameescape(expand('~/.vim/rc/' . a:path))
+endfunction
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard+=unnamed
@@ -128,16 +131,34 @@ let $MYVIM  = expand('~/.vim')
 
 filetype off
 
-" Config neobundle
-let $NEOBUNDLE_DIR = $MYVIM . '/.bundles'
-set runtimepath+=$NEOBUNDLE_DIR/neobundle
-call neobundle#rc(expand($NEOBUNDLE_DIR))
+if has('vim_starting')
+  set nocompatible               " Be iMproved
+
+  " Required:
+  let $NEOBUNDLE_DIR = $MYVIM . '/.bundles'
+  set runtimepath+=$NEOBUNDLE_DIR/neobundle
+endif
+
+" Required:
+call neobundle#begin(expand($NEOBUNDLE_DIR))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim', { 'name': 'neobundle' }
+
+call neobundle#end()
+
 source ~/.vim/bundle
 
-filetype on
+" Required:
+filetype plugin indent on
 
 " Enable syntax color.
 
 syntax enable
 " Installation check.
 NeoBundleCheck
+
+" Mappings:
+
+call s:source_rc('mappings.vim')
