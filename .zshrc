@@ -4,7 +4,10 @@
 source ~/.zsh/prompt
 setopt promptsubst
 PROMPT=' %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242}%{$reset_color%} '
-RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) $(update_current_git_vars)'
+RPROMPT='(%{$fg[green]%}node-$(node -v)%{$reset_color%}) \
+(%{$fg[blue]%}docker-$(boot2docker status)%{$reset_color%}) \
+(%{$fg[gray]%}go-$(go version | sed "s/.*go\([0-9.]*\).*/\1/")%{$reset_color%}) \
+$(update_current_git_vars)'
 
 # boxen
 #[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
@@ -70,7 +73,7 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 
 # load dotfiles scripts
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 
 # autojump
