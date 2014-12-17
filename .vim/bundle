@@ -5,6 +5,7 @@ NeoBundleFetch 'Shougo/neobundle.vim', { 'name': 'neobundle' }
 NeoBundle 'sjl/badwolf'
 NeoBundle 'altercation/vim-colors-solarized'
 
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'mattn/benchvimrc-vim.git'
 NeoBundle 'bling/vim-airline' " Status line
 NeoBundle 'bling/vim-bufferline' " Buffer line
