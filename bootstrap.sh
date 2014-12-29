@@ -4,6 +4,7 @@ function doIt() {
   rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
     --exclude "README.md" --exclude "LICENSE-MIT.txt" \
     --exclude "Brewfile" \
+    --exclude ".zshrc.local" \
     -avh --no-perms . ~
   source ~/.zshrc
 }
