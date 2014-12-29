@@ -117,6 +117,7 @@ augroup END
 
 augroup ft_python
   au!
+  au BufNewFile,BufRead *.{py} setf python
   au FileType python setl define=^\s*\\(def\\\\|class\\)
   au FileType man nnoremap <buffer> <cr> :q<cr>
   " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me

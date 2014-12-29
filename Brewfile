@@ -31,6 +31,7 @@ install node --devel
 # npm install -g cnpm --registry=http://r.cnpmjs.org
 install hg --devel
 install go --devel
+install python --devel
 
 install docker
 install packer
@@ -65,3 +66,5 @@ cask install dropbox
 cask install filezilla
 cask install google-chrome
 cask install atom
+
+pip install fake2db
