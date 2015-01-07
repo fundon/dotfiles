@@ -12,6 +12,7 @@ NeoBundle 'bling/vim-bufferline' " Buffer line
 NeoBundle 'nathanaelkane/vim-indent-guides' " Indent guides
 NeoBundle 'mhinz/vim-startify' " Start page
 NeoBundle 'mbbill/undotree' " Undo tree
+NeoBundle 'tpope/vim-eunuch'
 
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 NeoBundle 'scrooloose/nerdtree'
