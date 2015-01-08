@@ -84,6 +84,9 @@ NPM_COMPLETION=$HOME/.zsh/completion/_npm
 [ ! -f "$NPM_COMPLETION" ] && npm completion > $NPM_COMPLETION
 source $NPM_COMPLETION
 unset NPM_COMPLETION
+# NVM
+source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR=~/.nvm
 
 # Go
 export CHGO_ROOT=/opt/boxen/chgo
