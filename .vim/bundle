@@ -57,6 +57,7 @@ let g:vim_markdown_frontmatter=1
 
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'othree/yajs.vim'
 NeoBundle 'toyamarinyon/vim-swift'
 
 NeoBundle 'fatih/vim-go'
