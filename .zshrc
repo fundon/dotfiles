@@ -87,6 +87,7 @@ unset NPM_COMPLETION
 # NVM
 source $(brew --prefix nvm)/nvm.sh
 export NVM_DIR=~/.nvm
+nvm use iojs
 NVM_COMPLETION=/usr/local/etc/bash_completion.d/nvm
 [ -f "$NVM_COMPLETION" ] && source $NVM_COMPLETION
 unset NVM_COMPLETION
