@@ -67,6 +67,9 @@ syntax on
 " Highlight current line
 set cursorline
 
+set textwidth=80
+set colorcolumn=+1
+
 " Make tabs as wide as two spaces
 set tabstop=2
 set shiftwidth=2
