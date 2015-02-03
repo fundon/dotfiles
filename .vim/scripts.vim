@@ -46,6 +46,10 @@ if s:line1 =~ '^#!'
   elseif s:name =~ '^node\>'
     setf javascript
 
+  " io.js
+  elseif s:name =~ '^iojs\>'
+    setf javascript
+
   " Lua
   elseif s:name =~ '^lua\>'
     setf lua

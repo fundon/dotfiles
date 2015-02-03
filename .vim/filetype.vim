@@ -22,6 +22,8 @@ augroup filetypedetect
 
   au StdinReadPost * if !did_filetype() | ru! scripts.vim | endif
 
+  au BufEnter COMMIT_EDITMSG set textwidth=72
+
   runtime! ftdetect/*.vim
 
 augroup END
