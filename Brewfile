@@ -27,7 +27,7 @@ install ag
 install autojump
 install wget
 install ssh-copy-id
-install node --devel
+#install node --devel
 # npm install -g cnpm --registry=http://r.cnpmjs.org
 install hg --devel
 install go --devel
