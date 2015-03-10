@@ -68,6 +68,12 @@ bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
 bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"=(
 
+# Speed up zsh
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+
 # use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL
