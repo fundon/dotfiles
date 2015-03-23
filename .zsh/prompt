@@ -32,7 +32,9 @@ ZSH_THEME_GIT_PROMPT_BEHIND="$GIT_SYMBOLS[behind]"
 ZSH_THEME_GIT_PROMPT_DIVERGED="$GIT_SYMBOLS[diverged]"
 
 git_branch_info() {
-  echo "${$(git symbolic-ref HEAD 2> /dev/null)#(refs/heads/)}"
+  ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+  echo "${ref#(refs/heads/)}"
 }
 
 git_prompt_info() {
@@ -84,6 +86,10 @@ git_prompt_info() {
 }
 
 update_current_git_vars() {
+  if [ ! -d .git ]; then
+    return
+  fi
+
   unset GIT_BRANCH
   unset GIT_REMOTE
   unset GIT_STATUS
