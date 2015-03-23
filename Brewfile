@@ -40,7 +40,7 @@ install boot2docker
 install httpry
 install httpie
 install vim --with-lua
-install macvim --with-cscope --with-lua --override-system-vim --HEAD
+install macvim --with-cscope --with-lua --env-std --override-system-vim --HEAD
 install htop-osx
 install vagrant-completion
 install jq
