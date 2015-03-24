@@ -134,6 +134,8 @@ let $MYVIM  = expand('~/.vim')
 
 filetype off
 
+set shell=/bin/sh
+
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
