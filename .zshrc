@@ -1,13 +1,13 @@
 # .zshrc
 
+set +e
+set +u
+
 # prompt
 source ~/.zsh/prompt
 setopt promptsubst
 PROMPT=' %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242}%{$reset_color%} '
 RPROMPT='$(update_current_git_vars)'
-
-# boxen
-#[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 fpath=(
   # brew zsh
@@ -96,7 +96,6 @@ NVM_COMPLETION=/usr/local/etc/bash_completion.d/nvm
 unset NVM_COMPLETION
 
 # Go
-export CHGO_ROOT=/opt/boxen/chgo
 export GOPATH=~/dev/go
 export PATH=$GOPATH/bin:$PATH
 source $(brew --prefix)/share/zsh/site-functions/_go
