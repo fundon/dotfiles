@@ -61,6 +61,8 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'othree/yajs.vim'
 NeoBundle 'toyamarinyon/vim-swift'
 
+NeoBundle 'editorconfig/editorconfig-vim'
+
 NeoBundle 'exu/pgsql.vim'
 
 NeoBundle 'fatih/vim-go'
