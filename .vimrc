@@ -29,7 +29,7 @@ set binary
 set noeol
 
 set nobackup
-set nowritebackup 
+set nowritebackup
 set noswapfile
 set history=1000
 set undofile
@@ -118,7 +118,7 @@ set fo-=r
 set fo-=t
 
 " Statusline
-set statusline=%<%f\ 
+set statusline=%<%f\
 set stl+=[%{&ff}]
 set stl+=%y%m%r%=
 set stl+=%-14.(%l,%c%V%)\ %P
@@ -151,9 +151,9 @@ call neobundle#begin(expand($NEOBUNDLE_DIR))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim', { 'name': 'neobundle' }
 
-call neobundle#end()
-
 source ~/.vim/bundle
+
+call neobundle#end()
 
 " Required:
 filetype plugin indent on

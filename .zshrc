@@ -105,9 +105,6 @@ source $(brew --prefix)/share/zsh/site-functions/_go
 export RBENV_ROOT=~/dev/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Docker, access to Box's docker
-export DOCKER_HOST="tcp://127.0.0.1:2375"
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 

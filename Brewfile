@@ -17,7 +17,7 @@ tap homebrew/nginx
 # packages
 install git
 install zsh
-install openssl
+install openssl --force
 install tree
 
 install tmux
