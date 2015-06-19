@@ -14,6 +14,7 @@ NeoBundle 'mhinz/vim-startify' " Start page
 NeoBundle 'mbbill/undotree' " Undo tree
 NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 NeoBundle 'scrooloose/nerdtree'
