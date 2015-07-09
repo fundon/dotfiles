@@ -9,6 +9,8 @@ setopt promptsubst
 PROMPT=' %(?.%F{magenta}.%F{red})λ%f %{$fg_no_bold[blue]%}%~%F{242}%{$reset_color%} '
 RPROMPT='$(update_current_git_vars)'
 
+export PATH=/usr/local/bin:$PATH
+
 fpath=(
   # brew zsh
   $(brew --prefix)/share/zsh/site-functions
