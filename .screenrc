@@ -1,0 +1,94 @@
+# %{= xx} fields to change the colors
+# http://nion.modprobe.de/setup/screenrc.html
+# =======================================================
+#       VARIABLEN
+# =======================================================
+nethack               on
+autodetach            on              # Detach on hangup, Standard: on
+crlf                  off             # Standard: off
+deflogin              off             # Standard: on
+hardcopy_append       on              # Standard: off
+startup_message       off             # Standard: on
+vbell                 off             # no audible bell
+defscrollback         5000            # Default scrollback value, Standard: 100
+silencewait           15              # Standard: 30
+shell                 -bash
+activity              "activity in %n (%t) [%w:%s]~"
+bell                  "%C -> %n%f %t activity!"
+
+# ======================================================
+# Keybindings
+# ======================================================
+bind h hardcopy
+bind P paste          .
+bind ~ activity       "activity in %n (%t) [%w:%s]~"
+bind * activity       "activity in %n (%t) [%w:%s]"
+bind i screen -t    'iostat'   7  iostat -dkt 5
+bind v screen -t    'vmstat'   8  vmstat 5
+bind t screen -t    'top'      9  top
+# bind r screen -t    'rmsm'    10  /tmp/rmsm.sh
+
+# bind K # not killing windows accidental
+# bind s stuff ""
+# bind d exec .!. zsh -c 'print -Pn %D{%F}'
+# bind p exec bash -c 'ps aux | less'
+
+# ===============================================================
+# TERMCAP and TERMINFO
+# ===============================================================
+
+
+#  termcapinfo xterm     ti@:te@
+#
+# Matthias Kopfermann <matthias_kopfermann@gmx.de> [020222]:
+# make the cursor show up in red:
+termcapinfo xterm "ve=\E[?25h\E[?17;0;64c"
+
+termcapinfo linux "ve=\E[?25h\E[?17;0;64c"
+termcapinfo xterm Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
+
+
+# ===========================================
+#       CAPTION
+# ===========================================
+
+# 0 Black             .    leave color unchanged
+# 1 Red               b    blue
+# 2 Green             c    cyan
+# 3 Brown / yellow    d    default color
+# 4 Blue              g    green           b    bold
+# 5 Purple            k    blacK           B    blinking
+# 6 Cyan              m    magenta         d    dim
+# 7 White             r    red             r    reverse
+# 8 unused/illegal    w    white           s    standout
+# 9 transparent       y    yellow          u    underline
+
+#hardstatus on
+#hardstatus alwayslastline
+#backtick 1 0 0 /home/jg/ruby/stats.rb
+#caption always '%{= bw}%-Lw%{= rW}%n%f+ %{+u}%t%{-}%{-}%+Lw%{= KW} /%-=/ %{= kg} %1` %{= kK}/ %{= ky}%Y/%m/%d %{= kK}/ %{= kc}%c:%s%{-}'
+caption always '%{= bw}%-Lw%{= rW}%n%f+ %{+u}%t%{-}%{-}%+Lw%{= KW} /%-=/ %{= kg} %{= kK}/ %{= ky}%Y/%m/%d %{= kK}/ %{= kc}%c:%s%{-}'
+	# %{= bw} : color
+	# %-Lw : all window numbers and names. With '-' quailifier: up to the current window
+
+	# %{= rW} : color
+	# %n : window number 
+	# %f : flag of the window
+		# +   : fills flag position (instead of -)
+		# ' ' : margin
+	# %t : window title
+
+	# %{-}%+Lw : all window numbers and names. with '+' qualifier:
+				# 	starting with the window after the current one
+
+
+escape \\]
+shelltitle "> |bash"
+
+# screen -t main 1
+# stuff "echo 'hello junegunn!'\012"
+
+# http://robotsrule.us/vim/
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
