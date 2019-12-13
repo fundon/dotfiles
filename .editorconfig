@@ -18,7 +18,7 @@ indent_style = space
 insert_final_newline = false
 trim_trailing_whitespace = true
 
-[*.toml]
+[*.{toml,yaml,yml}]
 indent_size = 4
 indent_style = space
 

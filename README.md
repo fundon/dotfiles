@@ -1,4 +1,4 @@
 ## dotfiles
 
-* fish
-
+* https://fishshell.com/
+* https://editorconfig.org/
