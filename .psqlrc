@@ -1,0 +1,49 @@
+-- Official docs: http://www.postgresql.org/docs/9.3/static/app-psql.html
+-- Unofficial docs: http://robots.thoughtbot.com/improving-the-command-line-postgres-experience
+-- Thanks to: mitsuhiko https://github.com/mitsuhiko/dotfiles/blob/master/psql/psqlrc
+
+-- disable output temporarily
+\set QUIET on
+
+-- nicer rendering for null
+\pset null '[NULL]'
+
+-- nicer prompt
+-- http://www.postgresql.org/docs/9.3/static/app-psql.html#APP-PSQL-PROMPTING
+\set PROMPT1 '%[%033[0;33;33m%]%M%[%033[0m%] %[%033[0;33;35m%]%n%[%033[0m%]@%[%033[0;33;32m%]%/%[%033[0m%]\n%R%# '
+-- PROMPT2 is printed when the prompt expects more input, like when you type
+-- SELECT * FROM<enter>. %R shows what type of input it expects.
+\set PROMPT2 '[more] %R > '
+
+-- disable default pager
+--\pset pager off
+
+-- https://github.com/okbob/pspg
+\setenv PAGER pspg
+
+-- border
+\pset border 2
+
+-- nicer tables
+\pset linestyle unicode
+
+-- enable timers
+\timing
+
+-- automatically switch to \x for large outputs
+\x auto
+
+-- better errors
+\set VERBOSITY verbose
+
+-- save history
+\set HISTFILE ~/.psql_history- :DBNAME
+
+-- keep inputs in the history once
+\set HISTCONTROL ignoredups
+
+-- always auto complete in lowercase
+\set COMP_KEYWORD_CASE upper
+
+-- quiet
+\unset quiet
