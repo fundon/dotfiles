@@ -1,0 +1,292 @@
+[alias]
+
+    a   = commit --amend
+    br  = branch
+    c   = commit
+    co  = checkout
+    cp  = cherry-pick
+    dc  = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock' ':!*Cargo.lock'
+    f   = fetch
+    p   = push
+    r   = rebase
+    w   = instaweb --httpd=webrick              # Start web-based visualizer.
+
+    # Amend the currently staged files to the latest commit
+    amend = commit --amend --reuse-message=HEAD
+
+    # View abbreviated SHA, description, and history graph of the latest 20 commits
+    l = log --graph -n 20 --abbrev-commit --pretty=custom
+
+    # List contributors.
+    lc  = shortlog --email --numbered --summary
+
+    # Color graph log view
+    graph = log --graph --color --pretty=custom
+
+    # View the current working tree status using the short format
+    s = status -s
+
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat -- . ':!*package-lock.json' ':!*yarn.lock' ':!*Cargo.lock'"
+
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+    # Pull in remote changes for the current repository and all its submodules
+    pl = git pull --recurse-submodules
+
+    # Checkout a pull request from origin (of a github repository)
+    pr = !"pr() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; pr"
+
+    # Clone a repository including all submodules
+    cl = clone --recursive
+
+    # Commit all changes
+    ca = !git add -A && git commit -av
+
+      # Switch to a branch, creating it if necessary
+    go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+    # Create an empty branch
+    new = "!f() { git checkout --orphan \"$1\" && git rm --cached -r .; }; f"
+
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+
+    # List remote branches
+    lrb = "!f() { remote=\"${1:-origin}\"; git ls-remote --heads \"$remote\"; }; f"
+
+    # List aliases
+    aliases = config --get-regexp alias
+    # from trevor bramble https://twitter.com/TrevorBramble/status/774292970681937920
+    #alias=!git config -l | grep ^alias | cut -c 7- | sort
+
+    # Credit an author on the latest commit
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+    # Interactive rebase with the given number of latest commits
+    reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+
+    # Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
+
+    # Find commits by source code
+    fc = "!f() { git log --pretty=custom --decorate --date=short -S$1; }; f"
+
+    # Find commits by commit message
+    fm = "!f() { git log --pretty=custom --decorate --date=short --grep=$1; }; f"
+
+    # Remove branches that have already been merged with master
+    # a.k.a. ‘delete merged’
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
+
+    # List contributors with number of commits
+    contributors = shortlog --summary --numbered
+    commiters = shortlog -s -n --all
+
+    # Merge GitHub pull request on top of the current branch or,
+    # if a branch name is specified, on top of the specified branch
+    mpr = "!f() { \
+        declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+        declare branch=\"${2:-$currentBranch}\"; \
+        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+            git fetch origin refs/pull/$1/head:pr/$1 && \
+            git checkout -B $branch && \
+            git rebase $branch pr/$1 && \
+            git checkout -B $branch && \
+            git merge pr/$1 && \
+            git branch -D pr/$1 && \
+            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+        fi \
+    }; f"
+
+    # Credit an author on the latest commit.
+    credit = "!f() { \
+        if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
+            git commit --amend --author \"$1 <$2>\" -C HEAD; \
+        fi \
+    }; f"
+
+    # Credit a co-author on the latest commit.
+    #
+    # https://help.github.com/en/articles/creating-a-commit-with-multiple-authors
+    # https://help.github.com/en/articles/creating-a-commit-on-behalf-of-an-organization
+    credit-co-author = "!f() { \
+        if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
+            GIT_EDITOR=\"git interpret-trailers --in-place --trailer='Co-authored-by: $1 <$2>'\" git commit --amend; \
+        fi \
+    }; f"
+
+    # Remove the old tag with this name and tag the latest commit with it.
+    retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+
+    # Remove last commits (by default it removes the last commit)
+    redo = "!f() { \
+        declare n=\"${1:-1}\"; \
+        git reset --hard \"HEAD~$n\"; \
+    }; f"
+
+    # Undo last commits (by default it undoes the last commit)
+    undo = "!f() { \
+        declare n=\"${1:-1}\"; \
+        git reset --soft \"HEAD~$n\"; \
+    }; f"
+
+[apply]
+
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
+[core]
+
+    # Use custom `.gitignore` and `.gitattributes`
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+    # Make `git rebase` safer on OS X
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
+    editor = vim
+
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+    precomposeunicode = false
+
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
+
+    # Use diff-so-fancy for all diff output
+    # https://github.com/so-fancy/diff-so-fancy#usage
+    pager = diff-so-fancy | less --tabs=4 -RFX
+
+[color]
+
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = auto
+
+[color "branch"]
+
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff-highlight"]
+
+    # https://github.com/so-fancy/diff-so-fancy#improved-colors-for-the-highlighted-bits
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+
+[color "diff"]
+
+    # https://github.com/so-fancy/diff-so-fancy#improved-colors-for-the-highlighted-bits
+    meta = 11
+    frag = magenta bold # line info
+    commit = yellow bold
+    old = red bold # deletions
+    new = green bold # additions
+    whitespace = red reverse
+
+
+[color "status"]
+
+    added = yellow
+    changed = green
+    untracked = cyan
+
+
+[gpg]
+    program = gpg
+
+[commit]
+
+    # https://help.github.com/articles/signing-commits-using-gpg/
+    gpgsign = true
+
+    template = ~/.gitmessage
+
+[diff]
+
+    # Detect copies as well as renames
+    renames = copies
+
+    # Show blocks of moved text of at least 20
+    # alphanumeric characters differently than adds/deletes.
+    #
+    # https://git-scm.com/docs/git-diff#git-diff-zebra
+    colorMoved = zebra
+
+
+[diff "bin"]
+
+    # Use `hexdump` to diff binary files
+    textconv = hexdump -v -C
+
+[help]
+
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
+
+[merge]
+
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+
+[pretty]
+
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    #                     │        │            │            │             └─ author name
+    #                     │        │            │            └─ message
+    #                     │        │            └─ date (relative)
+    #                     │        └─ decorations (branch, heads or tags)
+    #                     └─ hash (abbreviated)
+
+[push]
+
+    # https://git-scm.com/docs/git-config#git-config-pushdefault
+    default = simple
+
+    # Make `git push` automatically push relevant
+    # annotated tags when pushing branches out.
+    followTags = true
+
+[user]
+
+    # Do not guess the user's identity.
+    # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
+    useConfigOnly = true
+
+    # [!] DO NOT store sensitive information such as the Git user
+    # credentials (`name` / `email`), or things such as the `signingkey`
+    # in this file, add them in `~/.gitconfig.local`!
+    #
+    # See also: https://github.com/alrra/dotfiles#gitconfiglocal
+
+[include]
+
+    # Load local configs.
+    # https://git-scm.com/docs/git-config#_includes
+    #
+    # [!] The following needs to remain at the end of this file in
+    #     order to allow any of the above configs to be overwritten
+    #     by the local ones
+    path = ~/.gitconfig.local
+
+
+# Thanks:
+# https://github.com/alrra/dotfiles
+# https://github.com/mathiasbynens/dotfiles
+# https://github.com/jessfraz/dotfiles

@@ -1,0 +1,10 @@
+# Automatically normalize line endings for all text-based files.
+# https://git-scm.com/docs/gitattributes#_end_of_line_conversion
+#
+* text=auto
+
+# git
+.gitignore text
+
+.tmux.conf eol=lf
+.tmux.conf.local eol=lf
