@@ -140,5 +140,10 @@ set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
 set -g fish_color_user brgreen
 set -g fish_color_valid_path --underline
 
+## Navi
+## https://github.com/denisidoro/navi
+source (navi widget fish)
+
 ## Install Starship
-eval (starship init fish)
+## https://github.com/starship/starship
+starship init fish | source
