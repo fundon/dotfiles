@@ -38,7 +38,10 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+
 Plug 'mhinz/vim-signify'
+set updatetime=100
+
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " -- Editing
@@ -49,12 +52,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
+  let g:deoplete#enable_at_startup = 1
 endif
-let g:deoplete#enable_at_startup = 1
 Plug 'wellle/context.vim'
 
 " -- Languages
@@ -147,7 +148,11 @@ set virtualedit=block
 set nojoinspaces
 set diffopt=filler,vertical
 set autoread
-set clipboard=unnamedplus
+if has('osx')
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
 set foldlevelstart=99
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 set completeopt=menuone,preview
@@ -161,7 +166,7 @@ if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
-endi
+endif
 
 set pastetoggle=<F9>
 set modelines=2
@@ -181,10 +186,12 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 "nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 "nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
-if has ( "autocmd" )
+if has('autocmd')
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal g'\"" |
     \ endif
 endif
 
+" Links
+" https://github.com/mhinz/vim-galore

@@ -1,6 +1,6 @@
 alias c clear
 alias g git
-alias vim nvim
+#alias vim nvim
 alias vi vim
 alias ls exa
 alias ll 'ls -glah --git'
