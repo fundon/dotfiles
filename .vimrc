@@ -97,6 +97,7 @@ endif
 " -- Plugin Settings
 let g:rustfmt_autosave = 1
 let g:rust_clip_command = 'pbcopy'
+let g:rustfmt_options = '--edition 2018'
 
 let g:prettier#config#semi = 'false'
 let g:prettier#config#single_quote = 'true'
