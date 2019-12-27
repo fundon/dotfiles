@@ -10,7 +10,7 @@ set fish_greeting
 if not set -q TMUX
   set -gx PATH \
     $HOME/bin \
-    $HOME/go/bin \
+    $HOME/.go/bin \
     $HOME/.cargo/bin \
     $HOME/.deno/bin \
     $HOME/.yarn/bin \
@@ -101,7 +101,10 @@ set -gx EDITOR vim
 set -gx RUSTC_WRAPPER sccache
 
 ## GO
-set -gx GOPATH $HOME/go
+# https://goproxy.io/
+set -gx GOPATH $HOME/.go
+set -gx GO111MODULE on
+set -gx GOPROXY https://goproxy.io
 
 ## Wasmer
 set -gx WASMER_DIR $HOME/.wasmer
