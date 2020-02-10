@@ -56,7 +56,7 @@ if has('nvim')
   Plug 'roxma/vim-hug-neovim-rpc'
   let g:deoplete#enable_at_startup = 1
 endif
-Plug 'wellle/context.vim'
+"Plug 'wellle/context.vim'
 
 " -- Languages
 Plug 'dag/vim-fish'

@@ -137,9 +137,13 @@
         git reset --soft \"HEAD~$n\"; \
     }; f"
 
-[url "git@github.com:"]
-
-	insteadOf = https://github.com/
+#[url "ssh://github.com/"]
+#
+#	insteadOf = git@github.com:
+#
+#[url "git@github.com:"]
+#
+#	insteadOf = https://github.com/
 
 [apply]
 

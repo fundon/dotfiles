@@ -1,6 +1,7 @@
 -- Official docs: http://www.postgresql.org/docs/9.3/static/app-psql.html
 -- Unofficial docs: http://robots.thoughtbot.com/improving-the-command-line-postgres-experience
 -- Thanks to: mitsuhiko https://github.com/mitsuhiko/dotfiles/blob/master/psql/psqlrc
+-- https://postgres.cz/wiki/Pretty_borders_in_psql
 
 -- disable output temporarily
 \set QUIET on
@@ -17,9 +18,6 @@
 
 -- disable default pager
 --\pset pager off
-
--- https://github.com/okbob/pspg
-\setenv PAGER pspg
 
 -- border
 \pset border 2
@@ -44,6 +42,12 @@
 
 -- always auto complete in lowercase
 \set COMP_KEYWORD_CASE upper
+
+-- https://github.com/okbob/pspg
+-- Switch pagers with :x and :xx commands
+\set x '\\setenv PAGER less'
+\set xx '\\setenv PAGER \'pspg -bX --no-mouse\''
+:xx
 
 -- quiet
 \unset quiet

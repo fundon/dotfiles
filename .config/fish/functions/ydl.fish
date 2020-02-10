@@ -19,11 +19,10 @@ function ydl
   youtube-dl \
     --user-agent $agent \
     --add-metadata \
-    -o '%(title)s.%(ext)s' \
-    -f 'bestaudio' \
-    --no-playlist \
-    -x --audio-format best \
-    --audio-quality 0 $link
+    -o '%(title)s.f%(format_id)s.%(ext)s' \
+    -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]' \
+    --merge-output-format mp4 \
+    $link
 
   echo "$link success"
   cd $old

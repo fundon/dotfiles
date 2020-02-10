@@ -1,0 +1,1 @@
+/Users/fundon/Library/Application Support/org.dystroy.broot/launcher/fish/1.fish
