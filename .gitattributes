@@ -8,3 +8,5 @@
 
 .tmux.conf eol=lf
 .tmux.conf.local eol=lf
+
+*.wasm diff=wasm

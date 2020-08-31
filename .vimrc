@@ -29,6 +29,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'rhysd/git-messenger.vim'
 "Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'segeljakt/vim-silicon'
+Plug 'justinmk/vim-dirvish'
 
 " -- Themes
 Plug 'lifepillar/vim-solarized8'
