@@ -345,7 +345,7 @@ schemes:
       cyan:    '0x9aedfe'
       white:   '0xeff0eb'
 
-colors: *dark
+colors: *light
 
 # Bell
 #
